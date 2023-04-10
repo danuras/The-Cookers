@@ -27,10 +27,10 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>Name:</strong>
+                                <strong>Nama:</strong>
                                 <input type="text" name="name" class="form-control" placeholder="Name" autocomplete="off">
                                     @error('name')
-                                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                        <div class="alert alert-danger mt-1 mb-1">Nama Harus Diisi</div>
                                     @enderror
                             </div>
                     </div>
@@ -39,7 +39,7 @@
                                 <strong>Username:</strong>
                                 <input type="text" name="username" class="form-control" placeholder="Username" autocomplete="off">
                                     @error('username')
-                                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                        <div class="alert alert-danger mt-1 mb-1">Username Harus Diisi</div>
                                     @enderror
                             </div>
                     </div>
@@ -48,7 +48,7 @@
                             <strong>Email:</strong>
                                 <input type="email" name="email" class="form-control" placeholder="Email" autocomplete="new-password">
                                     @error('email')
-                                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                        <div class="alert alert-danger mt-1 mb-1">Email Harus Diisi</div>
                                     @enderror
                         </div>
                     </div>
@@ -57,16 +57,16 @@
                             <strong>Password:</strong>
                                 <input type="password" name="password" class="form-control" placeholder="password" autocomplete="new-password">
                                     @error('password')
-                                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                        <div class="alert alert-danger mt-1 mb-1">Password Harus Diisi</div>
                                     @enderror
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>Re-Enter Password:</strong>
-                                <input type="password" name="c_password" class="form-control" placeholder="Re-Enter Password" autocomplete="new-password">
+                            <strong>Masukan kembali password:</strong>
+                                <input type="password" name="c_password" class="form-control" placeholder="Masukan kembali password" autocomplete="new-password">
                                 @error('c_password')
-                                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                    <div class="alert alert-danger mt-1 mb-1">Masukan kembali password Harus Diisi</div>
                                 @enderror
                         </div>
                     </div>
@@ -78,19 +78,15 @@
                         <div class="form-group">
                             <strong>Photo Profile:</strong>
                                 <input type="file" name="photo_profile" class="form-control" placeholder="photo_profile" autocomplete="off">
-                                    @error('photo_profile')
-                                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                                    @enderror
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Gender:</strong>
-                                <input type="text" name="gender" class="form-control" placeholder="Gender" autocomplete="off">
-                                    @error('gender')
-                                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                                    @enderror
-                            </div>
+                        <strong>Gender:</strong>
+                        <input type="radio" id="male" name="gender" value="L">
+                        <label for="male">Laki-laki</label>
+
+                        <input type="radio" id="female" name="gender" value="P">
+                        <label for="female">Wanita</label>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">

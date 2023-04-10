@@ -19,42 +19,39 @@
                 {{ session('status') }}
             </div>
         @endif
-                <form action="{{ route('verifyEmail') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Kode Verifikasi:</strong>
-                                <input type="text" name="verification_code"class="form-control" placeholder="Kode Verifikasi">
-                                    
-                                @error('verification_code')
-                                    <div class="alert alert-danger mt-1 mb-1">{{$message }}</div>
-                                @enderror
-                            </div>
-                            
-                    
-                        </div>
-                        
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            @error('ecode')
-                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+            <form action="{{ route('verifyEmail') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <strong>Kode Verifikasi:</strong>
+                            <input type="text" name="verification_code"class="form-control" placeholder="Kode Verifikasi">
+                                
+                            @error('verification_code')
+                                <div class="alert alert-danger mt-1 mb-1">Kode Verifikasi harus diisi</div>
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-primary ml-3">Submit</button>
-                    </div>  
-                </form>
-                <form action="{{ route('sendVerificationCode') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            
+                        
+                
+                    </div>
                     
-                        </div>
-                        <button type="submit" class="btn btn-primary ml-3">Resend</button>
-                    </div>  
-                </form>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        @error('ecode')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <button type="submit" class="btn btn-primary ml-3">Submit</button>
+                </div>  
+            </form>
+            <form action="{{ route('sendVerificationCode') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        
                 
-
-                
+                    </div>
+                    <button type="submit" class="btn btn-primary ml-3">Kirim Kode lagi</button>
+                </div>  
+            </form>
     </body>
 </html>
