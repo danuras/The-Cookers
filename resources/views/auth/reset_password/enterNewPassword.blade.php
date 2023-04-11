@@ -29,7 +29,7 @@
                             <strong>Password:</strong>
                                 <input type="password" name="password" class="form-control" placeholder="password" autocomplete="new-password">
                                     @error('password')
-                                        <div class="alert alert-danger mt-1 mb-1">Password Harus Diisi</div>
+                                        <div class="alert alert-danger mt-1 mb-1">Password Harus minimal 8 karakter, 1 huruf kecil dan besar, memiliki 1 digit huruf, dan memiliki karakter spesial</div>
                                     @enderror
                         </div>
                     </div>

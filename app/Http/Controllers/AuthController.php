@@ -188,11 +188,10 @@ class AuthController extends Controller
         ]);
     }
 
-    public function saveNewPassword(Request $request): RedirectResponse{
+    public function saveNewPassword(Request $request){
         
         Session::flashInput($request->input());
-        $email = $request->email;
-        Session::forget('erp');
+        $email = Session::get('erp');
         $request->validate([
             'password' => [
                 'required',
@@ -205,12 +204,7 @@ class AuthController extends Controller
             ],
             'c_password' => [
                 'required',
-                'string',
-                'min:8',             // must be at least 10 characters in length
-                'regex:/[a-z]/',      // must contain at least one lowercase letter
-                'regex:/[A-Z]/',      // must contain at least one uppercase letter
-                'regex:/[0-9]/',      // must contain at least one digit
-                'regex:/[@$!%*#?&]/', // must contain a special character
+                
             ],
         ]);
         
@@ -219,11 +213,18 @@ class AuthController extends Controller
                 's_password' => 'Password tidak sama',
             ]);
         }
-        $user = DB::update('update users set password  = ? where email = ?', [Hash::make($request -> password), $email]);
-        if($user){
-            return  redirect()->intended('/')
-            ->with('success', 'Password telah di ubah');
-        } 
+        $useru = User::where('email', $email)->first();
+        $token = Session::get('token_code');
+        if(Hash::check($token, $useru->verification_code)){
+            $user = DB::update('update users set password  = ? where email = ?', [Hash::make($request -> password), $email]);
+            if($user){
+                        
+                Session::forget('erp');
+                Session::forget('token_code');
+                return  redirect()->intended('/')
+                ->with('success', 'Password telah di ubah');
+            } 
+        }
         return back()->withErrors([
             'ecode' => 'Password gagal di ubah',
         ]);
@@ -240,9 +241,10 @@ class AuthController extends Controller
         $email = $request->email;
         $user = User::where('email', $email)->first();
         $token = $request->verification_code;
-        if(Hash::check($token, $user->verification_code) && $user->verification_code_expired_at > Carbon::now()){
+        if(Hash::check($token, $user->verification_code) && $user->verification_code_expired_at > Carbon::now()){    
+            Session::put('token_code', $request->verification_code);
             $user = DB::update('update users set email_verified_at = ? where email = ?', [Carbon::now(), $email]);
-            return  view('auth.reset_password.enterNewPassword');
+            return  redirect()->intended('show-enter-new-password');
         } else if ($user->verification_code_expired_at < Carbon::now() && Hash::check($token, $user->verification_code)){
             return back()->withErrors([
                 'ecode' => 'Kode verifikasi telah kadaluarsa',
