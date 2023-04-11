@@ -38,7 +38,7 @@ Route::middleware('guest')->group(function () {
     Route::post('send-verification-code-reset-password', [AuthController::class, 'sendVerificationCodeResetPassword'])->name('send-verification-code-reset-password');
     Route::post('verify-code', [AuthController::class, 'verifyCode'])->name('verify-code');
 
-    Route::get('show-enter-new-password', [AuthController::class, 'showEnterNewPassword']);
+    //Route::get('show-enter-new-password', [AuthController::class, 'showEnterNewPassword']);
     Route::post('save-new-password', [AuthController::class, 'saveNewPassword'])->name('save-new-password');
 });
 

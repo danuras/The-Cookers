@@ -229,7 +229,7 @@ class AuthController extends Controller
         ]);
     }
 
-    public function verifyCode(Request $request): RedirectResponse
+    public function verifyCode(Request $request)
     {
         Session::flashInput($request->input());
 
@@ -242,8 +242,7 @@ class AuthController extends Controller
         $token = $request->verification_code;
         if(Hash::check($token, $user->verification_code) && $user->verification_code_expired_at > Carbon::now()){
             $user = DB::update('update users set email_verified_at = ? where email = ?', [Carbon::now(), $email]);
-            return  redirect()->intended('show-enter-new-password')
-            ->with('email', $email);
+            return  view('auth.reset_password.enterNewPassword');
         } else if ($user->verification_code_expired_at < Carbon::now() && Hash::check($token, $user->verification_code)){
             return back()->withErrors([
                 'ecode' => 'Kode verifikasi telah kadaluarsa',
