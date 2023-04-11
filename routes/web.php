@@ -29,13 +29,19 @@ Route::middleware('guest')->group(function () {
 
     Route::get('login', [AuthController::class, 'showLoginView'])->name('login');
     Route::post('login', [AuthController::class, 'login']);
+
+    
+    Route::get('enter-email', [AuthController::class, 'showEnterEmailView'])->name('enter-email');
+    Route::post('enter-email', [AuthController::class, 'enterEmail'])->name('enter-email');
+    Route::post('send-verification-code-reset-password', [AuthController::class, 'sendVerificationCodeResetPassword']);
+    Route::post('verify-code', [AuthController::class, 'verifyCode'])->name('verify-code');
 });
 
 Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
-    Route::post('sendVerificationCode', [AuthController::class, 'sendVerificationCode'])->name('sendVerificationCode');
-    Route::post('verifyEmail', [AuthController::class, 'verifyEmail'])->name('verifyEmail');
-    Route::get('showVerificationCode', [AuthController::class, 'showVerificationCode'])->name('showVerificationCode');
+    Route::post('send-verification-code', [AuthController::class, 'sendVerificationCode'])->name('send-verification-code');
+    Route::post('verify-email', [AuthController::class, 'verifyEmail'])->name('verify-email');
+    Route::get('show-verification-code', [AuthController::class, 'showVerificationCode'])->name('show-verification-code');
 
     /*  Route::get('verify-email', EmailVerificationPromptController::class)
                 ->name('verification.notice');

@@ -19,7 +19,7 @@
                 {{ session('status') }}
             </div>
         @endif
-            <form action="{{ route('verify-email') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('verify-code') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -40,7 +40,7 @@
                     <button type="submit" class="btn btn-primary ml-3">Submit</button>
                 </div>  
             </form>
-            <form action="{{ route('send-verification-code') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('send-verification-code-reset-password') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <button type="submit" class="btn btn-primary ml-3">Kirim Kode lagi</button>

@@ -40,11 +40,5 @@
                     <button type="submit" class="btn btn-primary ml-3">Submit</button>
                 </div>  
             </form>
-            <form action="{{ route('send-verification-code') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="row">
-                    <button type="submit" class="btn btn-primary ml-3">Kirim Kode lagi</button>
-                </div>  
-            </form>
     </body>
 </html>

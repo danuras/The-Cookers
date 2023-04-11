@@ -74,7 +74,7 @@ class AuthController extends Controller
         Mail::to($request->email)->send(new SendEmailVerificationCode($token));
         $user->save();
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $remember)) {
-            return redirect()->intended('showVerificationCode');
+            return redirect()->intended('show-verification-code');
         }
 
         return  redirect()->intended('/');
@@ -132,6 +132,38 @@ class AuthController extends Controller
             'ecode' => 'Tunggu sampai '.$diff->format('%i menit, %s detik').' lagi untuk mengirimkan kode verifikasi',
         ]);
     }
+    
+    public function showEnterEmailView()
+    {
+        return view('auth.enterEmail');
+    }
+    public function enterEmail(Request $request): RedirectResponse
+    {
+        $email = $request->email;
+        $user = User::where('email', $email)->first();
+        if($user){
+            $token = Str::random(6);
+            $user = DB::update('update users set verification_code = ?, verification_code_expired_at = ? where email = ?', [Hash::make($token), Carbon::now()->addMinutes(5), $email]);
+            Mail::to($email)->send(new SendEmailVerificationCode($token));
+            return redirect()->intended('show-verification-code');
+        }
+    }
+    public function sendVerificationCodeResetPassword(Request $request, $email): RedirectResponse
+    {
+        
+        if (Auth::user()->verification_code_expired_at < Carbon::now()){
+            $token = Str::random(6);
+            $user = DB::update('update users set verification_code = ?, verification_code_expired_at = ? where email = ?', [Hash::make($token), Carbon::now()->addMinutes(5), $email]);
+            Mail::to($email)->send(new SendEmailVerificationCode($token));
+            return back()->withErrors([
+                'ecode' => 'Kode Verifikasi Telah Dikirim',
+            ]);
+        }
+        $diff = Carbon::createFromFormat('Y-m-d H:i:s', Auth::user()->verification_code_expired_at)->diff(Carbon::now());
+        return back()->withErrors([
+            'ecode' => 'Tunggu sampai '.$diff->format('%i menit, %s detik').' lagi untuk mengirimkan kode verifikasi',
+        ]);
+    }
     public function verifyEmail(Request $request): RedirectResponse
     {
         $request->validate([
@@ -139,11 +171,15 @@ class AuthController extends Controller
         ]);
         $email = Auth::user()->email;
         $token = $request->verification_code;
-        if(Hash::check($token, Auth::user()->verification_code)){
+        if(Hash::check($token, Auth::user()->verification_code) && Auth::user()->verification_code_expired_at > Carbon::now()){
             $user = DB::update('update users set email_verified_at = ? where email = ?', [Carbon::now(), $email]);
             return  redirect()->intended('/')
             ->with('success', 'Email Berhasil di Konfirmasi');
-        } else {  
+        } else if (Auth::user()->verification_code_expired_at < Carbon::now() && Hash::check($token, Auth::user()->verification_code)){
+            return back()->withErrors([
+                'ecode' => 'Kode verifikasi telah kadaluarsa',
+            ]);
+        }else {  
             return back()->withErrors([
                 'ecode' => 'Kode verifikasi salah',
             ]);
