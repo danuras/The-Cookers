@@ -43,7 +43,7 @@
                                     @enderror
                         </div>
                     </div>
-                    <div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
                         <input type="checkbox" id="remember_me" name="remember_me">
                         <label for="remember_me">Remember Me</label>
                     </div>
@@ -52,6 +52,13 @@
                     @enderror
                     <button type="submit" class="btn btn-primary ml-3">Submit</button>
                 </div>
+            </form>
+            
+            <form action="{{ route('enter-email') }}" method="GET" enctype="multipart/form-data">
+                @csrf
+                <div class="row">
+                    <button type="submit" class="btn btn-primary ml-3">Lupa Password</button>
+                </div>  
             </form>
             
     </body>

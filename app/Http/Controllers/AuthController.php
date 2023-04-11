@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use DB;
 use App\Mail\SendEmailVerificationCode;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -40,7 +41,16 @@ class AuthController extends Controller
                 'regex:/[A-Z]/',      // must contain at least one uppercase letter
                 'regex:/[0-9]/',      // must contain at least one digit
                 'regex:/[@$!%*#?&]/', // must contain a special character
+            ],'c_password' => [
+                'required',
+                'string',
+                'min:8',             // must be at least 10 characters in length
+                'regex:/[a-z]/',      // must contain at least one lowercase letter
+                'regex:/[A-Z]/',      // must contain at least one uppercase letter
+                'regex:/[0-9]/',      // must contain at least one digit
+                'regex:/[@$!%*#?&]/', // must contain a special character
             ],
+            
             'gender' => 'required|max:1',
             'info' => 'max:30',
             'bio'=>'max:500',
@@ -135,7 +145,7 @@ class AuthController extends Controller
     
     public function showEnterEmailView()
     {
-        return view('auth.enterEmail');
+        return view('auth.reset_password.enterEmail');
     }
     public function enterEmail(Request $request): RedirectResponse
     {
@@ -145,13 +155,26 @@ class AuthController extends Controller
             $token = Str::random(6);
             $user = DB::update('update users set verification_code = ?, verification_code_expired_at = ? where email = ?', [Hash::make($token), Carbon::now()->addMinutes(5), $email]);
             Mail::to($email)->send(new SendEmailVerificationCode($token));
-            return redirect()->intended('show-verification-code');
+            Session::start();
+            Session::put('erp', $email);
+            
+            return redirect()->intended('show-verification-code-reset-password' )->with('email', $email);
         }
+        return back()->withErrors([
+            'ecode' => 'Email tidak terdaftar',
+        ]);
     }
-    public function sendVerificationCodeResetPassword(Request $request, $email): RedirectResponse
+    
+    public function showVerificationCodeResetPassword()
     {
-        
-        if (Auth::user()->verification_code_expired_at < Carbon::now()){
+        return view('auth.reset_password.enterVerificationCode');
+    }
+    public function sendVerificationCodeResetPassword(Request $request): RedirectResponse
+    {
+        Session::flashInput($request->input());
+        $email = $request->email;
+        $useru = User::where('email', $email)->first();
+        if ($useru->verification_code_expired_at < Carbon::now()){
             $token = Str::random(6);
             $user = DB::update('update users set verification_code = ?, verification_code_expired_at = ? where email = ?', [Hash::make($token), Carbon::now()->addMinutes(5), $email]);
             Mail::to($email)->send(new SendEmailVerificationCode($token));
@@ -159,13 +182,88 @@ class AuthController extends Controller
                 'ecode' => 'Kode Verifikasi Telah Dikirim',
             ]);
         }
-        $diff = Carbon::createFromFormat('Y-m-d H:i:s', Auth::user()->verification_code_expired_at)->diff(Carbon::now());
+        $diff = Carbon::createFromFormat('Y-m-d H:i:s', $useru->verification_code_expired_at)->diff(Carbon::now());
         return back()->withErrors([
             'ecode' => 'Tunggu sampai '.$diff->format('%i menit, %s detik').' lagi untuk mengirimkan kode verifikasi',
         ]);
     }
+
+    public function saveNewPassword(Request $request): RedirectResponse{
+        
+        Session::flashInput($request->input());
+        $email = $request->email;
+        Session::forget('erp');
+        $request->validate([
+            'password' => [
+                'required',
+                'string',
+                'min:8',             // must be at least 10 characters in length
+                'regex:/[a-z]/',      // must contain at least one lowercase letter
+                'regex:/[A-Z]/',      // must contain at least one uppercase letter
+                'regex:/[0-9]/',      // must contain at least one digit
+                'regex:/[@$!%*#?&]/', // must contain a special character
+            ],
+            'c_password' => [
+                'required',
+                'string',
+                'min:8',             // must be at least 10 characters in length
+                'regex:/[a-z]/',      // must contain at least one lowercase letter
+                'regex:/[A-Z]/',      // must contain at least one uppercase letter
+                'regex:/[0-9]/',      // must contain at least one digit
+                'regex:/[@$!%*#?&]/', // must contain a special character
+            ],
+        ]);
+        
+        if($request->c_password != $request->password){
+            return back()->withErrors([
+                's_password' => 'Password tidak sama',
+            ]);
+        }
+        $user = DB::update('update users set password  = ? where email = ?', [Hash::make($request -> password), $email]);
+        if($user){
+            return  redirect()->intended('/')
+            ->with('success', 'Password telah di ubah');
+        } 
+        return back()->withErrors([
+            'ecode' => 'Password gagal di ubah',
+        ]);
+    }
+
+    public function verifyCode(Request $request): RedirectResponse
+    {
+        Session::flashInput($request->input());
+
+        $request->validate([
+            'verification_code' => 'required',
+            'email' => 'required',
+        ]);
+        $email = $request->email;
+        $user = User::where('email', $email)->first();
+        $token = $request->verification_code;
+        if(Hash::check($token, $user->verification_code) && $user->verification_code_expired_at > Carbon::now()){
+            $user = DB::update('update users set email_verified_at = ? where email = ?', [Carbon::now(), $email]);
+            return  redirect()->intended('show-enter-new-password')
+            ->with('email', $email);
+        } else if ($user->verification_code_expired_at < Carbon::now() && Hash::check($token, $user->verification_code)){
+            return back()->withErrors([
+                'ecode' => 'Kode verifikasi telah kadaluarsa',
+            ]);
+        }else {  
+            return back()->withErrors([
+                'ecode' => 'Kode verifikasi salah',
+            ]);
+        }
+    }
+
+    
+    public function showEnterNewPassword()
+    {
+        return view('auth.reset_password.enterNewPassword');
+    }
+
     public function verifyEmail(Request $request): RedirectResponse
     {
+        Session::flashInput($request->input());
         $request->validate([
             'verification_code' => 'required',
         ]);
@@ -185,6 +283,7 @@ class AuthController extends Controller
             ]);
         }
     }
+    
     public function showVerificationCode()
     {
         return view('auth.verifyCode');

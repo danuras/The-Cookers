@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Verifikasi Kode</title>
+        <title>Masukan Email</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
     </head>
     <body>
@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-left mb-2">
-                        <h2>Verifikasi Kode</h2>
+                        <h2>Masukan Email</h2>
                     </div>
             </div>
         </div>
@@ -19,16 +19,16 @@
                 {{ session('status') }}
             </div>
         @endif
-            <form action="{{ route('verify-email') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('enter-email') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>Kode Verifikasi:</strong>
-                            <input type="text" name="verification_code"class="form-control" placeholder="Kode Verifikasi">
+                            <strong>Email:</strong>
+                            <input type="email" name="email"class="form-control" placeholder="Email">
                                 
-                            @error('verification_code')
-                                <div class="alert alert-danger mt-1 mb-1">Kode Verifikasi harus diisi</div>
+                            @error('email')
+                                <div class="alert alert-danger mt-1 mb-1">Email harus diisi</div>
                             @enderror
                         </div>
                     </div>

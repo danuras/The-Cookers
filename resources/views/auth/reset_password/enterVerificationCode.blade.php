@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>Verifikasi Kode</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
+        
     </head>
     <body>
         <div class="container mt-2">
@@ -15,6 +16,7 @@
             </div>
         </div>
         @if(session('status'))
+
             <div class="alert alert-success mb-1 mt-1">
                 {{ session('status') }}
             </div>
@@ -31,6 +33,9 @@
                                 <div class="alert alert-danger mt-1 mb-1">Kode Verifikasi harus diisi</div>
                             @enderror
                         </div>
+                            <input type="text" name="email" class="form-control" placeholder="Kode Verifikasi" value = "{{Session::get('erp')}}" hidden>
+                        
+
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         @error('ecode')
@@ -39,9 +44,12 @@
                     </div>
                     <button type="submit" class="btn btn-primary ml-3">Submit</button>
                 </div>  
+                
             </form>
             <form action="{{ route('send-verification-code-reset-password') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                <input type="text" name="email" class="form-control" placeholder="Kode Verifikasi" value = "{{Session::get('erp')}}" hidden>
+                
                 <div class="row">
                     <button type="submit" class="btn btn-primary ml-3">Kirim Kode lagi</button>
                 </div>  
