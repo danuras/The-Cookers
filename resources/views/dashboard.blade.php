@@ -20,8 +20,6 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
-        @if(session()->has('success'))
-        @endif
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
@@ -40,7 +38,11 @@
                         <button type="submit" class="btn btn-danger">Logout</button>
                     </form>
                 @endif
-               
+                <form action="{{ route('profiles.index') }}" method="GET" enctype="multipart/form-data">
+                <div class="row">
+                    <button type="submit" class="btn btn-primary ml-3">Profile</button>
+                </div>  
+            </form>
             </div>
         </div>
 

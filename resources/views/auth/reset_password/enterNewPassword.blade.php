@@ -14,11 +14,6 @@
                     </div>
             </div>
         </div>
-        @if(session('status'))
-            <div class="alert alert-success mb-1 mt-1">
-                {{ session('status') }}
-            </div>
-        @endif
             <form action="{{ route('save-new-password') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                     <input type="text" name="email" class="form-control" placeholder="Kode Verifikasi" value="{{ Session::get('erp') }}" hidden>

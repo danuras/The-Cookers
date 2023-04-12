@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('bio')->nullable();
             $table->string('verification_code')->nullable();
             $table->timestamp('verification_code_expired_at')->nullable();
-            $table->string('photo_profile') -> nullable();
+            $table->binary('photo_profile') -> nullable();
             $table->string('no_phone')->nullable();
             $table->string('gender')->nullable();
             $table->rememberToken();

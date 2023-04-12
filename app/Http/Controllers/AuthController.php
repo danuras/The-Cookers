@@ -60,12 +60,6 @@ class AuthController extends Controller
                 's_password' => 'Password tidak sama',
             ]);
         }
-        $photo_profile_name = '';
-        if($request->file('photo_profile')){
-            $photo_profile = $request->file('photo_profile');
-            $photo_profile_name = time() . '_' . $photo_profile->getClientOriginalName();
-            $photo_profile->storeAs('public/photo_profiles', $photo_profile_name);
-        }
         $user = new User;
         $token = Str::random(6);
         
@@ -79,10 +73,12 @@ class AuthController extends Controller
         $user->verification_code = Hash::make($token);
         $user->verification_code_expired_at = Carbon::now()->addMinutes(5);
         $user->password = Hash::make($request->password);
-        $user->photo_profile = $photo_profile_name;
+        if($request->file('photo_profile')){
+            $user->photo_profile = file_get_contents($request->file('photo_profile'));
+        }
         $remember = $request->has('remember_me');
-        Mail::to($request->email)->send(new SendEmailVerificationCode($token));
         $user->save();
+        Mail::to($request->email)->send(new SendEmailVerificationCode($token));
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $remember)) {
             return redirect()->intended('show-verification-code');
         }
@@ -126,7 +122,9 @@ class AuthController extends Controller
     }
     public function sendVerificationCode(Request $request): RedirectResponse
     {
-        
+        if (Auth::user()->hasVerifiedEmail()) {
+            return redirect()->route('/');
+        }
         $email = Auth::user()->email;
         
         if (Auth::user()->verification_code_expired_at < Carbon::now()){
@@ -274,6 +272,10 @@ class AuthController extends Controller
 
     public function verifyEmail(Request $request): RedirectResponse
     {
+        
+        if (Auth::user()->hasVerifiedEmail()) {
+            return redirect()->intended('/');
+        }
         Session::flashInput($request->input());
         $request->validate([
             'verification_code' => 'required',
@@ -297,6 +299,10 @@ class AuthController extends Controller
     
     public function showVerificationCode()
     {
+        
+        if (Auth::user()->hasVerifiedEmail()) {
+            return redirect()->intended('/');
+        }
         return view('auth.verifyCode');
     }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyCRUDController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
 use App\Mail\SendEmailVerificationCode;
 
 /*
@@ -18,6 +19,8 @@ use App\Mail\SendEmailVerificationCode;
 Route::get('/', function () {
     return view('dashboard');
 });
+
+Route::resource('companies', CompanyCRUDController::class);
 Route::get('/test', function(){
     Mail::to('salam123.sb27@gmail.com')->send(new SendEmailVerificationCode('hehe'));
     return  view('dashboard');
@@ -47,6 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::post('send-verification-code', [AuthController::class, 'sendVerificationCode'])->name('send-verification-code');
     Route::post('verify-email', [AuthController::class, 'verifyEmail'])->name('verify-email');
     Route::get('show-verification-code', [AuthController::class, 'showVerificationCode'])->name('show-verification-code');
+    Route::resource('profiles', ProfileController::class);
 
     /*  Route::get('verify-email', EmailVerificationPromptController::class)
                 ->name('verification.notice');
