@@ -170,7 +170,7 @@ class AuthController extends Controller
         if(Session::get('erp')) {
             return view('auth.reset_password.enterVerificationCode');
         } else {
-            return redirect()->intended('enter-email' )->with('ecode', 'Masukan Email Terlebih Dahulu');
+            return redirect()->intended('enter-email' )->with('status', 'Masukan Email Terlebih Dahulu');
         }
     }
     public function sendVerificationCodeResetPassword(Request $request): RedirectResponse
@@ -264,10 +264,10 @@ class AuthController extends Controller
         if(Session::get('erp') && Session::get('token_code')){
             return view('auth.reset_password.enterNewPassword');
         } else if(Session::get('erp')) {
-            return redirect()->intended('show-verification-code-reset-password' )->with('ecode', 'Masukan Kode Verifikasi Terlebih Dahulu');
+            return redirect()->intended('show-verification-code-reset-password' )->with('status', 'Masukan Kode Verifikasi Terlebih Dahulu');
         } else {
 
-            return redirect()->intended('enter-email' )->with('ecode', 'Masukan Email Terlebih Dahulu');
+            return redirect()->intended('enter-email' )->with('status', 'Masukan Email Terlebih Dahulu');
         
         }
     }

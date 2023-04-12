@@ -55,7 +55,6 @@
             </form>
             
             <form action="{{ route('enter-email') }}" method="GET" enctype="multipart/form-data">
-                @csrf
                 <div class="row">
                     <button type="submit" class="btn btn-primary ml-3">Lupa Password</button>
                 </div>  
