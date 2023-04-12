@@ -167,7 +167,11 @@ class AuthController extends Controller
     
     public function showVerificationCodeResetPassword()
     {
-        return view('auth.reset_password.enterVerificationCode');
+        if(Session::get('erp')) {
+            return view('auth.reset_password.enterVerificationCode');
+        } else {
+            return redirect()->intended('enter-email' )->with('ecode', 'Masukan Email Terlebih Dahulu');
+        }
     }
     public function sendVerificationCodeResetPassword(Request $request): RedirectResponse
     {
@@ -232,13 +236,11 @@ class AuthController extends Controller
 
     public function verifyCode(Request $request)
     {
-        Session::flashInput($request->input());
 
         $request->validate([
             'verification_code' => 'required',
-            'email' => 'required',
         ]);
-        $email = $request->email;
+        $email = Session::get('erp');
         $user = User::where('email', $email)->first();
         $token = $request->verification_code;
         if(Hash::check($token, $user->verification_code) && $user->verification_code_expired_at > Carbon::now()){    
@@ -259,7 +261,15 @@ class AuthController extends Controller
     
     public function showEnterNewPassword()
     {
-        return view('auth.reset_password.enterNewPassword');
+        if(Session::get('erp') && Session::get('token_code')){
+            return view('auth.reset_password.enterNewPassword');
+        } else if(Session::get('erp')) {
+            return redirect()->intended('show-verification-code-reset-password' )->with('ecode', 'Masukan Kode Verifikasi Terlebih Dahulu');
+        } else {
+
+            return redirect()->intended('enter-email' )->with('ecode', 'Masukan Email Terlebih Dahulu');
+        
+        }
     }
 
     public function verifyEmail(Request $request): RedirectResponse
