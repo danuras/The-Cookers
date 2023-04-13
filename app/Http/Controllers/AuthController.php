@@ -74,6 +74,9 @@ class AuthController extends Controller
         $user->verification_code_expired_at = Carbon::now()->addMinutes(5);
         $user->password = Hash::make($request->password);
         if($request->file('photo_profile')){
+            $request->validate([
+                'photo_profile' => 'image|mimes:jpeg,png,jpg,gif|max:2048|dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000',
+            ]);
             $user->photo_profile = file_get_contents($request->file('photo_profile'));
         }
         $remember = $request->has('remember_me');
@@ -168,7 +171,7 @@ class AuthController extends Controller
         if(Session::get('erp')) {
             return view('auth.reset_password.enterVerificationCode');
         } else {
-            return redirect()->intended('enter-email' )->with('status', 'Masukan Email Terlebih Dahulu');
+            return redirect()->intended('reset-password' )->with('status', 'Masukan Email Terlebih Dahulu');
         }
     }
     public function sendVerificationCodeResetPassword(Request $request): RedirectResponse
@@ -265,7 +268,7 @@ class AuthController extends Controller
             return redirect()->intended('show-verification-code-reset-password' )->with('status', 'Masukan Kode Verifikasi Terlebih Dahulu');
         } else {
 
-            return redirect()->intended('enter-email' )->with('status', 'Masukan Email Terlebih Dahulu');
+            return redirect()->intended('reset-password' )->with('status', 'Masukan Email Terlebih Dahulu');
         
         }
     }

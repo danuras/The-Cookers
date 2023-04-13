@@ -4,6 +4,17 @@
         <meta charset="UTF-8">
         <title>Register</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
+        <script type="text/javascript">
+            function tampilkanGambar(input) {
+                if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById("gambar-preview").setAttribute("src", e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+                }
+            }
+        </script>
     </head>
     <body>
         <div class="container mt-2">
@@ -77,7 +88,11 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Photo Profile:</strong>
-                                <input type="file" name="photo_profile" class="form-control" placeholder="photo_profile" autocomplete="off">
+                                <img id="gambar-preview" src="{{asset('assets/default/profile.png')}}" alt="Preview Gambar"  width="200" height="200">    
+                                <input type="file" onchange="tampilkanGambar(this);"  name="photo_profile"  class="form-control" accept="image/*">
+                                @error('photo_profile')
+                                    <div class="alert alert-danger mt-1 mb-1">{{$message}}</div>
+                                @enderror
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">

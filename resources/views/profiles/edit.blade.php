@@ -5,16 +5,16 @@
         <title>Edit Profile</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
         <script type="text/javascript">
-      function tampilkanGambar(input) {
-        if (input.files && input.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function (e) {
-            document.getElementById("gambar-preview").setAttribute("src", e.target.result);
-          }
-          reader.readAsDataURL(input.files[0]);
-        }
-      }
-    </script>
+            function tampilkanGambar(input) {
+                if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById("gambar-preview").setAttribute("src", e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+                }
+            }
+        </script>
     </head>
     <body>
         <div class="container mt-2">
@@ -73,7 +73,10 @@
                                     <img src="{{ asset('assets/default/profile.png') }}" alt="Foto Profil Default"  width="200" height="200">
                                 @endif
                                 
-                                <input type="file" onchange="tampilkanGambar(this);"  name="photo_profile"  class="form-control">
+                                <input type="file" onchange="tampilkanGambar(this);"  name="photo_profile"  class="form-control" accept="image/*">
+                                @error('photo_profile')
+                                    <div class="alert alert-danger mt-1 mb-1">{{$message}}</div>
+                                @enderror
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">

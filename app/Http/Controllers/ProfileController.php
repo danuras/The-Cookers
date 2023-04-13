@@ -76,6 +76,9 @@ class ProfileController extends Controller
             $user->bio = $request->bio;
             $user->info = $request->info;
             if($request->file('photo_profile')){
+                $request->validate([
+                    'photo_profile' => 'image|mimes:jpeg,png,jpg,gif|max:2048|dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000',
+                ]);
                 $user->photo_profile = file_get_contents($request->file('photo_profile'));
             }
             $user->save();

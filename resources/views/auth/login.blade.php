@@ -54,7 +54,7 @@
                 </div>
             </form>
             
-            <form action="{{ route('enter-email') }}" method="GET" enctype="multipart/form-data">
+            <form action="{{ route('reset-password') }}" method="GET" enctype="multipart/form-data">
                 <div class="row">
                     <button type="submit" class="btn btn-primary ml-3">Lupa Password</button>
                 </div>  

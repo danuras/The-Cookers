@@ -39,10 +39,10 @@
                     </form>
                 @endif
                 <form action="{{ route('profiles.index') }}" method="GET" enctype="multipart/form-data">
-                <div class="row">
-                    <button type="submit" class="btn btn-primary ml-3">Profile</button>
-                </div>  
-            </form>
+                    <div class="row">
+                        <button type="submit" class="btn btn-primary ml-3">Profile</button>
+                    </div>  
+                </form>
             </div>
         </div>
 
