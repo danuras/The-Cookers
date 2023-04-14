@@ -28,7 +28,7 @@
                             <input type="text" name="verification_code"class="form-control" placeholder="Kode Verifikasi">
                                 
                             @error('verification_code')
-                                <div class="alert alert-danger mt-1 mb-1">Kode Verifikasi harus diisi</div>
+                                <div class="alert alert-danger mt-1 mb-1">{{verification_code}}</div>
                             @enderror
                         </div>
                     </div>
