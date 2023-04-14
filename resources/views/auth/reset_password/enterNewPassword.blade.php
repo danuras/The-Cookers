@@ -24,16 +24,16 @@
                             <strong>Password:</strong>
                                 <input type="password" name="password" class="form-control" placeholder="password" autocomplete="new-password">
                                     @error('password')
-                                        <div class="alert alert-danger mt-1 mb-1">Password Harus minimal 8 karakter, 1 huruf kecil dan besar, memiliki 1 digit huruf, dan memiliki karakter spesial</div>
+                                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Masukan kembali password:</strong>
-                                <input type="password" name="c_password" class="form-control" placeholder="Masukan kembali password" autocomplete="new-password">
-                                @error('c_password')
-                                    <div class="alert alert-danger mt-1 mb-1">Masukan kembali password Harus Diisi</div>
+                                <input type="password" name="masukan_kembali_password" class="form-control" placeholder="Masukan kembali password" autocomplete="new-password">
+                                @error('masukan_kembali_password')
+                                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                 @enderror
                         </div>
                     </div>
