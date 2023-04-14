@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Register</title>
+        <title>Daftar</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
         <script type="text/javascript">
             function tampilkanGambar(input) {
@@ -21,10 +21,10 @@
             <div class="row">
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-left mb-2">
-                        <h2>Register</h2>
+                        <h2>Daftar</h2>
                     </div>
                 <div class="pull-right">
-                    <a class="btn btn-primary" href="/"> Back</a>
+                    <a class="btn btn-primary" href="/">Kembali</a>
                 </div>
             </div>
         </div>
@@ -123,7 +123,7 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>No_telp:</strong>
+                                <strong>Nomor Telephon:</strong>
                                 <input type="number" name="no_phone" class="form-control" placeholder="Nomor Handphone" autocomplete="off">
                                 @error('no_phone')
                                     <div class="alert alert-danger mt-1 mb-1">{{$message}}</div>
@@ -132,7 +132,7 @@
                     </div>
                     <div>
                         <input type="checkbox" id="remember_me" name="remember_me">
-                        <label for="agree">Remember Me</label>
+                        <label for="agree">Ingat saya</label>
                     </div>
                     <button type="submit" class="btn btn-primary ml-3">Submit</button>
                 </div>

@@ -101,7 +101,7 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>No_telp:</strong>
+                                <strong>Nomor Telephon:</strong>
                                 <input type="number" name="no_phone" class="form-control" value="{{$profile->no_phone}}">
                             </div>
                     </div>

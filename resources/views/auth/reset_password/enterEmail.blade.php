@@ -19,7 +19,7 @@
                 {{ session('status') }}
             </div>
         @endif
-            <form action="{{ route('enter-email') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('reset-password') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
