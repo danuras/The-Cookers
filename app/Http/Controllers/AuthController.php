@@ -41,7 +41,7 @@ class AuthController extends Controller
                 'regex:/[A-Z]/',      // must contain at least one uppercase letter
                 'regex:/[0-9]/',      // must contain at least one digit
                 'regex:/[@$!%*#?&]/', // must contain a special character
-            ],'c_password' => [
+            ],'masukan_kembali_password' => [
                 'required',
                 'string',
                 'min:8',             // must be at least 10 characters in length
@@ -207,13 +207,13 @@ class AuthController extends Controller
                 'regex:/[0-9]/',      // must contain at least one digit
                 'regex:/[@$!%*#?&]/', // must contain a special character
             ],
-            'c_password' => [
+            'masukan_kembali_password' => [
                 'required',
                 
             ],
         ]);
         
-        if($request->c_password != $request->password){
+        if($request->masukan_kembali_password != $request->password){
             return back()->withErrors([
                 's_password' => 'Password tidak sama',
             ]);

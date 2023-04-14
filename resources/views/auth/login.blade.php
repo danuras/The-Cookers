@@ -30,7 +30,7 @@
                             <strong>Email:</strong>
                                 <input type="email" name="email" class="form-control" placeholder="Email">
                                 @error('email')
-                                    <div class="alert alert-danger mt-1 mb-1">Email harus diisi</div>
+                                    <div class="alert alert-danger mt-1 mb-1">{{$message}}</div>
                                 @enderror
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                             <strong>Password:</strong>
                                 <input type="password" name="password" class="form-control" placeholder="password">
                                     @error('password')
-                                        <div class="alert alert-danger mt-1 mb-1">Password harus diisi</div>
+                                        <div class="alert alert-danger mt-1 mb-1">{{$message}}</div>
                                     @enderror
                         </div>
                     </div>

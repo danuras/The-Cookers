@@ -28,7 +28,7 @@
                             <input type="email" name="email"class="form-control" placeholder="Email">
                                 
                             @error('email')
-                                <div class="alert alert-danger mt-1 mb-1">Email harus diisi</div>
+                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
