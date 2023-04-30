@@ -14,6 +14,7 @@
 <li>Run composer install di folder projek yang sudah diclone</li>
     <li>duplikat file <code style="white-space: pre;">.env.example</code> lalu rename hasil duplikatnya dengan <code style="white-space: pre;">.env</code></li>
     <li>konfigurasi file <code style="white-space: pre;">.env</code> seperti yang sudah di kirim digrup whatsapp</li>
+    <li>Buka url <code style="white-space: pre;">127.0.0.1</code> pada browser</li>
 </ol>
 
 <h2>Cara Merun projek</h2>
