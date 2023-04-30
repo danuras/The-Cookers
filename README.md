@@ -15,10 +15,12 @@
     <li>duplikat file <code style="white-space: pre;">.env.example</code> lalu rename hasil duplikatnya dengan <code style="white-space: pre;">.env</code></li>
     <li>konfigurasi file <code style="white-space: pre;">.env</code> seperti yang sudah di kirim digrup whatsapp</li>
     <li>Run <code style="white-space: pre;">php artisan migrate</code> untuk membuat table-table database</li>
+    <li>Run <code style="white-space: pre;">php artisan key:generate</code> untuk membuat App Key</li>
 </ol>
 
 <h2>Cara Merun projek</h2>
 <ol>
+    <li>Run phpmyadmin dari xampp</li>
     <li>Run <code style="white-space: pre;">php artisan serve</code> untuk menjalankan projek</li>
     <li>Buka url <code style="white-space: pre;">127.0.0.1</code> pada browser</li>
 </ol>
