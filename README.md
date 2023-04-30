@@ -15,7 +15,6 @@
     <li>duplikat file <code style="white-space: pre;">.env.example</code> lalu rename hasil duplikatnya dengan <code style="white-space: pre;">.env</code></li>
     <li>konfigurasi file <code style="white-space: pre;">.env</code> seperti yang sudah di kirim digrup whatsapp</li>
     <li>Run <code style="white-space: pre;">php artisan migrate</code> untuk membuat table-table database</li>
-    <li>Run <code style="white-space: pre;">php artisan key:generate</code> untuk membuat App Key</li>
 </ol>
 
 <h2>Cara Merun projek</h2>
