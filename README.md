@@ -13,5 +13,17 @@
 <li>Pada xampp buat database bernama <code style="white-space: pre;">cookers</code> dengan perintah <code style="white-space: pre;">create database cookers</code></li>
 <li>Run composer install di folder projek yang sudah diclone</li>
     <li>duplikat file <code style="white-space: pre;">.env.example</code> lalu rename hasil duplikatnya dengan <code style="white-space: pre;">.env</code></li>
-    <li>konfigurasi file <code style="white-space: pre;">.env</code> seperti yang sudah di kirim digrup wa</li>
+    <li>konfigurasi file <code style="white-space: pre;">.env</code> seperti yang sudah di kirim digrup whatsapp</li>
+</ol>
+
+<h2>Cara Merun projek</h2>
+<ol>
+    <li>Run <code style="white-space: pre;">php artisan migrate</code> untuk membuat table-table database</li>
+    <li>Run <code style="white-space: pre;">php artisan serve</code> untuk menjalankan projek</li>
+</ol>
+
+<h2>Cara mengosongkan isi database</h2>
+<ol>
+    <li>Run <code style="white-space: pre;">php artisan migrate:rollback</code></li>
+    <li>Run <code style="white-space: pre;">php artisan migrate</code></li>
 </ol>
