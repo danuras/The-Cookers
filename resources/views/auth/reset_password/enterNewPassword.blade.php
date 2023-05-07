@@ -22,7 +22,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Password:</strong>
-                                <input type="password" name="password" class="form-control" placeholder="password" autocomplete="new-password">
+                                <input type="password" name="password"class="form-control" placeholder="password" autocomplete="new-password">
                                     @error('password')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror

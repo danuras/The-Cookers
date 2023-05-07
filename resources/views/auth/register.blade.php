@@ -7,11 +7,11 @@
         <script type="text/javascript">
             function tampilkanGambar(input) {
                 if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    document.getElementById("gambar-preview").setAttribute("src", e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        document.getElementById("gambar-preview").setAttribute("src", e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
                 }
             }
         </script>
@@ -39,7 +39,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Nama:</strong>
-                                <input type="text" name="name" class="form-control" placeholder="Name" autocomplete="off">
+                                <input type="text" name="name" value = '{{old("name")}}' class="form-control" placeholder="Name" autocomplete="off">
                                     @error('name')
                                         <div class="alert alert-danger mt-1 mb-1">{{$message}}</div>
                                     @enderror
@@ -48,7 +48,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Username:</strong>
-                                <input type="text" name="username" class="form-control" placeholder="Username" autocomplete="off">
+                                <input type="text" name="username" value = '{{old("username")}}' class="form-control" placeholder="Username" autocomplete="off">
                                     @error('username')
                                         <div class="alert alert-danger mt-1 mb-1">{{$message}}</div>
                                     @enderror
@@ -57,7 +57,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Email:</strong>
-                                <input type="email" name="email" class="form-control" placeholder="Email" autocomplete="new-password">
+                                <input type="email" name="email" value = '{{old("email")}}' class="form-control" placeholder="Email" autocomplete="new-password">
                                     @error('email')
                                         <div class="alert alert-danger mt-1 mb-1">{{$message}}</div>
                                     @enderror
@@ -66,7 +66,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Password:</strong>
-                                <input type="password" name="password" class="form-control" placeholder="password" autocomplete="new-password">
+                                <input type="password" name="password" value = '{{old("password")}}' class="form-control" placeholder="password" autocomplete="new-password">
                                     @error('password')
                                         <div class="alert alert-danger mt-1 mb-1">{{$message}}</div>
                                     @enderror
@@ -75,7 +75,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Masukan kembali password:</strong>
-                                <input type="password" name="masukan_kembali_password" class="form-control" placeholder="Masukan kembali password" autocomplete="new-password">
+                                <input type="password" name="masukan_kembali_password" value = '{{old("masukan_kembali_password")}}' class="form-control" placeholder="Masukan kembali password" autocomplete="new-password">
                                 @error('masukan_kembali_password')
                                     <div class="alert alert-danger mt-1 mb-1">{{$message}}</div>
                                 @enderror
@@ -88,8 +88,14 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Photo Profile:</strong>
-                                <img id="gambar-preview" src="{{asset('assets/default/profile.png')}}" alt="Preview Gambar"  width="200" height="200">    
-                                <input type="file" onchange="tampilkanGambar(this);"  name="photo_profile"  class="form-control" accept="image/*">
+                            @if(session('photo_profile_c'))
+                                <img id="gambar-preview"  onclick = 'document.getElementById("pp").click()' src="data:image/png;base64,{{ session('photo_profile_c') }}" alt="Preview Gambar"  width="200" height="200">
+                                
+                                <input type="hidden" id = 'last_pp' name="last_pp" value = "{{session('photo_profile_c')}}"  class="form-control">
+                            @else
+                                <img id="gambar-preview" onclick = 'document.getElementById("pp").click()' src="{{asset('assets/default/profile.png')}}" alt="Preview Gambar"  width="200" height="200">
+                            @endif
+                            <input type="file" onchange="tampilkanGambar(this);" id = 'pp' name="photo_profile"  class="form-control" accept="image/*" hidden>
                                 @error('photo_profile')
                                     <div class="alert alert-danger mt-1 mb-1">{{$message}}</div>
                                 @enderror
@@ -106,7 +112,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Info:</strong>
-                                <input type="text" name="info" class="form-control" placeholder="Info" autocomplete="off">
+                                <input type="text" name="info"  value = '{{old("info")}}' class="form-control" placeholder="Info" autocomplete="off">
                                 @error('info')
                                     <div class="alert alert-danger mt-1 mb-1">{{$message}}</div>
                                 @enderror
@@ -115,7 +121,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Bio:</strong>
-                                <textarea type="text" name="bio" class="form-control" placeholder="Bio" autocomplete="off"></textarea>
+                                <textarea type="text" name="bio" value = '{{old("bio")}}' class="form-control" placeholder="Bio" autocomplete="off"></textarea>
                                 @error('bio')
                                     <div class="alert alert-danger mt-1 mb-1">{{$message}}</div>
                                 @enderror
@@ -124,7 +130,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Nomor Telephon:</strong>
-                                <input type="number" name="no_phone" class="form-control" placeholder="Nomor Handphone" autocomplete="off">
+                                <input type="text" name="no_phone" value = '{{old("no_phone")}}' class="form-control" placeholder="Nomor Handphone" autocomplete="off">
                                 @error('no_phone')
                                     <div class="alert alert-danger mt-1 mb-1">{{$message}}</div>
                                 @enderror
