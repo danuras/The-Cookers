@@ -17,7 +17,14 @@ use App\Mail\SendEmailVerificationCode;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+/* Route::get('/', function () {
+    $locale = Session::get('locale')??'en';
+    return redirect('/'.$locale);
+}); */
 Route::get('/', function () {
+    $locale = Session::get('locale')??'en';
+    App::setLocale($locale);
     return view('dashboard');
 });
 Route::resource('companies', CompanyCRUDController::class);
@@ -26,7 +33,8 @@ Route::get('/test', function () {
     return view('dashboard');
 });
 Route::middleware('guest')->group(function () {
-    
+    Route::post('change-locale', [LocaleController::class, 'changeLocale'])->name('change-locale');
+
     Route::get('register', [AuthController::class, 'showRegistrationView'])->name('register');
     Route::post('register', [AuthController::class, 'register']);
 
