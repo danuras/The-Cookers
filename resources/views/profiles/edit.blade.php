@@ -23,6 +23,7 @@
                     <div class="pull-left">
                         <h2>Edit Profile</h2>
                     </div>
+                    
                     <div class="pull-right">
                         <a class="btn btn-primary" href="{{ route('profiles.index') }}" enctype="multipart/form-data"> Back</a>
                     </div>
@@ -67,13 +68,17 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Photo Profile:</strong>
-                                @if ($profile->photo_profile)
-                                    <img id="gambar-preview" src="data:image/png;base64,{{ base64_encode($profile->photo_profile) }}" alt="Preview Gambar"  width="200" height="200">
+                                @if(session('photo_profile_c'))
+                                    <img id="gambar-preview"  onclick = 'document.getElementById("pp").click()' src="data:image/png;base64,{{ session('photo_profile_c') }}" alt="Preview Gambar"  width="200" height="200">
+                                    
+                                    <input type="hidden" id = 'last_pp' name="last_pp" value = "{{session('photo_profile_c')}}"  class="form-control">
+                                @elseif ($profile->photo_profile)
+                                    <img id="gambar-preview" onclick = 'document.getElementById("pp").click()' src="data:image/png;base64,{{ base64_encode($profile->photo_profile) }}" alt="Preview Gambar"  width="200" height="200">
                                 @else
-                                    <img src="{{ asset('assets/default/profile.png') }}" alt="Foto Profil Default"  width="200" height="200">
+                                    <img id="gambar-preview" onclick = 'document.getElementById("pp").click()' src="{{asset('assets/default/profile.png')}}" alt="Preview Gambar"  width="200" height="200">
+
                                 @endif
-                                
-                                <input type="file" onchange="tampilkanGambar(this);"  name="photo_profile"  class="form-control" accept="image/*">
+                            <input type="file" onchange="tampilkanGambar(this);" id = 'pp' name="photo_profile"  class="form-control" accept="image/*" hidden>
                                 @error('photo_profile')
                                     <div class="alert alert-danger mt-1 mb-1">{{$message}}</div>
                                 @enderror

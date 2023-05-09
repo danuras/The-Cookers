@@ -25,7 +25,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Kode Verifikasi:</strong>
-                            <input type="text" name="verification_code"class="form-control" placeholder="Kode Verifikasi">
+                            <input type="text" name="verification_code" value="{{old('verification_code')}}" class="form-control" placeholder="Kode Verifikasi">
                                 
                             @error('verification_code')
                                 <div class="alert alert-danger mt-1 mb-1">{{verification_code}}</div>

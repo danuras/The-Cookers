@@ -18,6 +18,10 @@
                     <div class="pull-left">
                         <h2>Profil</h2>
                     </div>
+                    
+                <div class="pull-right">
+                    <a class="btn btn-primary" href="/">Kembali</a>
+                </div>
                 </div>
             </div>
             
