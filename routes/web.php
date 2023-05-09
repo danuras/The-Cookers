@@ -17,25 +17,16 @@ use App\Mail\SendEmailVerificationCode;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-/* Route::get('/', function () {
-    $locale = Session::get('locale')??'en';
-    return redirect('/'.$locale);
-}); */
 Route::get('/', function () {
-    $locale = Session::get('locale')??'en';
-    App::setLocale($locale);
     return view('dashboard');
 });
-
 Route::resource('companies', CompanyCRUDController::class);
 Route::get('/test', function () {
     Mail::to('salam123.sb27@gmail.com')->send(new SendEmailVerificationCode('hehe'));
     return view('dashboard');
 });
 Route::middleware('guest')->group(function () {
-    Route::post('change-locale', [LocaleController::class, 'changeLocale'])->name('change-locale');
-
+    
     Route::get('register', [AuthController::class, 'showRegistrationView'])->name('register');
     Route::post('register', [AuthController::class, 'register']);
 
@@ -54,7 +45,7 @@ Route::middleware('guest')->group(function () {
     Route::post('save-new-password', [AuthController::class, 'saveNewPassword'])->name('save-new-password');
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')/* ->prefix('{locale}') */->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
     Route::post('send-verification-code', [AuthController::class, 'sendVerificationCode'])->name('send-verification-code');
     Route::post('verify-email', [AuthController::class, 'verifyEmail'])->name('verify-email');

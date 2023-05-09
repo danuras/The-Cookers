@@ -48,7 +48,6 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
         $user = User::find(Auth::user()->id);
         $validator = Validator::make($request->all(),[
             'name' => 'required',
@@ -106,7 +105,7 @@ class ProfileController extends Controller
             return redirect()->intended('show-verification-code')->with('user', $user);
         }
         $user->save();
-        
+
         return redirect()->route('profiles.index')
             ->with('success', 'User Has Been updated successfully');
     }
