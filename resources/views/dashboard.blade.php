@@ -20,6 +20,7 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
+        {{session('locale')}}
         <div class="row">
 
             <div class="col-lg-12 margin-tb">

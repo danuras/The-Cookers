@@ -32,8 +32,9 @@ Route::get('/test', function () {
     Mail::to('salam123.sb27@gmail.com')->send(new SendEmailVerificationCode('hehe'));
     return view('dashboard');
 });
+Route::post('change-locale', [LocaleController::class, 'changeLocale'])->name('change-locale');
+
 Route::middleware('guest')->group(function () {
-    Route::post('change-locale', [LocaleController::class, 'changeLocale'])->name('change-locale');
 
     Route::get('register', [AuthController::class, 'showRegistrationView'])->name('register');
     Route::post('register', [AuthController::class, 'register']);
