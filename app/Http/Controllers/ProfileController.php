@@ -14,38 +14,19 @@ use DB;
 use App\Mail\SendEmailVerificationCode;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Session;
 
 
 class ProfileController extends Controller
 {
-    /**
-     * Display a profile.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $data['profiles'] = Auth::user();
         return view('profiles.index', $data);
     }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function edit(User $profile)
     {
         return view('profiles.edit', compact('profile'));
     }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\user  $user
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $user = User::find(Auth::user()->id);
@@ -109,12 +90,6 @@ class ProfileController extends Controller
         return redirect()->route('profiles.index')
             ->with('success', 'User Has Been updated successfully');
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(User $user)
     {
         $user->delete();
