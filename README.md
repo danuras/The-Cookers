@@ -52,7 +52,7 @@ public function showRegistrationView()
         kode itu digunakan untuk memanggil file view yang tersimpan di folder <code style="white-space: pre;">resources/views/auth/register.blade.php</code>
     </li>
     <li>File <code style="white-space: pre;">web.php</code> pada folder <code style="white-space: pre;">routes/web.php</code> digunakan untuk menyimpan route yang digunakan misal:
-        <pre><code class="language-php"Route::get('register', [AuthController::class, 'showRegistrationView'])->name('register');</code></pre>
+        <pre><code class="language-php">Route::get('register', [AuthController::class, 'showRegistrationView'])->name('register');</code></pre>
         baris code diatas digunakan untuk membuat route <code style="white-space: pre;">/register</code> url ini dapat diterapkan pada file desain lain untuk menampilkan tampilan register. untuk menampilkan tampilan halaman register dapat menggunakan kode seperti ini:
 <pre><code class="language-php">&lt;a class="menu-list" href="{{route('register')}}">@lang('dashboard.signup')&lt;/a&gt;   </code></pre></li>
     <li>route register itu dapat diakses dengan memasukan url <code style="white-space: pre;">127.0.0.1/register</code>pada web browser</li>
