@@ -35,5 +35,8 @@
     <li>Folder <code style="white-space: pre;">resources/views</code>, folder ini digunakan untuk menyimpan file html view/tampilan dari website. ekstensinya .blade.php misal <code style="white-space: pre;">dashboard.blade.php</code></li>
     <li>Folder <code style="white-space: pre;">public</code>, folder ini digunakan untuk menyimpan file asset yang dapat diakses oleh file ui di folder <code style="white-space: pre;">resources/views</code>. untuk mengaksesnya dapat dengan cara seperti ini: <code style="white-space: pre;">href="{{asset('css/style.css')}}"</code>, dengan kode seperti itu akan meload file <code style="white-space: pre;">style.css</code> yang disimpan di folder <code style="white-space: pre;">public/css/style.css</code></li>
     <li>Folder <code style="white-space: pre;">public</code> juga dapat digunakan untuk menyimpan dan meload data asset bertipe lainnya seperti javascript dan gambar hanya saja untuk meloadnya pakai fungsi <code style="white-space: pre;">asset</code> seperti dicontoh sebelumnya </li>
+    <li>Tampilan bisa dicek dengan merun projek seperti yang dijelaskan sebelumnya</li>
+    <li>Untuk dapat berpindah dari page 1 ke page lainnya perlu dilakukan pembuatan dan pemanggilan route</li>
 </ol>
+
    
