@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Dashboard</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
-    </head>
-    <body>
-        @if ($message = Session::get('success'))
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Cookers</title>
+
+    <!-- Feathere Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- My styles -->
+    <link rel="stylesheet" href="{{asset('css/style.css')}}" />
+  </head>
+  <body>
+    <!-- 
+  @if ($message = Session::get('success'))
             <script>
                 $(function() {
                     Swal.fire({
@@ -19,46 +35,65 @@
             <div class="alert alert-success">
                 <p>{{ $message }}</p>
             </div>
+        @endif -->
+    <!-- Navbar start -->
+    <nav class="navbar">
+      <a href="#" class="navbar-logo">the<span>cookers</span>.</a>
+
+      <div class="navbar-nav">
+        <a class="menu-list" href="#home">@lang('dashboard.home')</a>
+        <a class="menu-list" href="#about">@lang('dashboard.aboutus')</a>
+        <a class="menu-list" href="#resep">@lang('dashboard.recipe')</a>
+        <a class="menu-list" href="#contact">@lang('dashboard.contact')</a>
+        
+        @if (!auth()->check())
+        <a class="menu-list" href="{{route('register')}}">@lang('dashboard.signup')</a>
+        <a class="menu-list" href="{{route('login')}}">@lang('dashboard.signin')</a>
+        @else
+        <a class="menu-list" href="{{ route('logout') }}">@lang('dashboard.logout')</a>
         @endif
-        {{session('locale')}}
-        <div class="row">
-
-            <div class="col-lg-12 margin-tb">
-                <div class="pull-left">
-                    <h2>Dashboard</h2>
-                </div>
-                @if (!auth()->check())
-                    <div class="pull-right mb-2">
-                        <a class="btn btn-success" href="{{route('register')}}">@lang('dashboard.signup')</a>
-                    </div>
-                    <div class="pull-right mb-2">
-                        <a class="btn btn-success" href="{{route('login')}}">@lang('dashboard.signin')</a>
-                    </div>
+        <a class="menu-list" href="{{ route('profiles.index') }}">@lang('dashboard.profile')</a>
+        <form class="menu-list" method="POST" action="{{ route('change-locale') }}">
+            @csrf
+            <select class="menu-list" style='background:transparent' name="locale" onchange="this.form.submit()">
+                @if(session('locale') == 'id')
+                    <option style='background:#ffcf9c' value="en" >en</option>
+                    <option style='background:#ffcf9c' value="id" selected>id</option>
                 @else
-                    <form action="{{ route('logout') }}" method="Post">
-                        @csrf
-                        <button type="submit" class="btn btn-danger">@lang('dashboard.logout')</button>
-                    </form>
+                    <option style='background:#ffcf9c' value="en" selected>en</option>
+                    <option style='background:#ffcf9c' value="id">id</option>
                 @endif
-                <form action="{{ route('profiles.index') }}" method="GET" enctype="multipart/form-data">
-                    <div class="row">
-                        <button type="submit" class="btn btn-primary ml-3">Profile</button>
-                    </div>  
-                </form><form method="POST" action="{{ route('change-locale') }}">
-                    @csrf
-                    <select name="locale" onchange="this.form.submit()">
-                        @if(session('locale') == 'id')
-                            <option value="en" >en</option>
-                            <option value="id" selected>id</option>
-                        @else
-                            <option value="en" selected>en</option>
-                            <option value="id">id</option>
-                        @endif
-                    </select>
-                </form>
-                
-            </div>
-        </div>
+            </select>
+        </form>
+      </div>
 
-    </body>
+      <div class="navbar-extra">
+        <a href="#" id="search"><i data-feather="search"></i></a>
+        <a href="#" id="buku-resep"><i data-feather="book"></i></a>
+        <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+      </div>
+    </nav>
+    <!-- Navbar end -->
+
+    <!-- Hero Section Start -->
+    <section class="hero" id="home">
+      <main class="content">
+        <h1>@lang('dashboard.lets') <span>@lang('dashboard.cook')!</span></h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores,
+          similique?
+        </p>
+        <a href="#" class="cta">@lang('dashboard.cooknow')</a>
+      </main>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- Feather Icons -->
+    <script>
+      feather.replace();
+    </script>
+
+    <!-- My JavaScript -->
+    <script src="{{asset('js/script.js')}}"></script>
+  </body>
 </html>
