@@ -55,7 +55,7 @@ public function showRegistrationView()
         <pre><code class="language-php"Route::get('register', [AuthController::class, 'showRegistrationView'])->name('register');</code></pre>
         baris code diatas digunakan untuk membuat route <code style="white-space: pre;">/register</code> url ini dapat diterapkan pada file desain lain untuk menampilkan tampilan register. untuk menampilkan tampilan halaman register dapat menggunakan kode seperti ini:
 <pre><code class="language-php">&lt;a class="menu-list" href="{{route('register')}}">@lang('dashboard.signup')&lt;/a&gt;   </code></pre></li>
-    <li>route register itu dapat diakses dengan memasukan url <code style="white-space: pre;">127.0.0.1/register pada web browser</code></li>
+    <li>route register itu dapat diakses dengan memasukan url <code style="white-space: pre;">127.0.0.1/register</code>pada web browser</li>
 </ol>
 
    
