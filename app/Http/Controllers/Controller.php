@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Session;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
+    /**
+     * Mengubah bahasa web sesuai pilihan user
+     *
+     *
+     */
     public function loadLocale()
     {
         App::setLocale(Session::get('locale'));

@@ -17,13 +17,22 @@ use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
+    /**
+     * Menampilkan halaman dafar/register
+     *
+     *
+     */
 
     public function showRegistrationView()
     {
         $this->loadLocale();
         return view('auth.register');
     }
-
+    /**
+     * Menyimpan data user yang mendaftar dan mengirim email verifikasi pada email user yang didaftarkan
+     *
+     *
+     */
     public function register(Request $request): RedirectResponse
     {
         $this->loadLocale();
@@ -101,13 +110,22 @@ class AuthController extends Controller
 
         return redirect()->intended('/');
     }
+    
+    /**
+     * Menampilkan halaman login
+     *
+     *
+     */
     public function showLoginView()
     {
         $this->loadLocale();
         return view('auth.login');
     }
+    
     /**
-     * Handle an authentication attempt.
+     * Menangani autentikasi atau login user
+     *
+     *
      */
     public function login(Request $request): RedirectResponse
     {
@@ -129,6 +147,11 @@ class AuthController extends Controller
             'logine' => 'Kombinasi email dan password salah',
         ]);
     }
+    /**
+     * Menangani logout
+     *
+     *
+     */
     public function logout(Request $request): RedirectResponse
     {
         $this->loadLocale();
@@ -140,6 +163,11 @@ class AuthController extends Controller
 
         return redirect('/');
     }
+    /**
+     * Mengirim kode verifikasi kepada user ketika ingin memverifikasi email
+     *
+     *
+     */
     public function sendVerificationCode(Request $request): RedirectResponse
     {
         $this->loadLocale();
@@ -161,12 +189,22 @@ class AuthController extends Controller
             'ecode' => 'Tunggu sampai ' . $diff->format('%i menit, %s detik') . ' lagi untuk mengirimkan kode verifikasi',
         ]);
     }
+    /**
+     * Menampilkan halaman enterEmail atau halaman yang digunakan untuk memasukan email ketika ingin mereset password
+     *
+     *
+     */
 
     public function showEnterEmailView()
     {
         $this->loadLocale();
         return view('auth.reset_password.enterEmail');
     }
+    /**
+     * Menangani email yang dimasukan ketika ingin mereset password dan mengirim kode verifikasinya ke email yang diinputkan
+     *
+     *
+     */
     public function enterEmail(Request $request): RedirectResponse
     {
         $this->loadLocale();
@@ -187,6 +225,12 @@ class AuthController extends Controller
         ]);
     }
 
+    
+    /**
+     * Menampilkan halaman enterVerificationCode yang digunakan untuk memasukan kode verifikasi untuk mereset password
+     *
+     * 
+     */
     public function showVerificationCodeResetPassword()
     {
         $this->loadLocale();
@@ -196,6 +240,12 @@ class AuthController extends Controller
             return redirect()->intended('reset-password')->with('status', 'Masukan Email Terlebih Dahulu');
         }
     }
+    
+    /**
+     * Menangani request user ketika ingin mendapatkan kode verifikasi lagi 
+     *
+     *
+     */
     public function sendVerificationCodeResetPassword(Request $request): RedirectResponse
     {
         $this->loadLocale();
@@ -218,6 +268,11 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * Menyimpan perubahan password user ke database
+     *
+     *
+     */
     public function saveNewPassword(Request $request)
     {
         $this->loadLocale();
@@ -265,6 +320,11 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * Mengecek kode verifikasi yang dimasukan user sudah benar atau tidak saat reset password
+     *
+     *
+     */
     public function verifyCode(Request $request)
     {
         $this->loadLocale();
@@ -290,7 +350,11 @@ class AuthController extends Controller
         }
     }
 
-
+    /**
+     * Menampilkan halaman enterNewPassword yang digunakan untuk memasukan password baru
+     *
+     *
+     */
     public function showEnterNewPassword()
     {
         $this->loadLocale();
@@ -305,6 +369,11 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * Menangani verifikasi email user
+     *
+     *
+     */
     public function verifyEmail(Request $request): RedirectResponse
     {
         $this->loadLocale();
@@ -334,7 +403,11 @@ class AuthController extends Controller
             ]);
         }
     }
-
+    /**
+     * Menampilkan halaman verifyCode yang digunakan untuk memasukan kode verifikasi ketika ingin memverifikasi email
+     *
+     *
+     */
     public function showVerificationCode()
     {
         $this->loadLocale();

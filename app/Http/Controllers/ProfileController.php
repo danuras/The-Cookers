@@ -18,15 +18,29 @@ use Illuminate\Support\Facades\Mail;
 
 class ProfileController extends Controller
 {
+    /**
+     * Menampilkan halaman index di folder profiles dan mengirim data user yang di autentikasi
+     *
+     */
     public function index()
     {
         $data['profiles'] = Auth::user();
         return view('profiles.index', $data);
     }
+    /**
+     * Menampilkan halaman edit di folder profiles dan mengirim data user dari parameter
+     *
+     *
+     */
     public function edit(User $profile)
     {
         return view('profiles.edit', compact('profile'));
     }
+    /**
+     * Menyimpan perubahan/pengubahan data user/profile ke database.
+     * Bila user mengubah email maka email tersebut harus diverifikasi kembali
+     *
+     */
     public function update(Request $request, $id)
     {
         $user = User::find(Auth::user()->id);
@@ -90,6 +104,10 @@ class ProfileController extends Controller
         return redirect()->route('profiles.index')
             ->with('success', 'User Has Been updated successfully');
     }
+    /**
+     * Menghapus data user
+     *
+     */
     public function destroy(User $user)
     {
         $user->delete();
