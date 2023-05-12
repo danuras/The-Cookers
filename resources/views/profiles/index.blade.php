@@ -28,7 +28,7 @@
             <div class="col-lg-12 margin-tb">
                 @if ($profiles->photo_profile)
                 
-                    <img src="data:image/png;base64,{{ base64_encode($profiles->photo_profile) }}" alt="Foto Profil" width="200" height="200">
+                    <img src="data:image/png;base64,{{ base64_encode($profiles->photo_profile) }}" alt="profile.png" width="200" height="200">
                 @else
                     <img src="{{ asset('assets/default/profile.png') }}" alt="Foto Profil Default"  width="200" height="200">
                 @endif

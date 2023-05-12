@@ -43,7 +43,7 @@
                                 <strong>Nama:</strong>
                                 <input type="text" name="name" class="form-control" value="{{$profile->name}}">
                                     @error('name')
-                                        <div class="alert alert-danger mt-1 mb-1">Nama Harus Diisi</div>
+                                        <div class="alert alert-danger mt-1 mb-1">{{$message}}</div>
                                     @enderror
                             </div>
                     </div>
@@ -52,7 +52,7 @@
                                 <strong>Username:</strong>
                                 <input type="text" name="username" class="form-control" value="{{$profile->username}}">
                                     @error('username')
-                                        <div class="alert alert-danger mt-1 mb-1">Username Harus Diisi</div>
+                                        <div class="alert alert-danger mt-1 mb-1">{{$message}}</div>
                                     @enderror
                             </div>
                     </div>
@@ -61,7 +61,7 @@
                             <strong>Email:</strong>
                                 <input type="email" name="email" class="form-control" value="{{$profile->email}}">
                                     @error('email')
-                                        <div class="alert alert-danger mt-1 mb-1">Email Harus Diisi</div>
+                                        <div class="alert alert-danger mt-1 mb-1">{{$message}}</div>
                                     @enderror
                         </div>
                     </div>
