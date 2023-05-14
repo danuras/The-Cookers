@@ -10,14 +10,18 @@
 <h2>Instalasi</h2>
 <ol>
     <li>Run <code style="white-space: pre;">git clone https://github.com/danuras/The-Cookers.git</code></li>
-<li>Pada xampp buat database bernama <code style="white-space: pre;">cookers</code> dengan perintah <code style="white-space: pre;">create database cookers</code></li>
-<li>Run <code style="white-space: pre;">composer install</code> di folder projek yang sudah diclone</li>
-    <li>duplikat file <code style="white-space: pre;">.env.example</code> lalu rename hasil duplikatnya dengan <code style="white-space: pre;">.env</code></li>
-    <li>konfigurasi file <code style="white-space: pre;">.env</code> seperti yang sudah di kirim digrup whatsapp</li>
+    <li>Dowload xampp lalu install<li>
+    <li>Buka phpmyadmin<li>
+    <li>Pada phpmyadmin, buat database bernama <code style="white-space: pre;">cookers</code> dengan perintah <code style="white-space: pre;">create database cookers</code> pada query</li>
+    <li>Tambahkan <code style="white-space: pre;">xampp/php</code> ke enviroment variables agar dapat menjalankan php di cmd<li>
+    <li>Download Composer dengan cara run kode pada cmd (instruksi pada website Composer)<b>
+    <li>Pada cmd, run <code style="white-space: pre;">composer install</code> di folder projek yang sudah diclone</li>
+    <li>Duplikat file <code style="white-space: pre;">.env.example</code> lalu rename hasil duplikatnya dengan <code style="white-space: pre;">.env</code></li>
+    <li>konfigurasi file <code style="white-space: pre;">.env</code> seperti yang sudah di kirim digrup whatsapp (copas aja semua isinya lalu tempel di <code style="white-space: pre;">.env</code>)</li>
     <li>Run <code style="white-space: pre;">php artisan migrate</code> untuk membuat table-table database</li>
 </ol>
 
-<h2>Cara Merun projek</h2>
+<h2>Cara Me-run projek</h2>
 <ol>
     <li>Run phpmyadmin dari xampp</li>
     <li>Run <code style="white-space: pre;">php artisan serve</code> untuk menjalankan projek</li>
