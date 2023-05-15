@@ -117,5 +117,5 @@ jobs:
           protocol: ftps #menggunnakan ftps agar lebih aman
           port: ${{ secrets.FTP_PORT }}
           exclude: .git* index.php
-          local-dir: /public_html/laravel/public/
+          local-dir: /laravel/public/
           server-dir: /public_html/        
