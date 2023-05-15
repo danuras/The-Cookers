@@ -70,8 +70,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-php-
             
-      - name: Install Composer dependencies
-        run: composer install --no-dev --prefer-dist
+      #- name: Install Composer dependencies
+      #  run: composer install --no-dev --prefer-dist
         
       - name: Copy environment file
         run: |
