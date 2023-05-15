@@ -61,5 +61,6 @@ public function showRegistrationView()
 <pre><code class="language-php">&lt;a class="menu-list" href="{{route('register')}}">@lang('dashboard.signup')&lt;/a&gt;   </code></pre></li>
     <li>route register itu dapat diakses dengan memasukan url <code style="white-space: pre;">127.0.0.1/register</code>pada web browser</li>
 </ol>
+        <h2>Link (sementara): https://thecookerrs.000webhostapp.com/</h2>
 
    
