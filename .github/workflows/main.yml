@@ -108,6 +108,14 @@ jobs:
               exclude: .git*
               server-dir: /public_html/laravel/
 
-      - name: Sync public folder
-        run: rsync -av --exclude='index.php' /public_html/laravel/public/ /public_html/laravel/
-        
+      - name: 📂 Sync public files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          protocol: ftps #menggunnakan ftps agar lebih aman
+          port: ${{ secrets.FTP_PORT }}
+          exclude: .git* index.php
+          local-dir: /public_html/laravel/public/
+          server-dir: /public_html/        
