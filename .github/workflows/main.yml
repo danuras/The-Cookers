@@ -1,8 +1,8 @@
 on:
   push:
-    branches: [ cicd ]
+    branches: [ main ]
   pull_request:
-    branches: [ cicd ]
+    branches: [ main ]
 permissions:
   contents: read
 name: 🚀 Deploy website on push
@@ -107,4 +107,4 @@ jobs:
               protocol: ftps #menggunnakan ftps agar lebih aman
               port: ${{ secrets.FTP_PORT }}
               exclude: .git*
-              server-dir: /public_html/laravel/
+              server-dir: /public_html/
