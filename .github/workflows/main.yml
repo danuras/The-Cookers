@@ -82,8 +82,8 @@ jobs:
       - name: Generate app key
         run: php artisan key:generate
 
-      - name: Generate app key
-        run: rsync -av --exclude='index.php' laravel/public/ /
+      - name: Sync public folder
+        run: rsync -av --exclude='index.php' ./public/ ./
 
       #- name: Copy environment file
       #  run: |
@@ -107,5 +107,4 @@ jobs:
               protocol: ftps #menggunnakan ftps agar lebih aman
               port: ${{ secrets.FTP_PORT }}
               exclude: .git*
-              server-dir: /public_html/laravel/
-        
+              server-dir: /public_html/
