@@ -78,6 +78,21 @@ body {
     color: var(--primary);
 }
 
+.navbar .logout {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    color: #ffcf9c;
+    background-color: #b96d40;
+    border-radius: 0.5rem;
+    box-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
+}
+
+.navbar .logout:hover {
+    background-color: #ca054d;
+    color: #3b1c32;
+}
+
 #hamburger-menu {
     display: none;
 }
@@ -116,7 +131,7 @@ body {
     margin-top: 1rem;
     line-height: 1.4;
     font-weight: 300;
-    color: #fff;
+    color: #ffcf9c;
     mix-blend-mode: difference;
 }
 
@@ -125,10 +140,15 @@ body {
     display: inline-block;
     padding: 1rem 3rem;
     font-size: 1.4rem;
-    color: #fff;
+    color: #ffcf9c;
     background-color: var(--primary);
     border-radius: 0.5rem;
     box-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
+}
+
+.hero .content .cta:hover {
+    background-color: #ffcf9c;
+    color: #3b1c32;
 }
 
 /* Media Queries */
