@@ -82,6 +82,9 @@ jobs:
       - name: Generate app key
         run: php artisan key:generate
 
+      - name: Generate app key
+        run: rsync -av --exclude='index.php' laravel/public/ /
+
       #- name: Copy environment file
       #  run: |
       #    echo "MAIL_MAILER=${{secrets.MAIL_MAILER}}">>.env
