@@ -29,7 +29,7 @@ jobs:
 
       - name: Copy environment file
         run: |
-              cp .env.example .env
+              cp .env-test.example .env
               echo "MAIL_MAILER=${{secrets.MAIL_MAILER}}">>.env
               echo "MAIL_HOST=${{secrets.MAIL_HOST}}">>.env
               echo "MAIL_PORT=${{secrets.MAIL_PORT}}">>.env
