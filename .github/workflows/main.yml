@@ -109,5 +109,5 @@ jobs:
               server-dir: /public_html/laravel/
 
       - name: Sync public folder
-        run: rsync -av --exclude='index.php' laravel/public/ /
+        run: rsync -av --exclude='index.php' /public_html/laravel/public/ /public_html/
         
