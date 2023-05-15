@@ -16,17 +16,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Copy environment file
-        run: |
-          cp .env.example .env
-          echo "MAIL_MAILER=${{secrets.MAIL_MAILER}}">>.env
-          echo "MAIL_HOST=${{secrets.MAIL_HOST}}">>.env
-          echo "MAIL_PORT=${{secrets.MAIL_PORT}}">>.env
-          echo "MAIL_USERNAME=${{secrets.MAIL_USERNAME}}">>.env
-          echo "MAIL_PASSWORD=${{secrets.MAIL_PASSWORD}}">>.env
-          echo "MAIL_ENCRYPTION=${{secrets.MAIL_ENCRYPTION}}">>.env         
-          echo "MAIL_FROM_ADDRESS=${{secrets.MAIL_FROM_ADDRESS}}">>.env  
           
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -37,9 +26,22 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist
 
-
+      - name: Copy environment file
+        run: |
+          cp .env.example .env
+          
       - name: Generate app key
         run: php artisan key:generate
+        
+      - name: Copy environment file
+        run: |
+          echo "MAIL_MAILER=${{secrets.MAIL_MAILER}}">>.env
+          echo "MAIL_HOST=${{secrets.MAIL_HOST}}">>.env
+          echo "MAIL_PORT=${{secrets.MAIL_PORT}}">>.env
+          echo "MAIL_USERNAME=${{secrets.MAIL_USERNAME}}">>.env
+          echo "MAIL_PASSWORD=${{secrets.MAIL_PASSWORD}}">>.env
+          echo "MAIL_ENCRYPTION=${{secrets.MAIL_ENCRYPTION}}">>.env         
+          echo "MAIL_FROM_ADDRESS=${{secrets.MAIL_FROM_ADDRESS}}">>.env  
         
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: vendor/bin/phpunit
@@ -73,6 +75,13 @@ jobs:
       - name: Copy environment file
         run: |
           cp .env.example .env
+              
+              
+      - name: Generate app key
+        run: php artisan key:generate
+
+      - name: Copy environment file
+        run: |
           echo "MAIL_MAILER=${{secrets.MAIL_MAILER}}">>.env
           echo "MAIL_HOST=${{secrets.MAIL_HOST}}">>.env
           echo "MAIL_PORT=${{secrets.MAIL_PORT}}">>.env
@@ -83,10 +92,6 @@ jobs:
           echo "DB_DATABASE=${{secrets.DB_DATABASE}}">>.env
           echo "DB_USERNAME=${{secrets.DB_USERNAME}}">>.env
           echo "DB_PASSWORD=${{secrets.DB_PASSWORD}}">>.env
-              
-              
-      - name: Generate app key
-        run: php artisan key:generate
 
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
