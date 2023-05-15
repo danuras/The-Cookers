@@ -30,13 +30,14 @@ jobs:
       - name: Copy environment file
         run: |
               cp .env-test.example .env
-              echo "">>.env
+              echo " ">>.env
               echo "MAIL_MAILER=${{secrets.MAIL_MAILER}}">>.env
               echo "MAIL_HOST=${{secrets.MAIL_HOST}}">>.env
               echo "MAIL_PORT=${{secrets.MAIL_PORT}}">>.env
               echo "MAIL_USERNAME=${{secrets.MAIL_USERNAME}}">>.env
               echo "MAIL_PASSWORD=${{secrets.MAIL_PASSWORD}}">>.env
               echo "MAIL_ENCRYPTION=${{secrets.MAIL_ENCRYPTION}}">>.env              
+              echo "MAIL_FROM_ADDRESS=${{secrets.MAIL_FROM_ADDRESS}}">>.env              
 
       - name: Generate app key
         run: php artisan key:generate
@@ -73,13 +74,14 @@ jobs:
       - name: Copy environment file
         run: |
               cp .env.example .env
-              echo "">>.env
+              echo " ">>.env
               echo "MAIL_MAILER=${{secrets.MAIL_MAILER}}">>.env
               echo "MAIL_HOST=${{secrets.MAIL_HOST}}">>.env
               echo "MAIL_PORT=${{secrets.MAIL_PORT}}">>.env
               echo "MAIL_USERNAME=${{secrets.MAIL_USERNAME}}">>.env
               echo "MAIL_PASSWORD=${{secrets.MAIL_PASSWORD}}">>.env
-              echo "MAIL_ENCRYPTION=${{secrets.MAIL_ENCRYPTION}}">>.env
+              echo "MAIL_ENCRYPTION=${{secrets.MAIL_ENCRYPTION}}">>.env         
+              echo "MAIL_FROM_ADDRESS=${{secrets.MAIL_FROM_ADDRESS}}">>.env  
               echo "DB_DATABASE=${{secrets.DB_DATABASE}}">>.env
               echo "DB_USERNAME=${{secrets.DB_USERNAME}}">>.env
               echo "DB_PASSWORD=${{secrets.DB_PASSWORD}}">>.env
