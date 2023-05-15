@@ -62,13 +62,13 @@ jobs:
           extension-csv: mbstring, bcmath, mysqli
 
       # Continous deployment/development
-      - name: Restore composer cache
-        uses: actions/cache@v2
-        with:
-          path: vendor
-          key: ${{ runner.os }}-php-${{ hashFiles('composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-php-
+      # - name: Restore composer cache
+      #  uses: actions/cache@v2
+      #  with:
+      #   path: vendor
+      #   key: ${{ runner.os }}-php-${{ hashFiles('composer.lock') }}
+      #    restore-keys: |
+      #      ${{ runner.os }}-php-
             
       #- name: Install Composer dependencies
       #  run: composer install --no-dev --prefer-dist
