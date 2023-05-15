@@ -1,8 +1,8 @@
 on:
   push:
-    branches: [ cicd ]
+    branches: [ main ]
   pull_request:
-    branches: [ cicd ]
+    branches: [ main ]
 permissions:
   contents: read
 name: 🚀 Deploy website on push
@@ -49,7 +49,7 @@ jobs:
   web-deploy:
     needs: tests
     runs-on: ubuntu-latest
-    name: 🚀 Continous Deployment
+    name: 🚀 Deploy website
 
     steps:
       - name: 🚚 Get latest code
@@ -82,7 +82,8 @@ jobs:
       - name: Generate app key
         run: php artisan key:generate
 
-      
+      - name: Sync public folder
+        run: rsync -av --exclude='index.php' ./public/ ./
 
       #- name: Copy environment file
       #  run: |
@@ -108,14 +109,5 @@ jobs:
               exclude: .git*
               server-dir: /public_html/laravel/
 
-      - name: 📂 Sync public files
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASS }}
-          protocol: ftps #menggunnakan ftps agar lebih aman
-          port: ${{ secrets.FTP_PORT }}
-          exclude: .git* index.php
-          local-dir: ./public/
-          server-dir: /public_html/        
+      
+        
