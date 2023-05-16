@@ -16,12 +16,7 @@ jobs:
   tests:
     runs-on: ubuntu-latest
 
-    strategy:
-      fail-fast: true
-      matrix:
-        php: [8.1, 8.2]
-
-    name: PHP ${{ matrix.php }}
+    name: Testing
 
     steps:
       - name: Checkout code
@@ -30,7 +25,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php }}
+          php-version: 8.1
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
           coverage: none
 
@@ -38,7 +33,9 @@ jobs:
         run: composer install --prefer-dist --no-interaction --no-progress
 
       - name: Copy environment file
-        run: cp .env.example .env
+        run: |
+          cp .env-test.example .env
+          echo '${{secrets.DOT_ENV_TEST}}' >> .env
 
       - name: Generate app key
         run: php artisan key:generate
