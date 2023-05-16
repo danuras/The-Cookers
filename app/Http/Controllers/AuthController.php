@@ -76,11 +76,6 @@ class AuthController extends Controller
                 return back()->withErrors($validator->errors());
             }
         }
-        if ($request->password_confirmation != $request->password) {
-            return back()->withErrors([
-                's_password' => 'Password tidak sama',
-            ]);
-        }
         $user = new User;
         $token = Str::random(6);
 
@@ -292,11 +287,6 @@ class AuthController extends Controller
             ],
         ]);
 
-        if ($request->password_confirmation != $request->password) {
-            return back()->withErrors([
-                's_password' => 'Password tidak sama',
-            ]);
-        }
         $useru = User::where('email', $email)->first();
         $token = Session::get('token_code');
         if (Hash::check($token, $useru->verification_code)) {

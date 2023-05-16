@@ -38,9 +38,6 @@
                         </div>
                     </div>
                     
-                    @error('s_password')
-                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                    @enderror
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         @error('ecode')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
