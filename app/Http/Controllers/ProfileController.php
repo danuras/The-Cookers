@@ -108,9 +108,9 @@ class ProfileController extends Controller
      * Menghapus data user
      *
      */
-    public function destroy(User $user)
+    public function destroy()
     {
-        $user->delete();
+        Auth::user()->delete();
         return redirect()->route('profiles.index')
             ->with('success', 'User has been deleted successfully');
     }
