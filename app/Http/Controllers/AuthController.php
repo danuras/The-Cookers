@@ -14,6 +14,7 @@ use DB;
 use App\Mail\SendEmailVerificationCode;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
 {
@@ -38,25 +39,22 @@ class AuthController extends Controller
         $this->loadLocale();
         Session::flashInput($request->input());
 
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'username' => 'required|unique:users',
             'email' => 'required|email|unique:users',
             'password' => [
                 'required',
                 'string',
-                'min:8',
-                // must be at least 10 characters in length
-                'regex:/[a-z]/',
-                // must contain at least one lowercase letter
-                'regex:/[A-Z]/',
-                // must contain at least one uppercase letter
-                'regex:/[0-9]/',
-                // must contain at least one digit
-                'regex:/[@$!%*#?&]/',
-                // must contain a special character
+                Password::min(8)
+                    ->mixedCase()
+                    ->numbers()
+                    ->symbols()
+                    ->uncompromised(),
+                'confirmed',
+
             ],
-            'masukan_kembali_password' => [
+            'password_confirmation' => [
                 'required',
             ],
             'photo_profile' => 'image|mimes:jpeg,png,jpg,gif|max:2048|dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000',
@@ -64,24 +62,19 @@ class AuthController extends Controller
             'info' => 'max:30',
             'bio' => 'max:500',
         ]);
-        if($validator->fails()){
-            if($request->file('photo_profile')){
-                
+        if ($validator->fails()) {
+            if ($request->file('photo_profile')) {
+
                 return back()->withErrors($validator->errors())->with([
-                    'photo_profile_c'=>base64_encode(file_get_contents($request->file('photo_profile'))),
+                    'photo_profile_c' => base64_encode(file_get_contents($request->file('photo_profile'))),
                 ]);
-            }else if($request->last_pp){
+            } else if ($request->last_pp) {
                 return back()->withErrors($validator->errors())->with([
-                    'photo_profile_c'=>$request->last_pp,
+                    'photo_profile_c' => $request->last_pp,
                 ]);
             } else {
                 return back()->withErrors($validator->errors());
             }
-        }
-        if ($request->masukan_kembali_password != $request->password) {
-            return back()->withErrors([
-                's_password' => 'Password tidak sama',
-            ]);
         }
         $user = new User;
         $token = Str::random(6);
@@ -98,7 +91,7 @@ class AuthController extends Controller
         $user->password = Hash::make($request->password);
         if ($request->file('photo_profile')) {
             $user->photo_profile = file_get_contents($request->file('photo_profile'));
-        } else if($request->last_pp){
+        } else if ($request->last_pp) {
             $user->photo_profile = base64_decode($request->last_pp);
         }
         $remember = $request->has('remember_me');
@@ -110,7 +103,7 @@ class AuthController extends Controller
 
         return redirect()->intended('/');
     }
-    
+
     /**
      * Menampilkan halaman login
      *
@@ -121,7 +114,7 @@ class AuthController extends Controller
         $this->loadLocale();
         return view('auth.login');
     }
-    
+
     /**
      * Menangani autentikasi atau login user
      *
@@ -225,7 +218,7 @@ class AuthController extends Controller
         ]);
     }
 
-    
+
     /**
      * Menampilkan halaman enterVerificationCode yang digunakan untuk memasukan kode verifikasi untuk mereset password
      *
@@ -240,7 +233,7 @@ class AuthController extends Controller
             return redirect()->intended('reset-password')->with('status', 'Masukan Email Terlebih Dahulu');
         }
     }
-    
+
     /**
      * Menangani request user ketika ingin mendapatkan kode verifikasi lagi 
      *
@@ -282,27 +275,18 @@ class AuthController extends Controller
             'password' => [
                 'required',
                 'string',
-                'min:8',
-                // must be at least 10 characters in length
-                'regex:/[a-z]/',
-                // must contain at least one lowercase letter
-                'regex:/[A-Z]/',
-                // must contain at least one uppercase letter
-                'regex:/[0-9]/',
-                // must contain at least one digit
-                'regex:/[@$!%*#?&]/',
-                // must contain a special character
+                Password::min(8)
+                    ->mixedCase()
+                    ->numbers()
+                    ->symbols()
+                    ->uncompromised(),
+                    'confirmed',
             ],
-            'masukan_kembali_password' => [
+            'password_confirmation' => [
                 'required',
             ],
         ]);
 
-        if ($request->masukan_kembali_password != $request->password) {
-            return back()->withErrors([
-                's_password' => 'Password tidak sama',
-            ]);
-        }
         $useru = User::where('email', $email)->first();
         $token = Session::get('token_code');
         if (Hash::check($token, $useru->verification_code)) {

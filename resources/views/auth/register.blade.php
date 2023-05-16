@@ -75,16 +75,13 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>@lang('register.re_enter_password'):</strong>
-                                <input type="password" name="masukan_kembali_password" value = '{{old("masukan_kembali_password")}}' class="form-control" placeholder="@lang('register.re_enter_password')" autocomplete="new-password">
-                                @error('masukan_kembali_password')
+                                <input type="password" name="password_confirmation" value = '{{old("password_confirmation")}}' class="form-control" placeholder="@lang('register.re_enter_password')" autocomplete="new-password">
+                                @error('password_confirmation')
                                     <div class="alert alert-danger mt-1 mb-1">{{$message}}</div>
                                 @enderror
                         </div>
                     </div>
                     
-                    @error('s_password')
-                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                    @enderror
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>@lang('register.photo_profile'):</strong>
@@ -109,6 +106,9 @@
                         <input type="radio" id="female" name="gender" value="P">
                         <label for="female">@lang('register.female')</label>
                     </div>
+                    @error('gender')
+                        <div class="alert alert-danger mt-1 mb-1">{{$message}}</div>
+                    @enderror
                     <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>@lang('register.info'):</strong>
