@@ -1,8 +1,6 @@
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 permissions:
   contents: read
 name: 🚀 Tests and Deploy website on push and pull_request
@@ -84,5 +82,4 @@ jobs:
               password: ${{ secrets.FTP_PASS }}
               protocol: ftps #menggunnakan ftps agar lebih aman
               port: ${{ secrets.FTP_PORT }}
-              exclude: .git*
               server-dir: /public_html/
