@@ -31,8 +31,8 @@ jobs:
           cp .env.example .env
           echo "${{secrets.DOT_ENV_TEST}}"
           
-      - name: Generate app key
-        run: php artisan key:generate
+      # - name: Generate app key
+      #   run: php artisan key:generate
         
       #- name: Copy environment file
       #  run: |
