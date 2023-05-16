@@ -109,6 +109,9 @@
                         <input type="radio" id="female" name="gender" value="P">
                         <label for="female">@lang('register.female')</label>
                     </div>
+                    @error('gender')
+                        <div class="alert alert-danger mt-1 mb-1">{{$message}}</div>
+                    @enderror
                     <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>@lang('register.info'):</strong>
