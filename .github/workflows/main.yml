@@ -29,7 +29,7 @@ jobs:
       - name: Copy environment file
         run: |
           cp .env.example .env
-          echo "${{secrets.DOT_ENV_TEST}}"
+          echo "${{secrets.DOT_ENV_TEST}}">>.env
         
       - name: Generate app key
         run: php artisan key:generate
@@ -67,7 +67,7 @@ jobs:
       - name: Copy environment file
         run: |
           cp .env.example .env
-          echo "${{secrets.DOT_ENV_DEPLOY}}"
+          echo "${{secrets.DOT_ENV_DEPLOY}}">>.env
               
               
       - name: Generate app key
