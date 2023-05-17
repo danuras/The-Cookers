@@ -80,6 +80,13 @@
                             </div>
                     </div>
                     <a class="btn btn-primary" href="{{ route('profiles.edit',$profiles->id) }}">Edit</a>
+                    
+            
+            <form action="{{ route('profiles.destroy', $profiles->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-primary ml-3">Hapus Akun</button>
+            </form>
         </div>
     </body>
 </html>

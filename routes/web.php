@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LocaleController;
 use App\Mail\SendEmailVerificationCode;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,7 @@ Route::middleware('auth')/* ->prefix('{locale}') */->group(function () {
     Route::post('verify-email', [AuthController::class, 'verifyEmail'])->name('verify-email');
     Route::get('show-verification-code', [AuthController::class, 'showVerificationCode'])->name('show-verification-code');
     Route::resource('profiles', ProfileController::class);
+    
 
     /*  Route::get('verify-email', EmailVerificationPromptController::class)
     ->name('verification.notice');

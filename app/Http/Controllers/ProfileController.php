@@ -108,10 +108,17 @@ class ProfileController extends Controller
      * Menghapus data user
      *
      */
-    public function destroy()
+    public function destroy(Request $request, User $user)
     {
-        Auth::user()->delete();
-        return redirect()->route('profiles.index')
+        if(Hash::check($request->password, Auth::user()->password)){
+            Auth::user()->delete();
+            
+            return redirect()->intended('/')
             ->with('success', 'User has been deleted successfully');
+        } 
+        
+        return back()->withErrors([
+            'ecode' => 'Password Salah',
+        ]);
     }
 }
