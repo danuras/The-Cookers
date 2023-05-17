@@ -1,12 +1,21 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
 body {
-    background: #ffffff;
     font-family: "Roboto", sans-serif;
+}
+
+.bg {
+    background-image: url("../img/bg.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    background-repeat: no-repeat;
+    align-items: center;
 }
 
 .container {
     background-color: #ffcf9c;
     color: #b96d40;
+    border-radius: 2rem;
 }
 
 .shadow {
