@@ -53,19 +53,18 @@
         <a class="menu-list" href="{{route('register')}}">@lang('dashboard.signup')</a>
         <a class="menu-list" href="{{route('login')}}">@lang('dashboard.signin')</a>
         @else
-        <!-- <a class="menu-list" href="{{ route('logout') }}">@lang('dashboard.logout')</a> -->
         <a href="#" class="logout" id="log" onclick="logoutConfirmation()">@lang('dashboard.logout')</a>
         @endif
         <a class="menu-list" href="{{ route('profiles.index') }}">@lang('dashboard.profile')</a>
         <form class="menu-list" method="POST" action="{{ route('change-locale') }}">
             @csrf
             <select class="menu-list" style='background:transparent' name="locale" onchange="this.form.submit()">
-                @if(session('locale') == 'id')
-                    <option style='background:#ffcf9c' value="en" >en</option>
-                    <option style='background:#ffcf9c' value="id" selected>id</option>
-                @else
+                @if(session('locale') == 'en')
                     <option style='background:#ffcf9c' value="en" selected>en</option>
                     <option style='background:#ffcf9c' value="id">id</option>
+                @else
+                    <option style='background:#ffcf9c' value="en" >en</option>
+                    <option style='background:#ffcf9c' value="id" selected>id</option>
                 @endif
             </select>
         </form>
