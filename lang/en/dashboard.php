@@ -1,9 +1,9 @@
 <?php
 return [
-	'signup' => 'Sign-Up',
-	"signin" => "Sign-In",
+	'signup' => 'Register',
+	"signin" => "Login",
 	"logout" => "Logout",
-	"home" => "home",
+	"home" => "Home",
 	"aboutus" => "About Us",
 	"recipe" => "Recipe",
 	"contact" => "Contact",

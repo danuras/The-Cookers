@@ -50,10 +50,10 @@
         <a class="menu-list" href="#contact">@lang('dashboard.contact')</a>
         
         @if (!auth()->check())
-        <a class="menu-list" href="{{route('register')}}">@lang('dashboard.signup')</a>
-        <a class="menu-list" href="{{route('login')}}">@lang('dashboard.signin')</a>
+        <a class="auth" href="{{route('register')}}">@lang('dashboard.signup')</a>
+        <a class="auth" href="{{route('login')}}">@lang('dashboard.signin')</a>
         @else
-        <a href="#" class="logout" id="log" onclick="logoutConfirmation()">@lang('dashboard.logout')</a>
+        <a href="#" class="auth" id="log" onclick="logoutConfirmation()">@lang('dashboard.logout')</a>
         @endif
         <a class="menu-list" href="{{ route('profiles.index') }}">@lang('dashboard.profile')</a>
         <form class="menu-list" method="POST" action="{{ route('change-locale') }}">
@@ -99,18 +99,21 @@
     <!-- My JavaScript -->
     <script src="{{asset('js/script.js')}}"></script>
 
-    <!-- JS sweetalert2-->
+    <!-- JS pop up konfirmasi logout-->
     <script src="{{asset('plugins/sweetalert2.min.js')}}"></script>
     <script>
         function logoutConfirmation() {
             Swal.fire({
-                title: 'Logout?',
-                text: "Apakah Anda yakin",
+                title: 'keluar?',
+                text: "Apakah Anda yakin?",
                 icon: 'question',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Logout'
+                cancelButtonColor: '#3085d6',
+                cancelButtonText: 'Batal',
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Keluar',
+                focusCancel: true,
+                background: '#ffcf9c'
             }).then((result) => {
                 if (result.isConfirmed) {
                   let url = "{{ route('logout') }}";
