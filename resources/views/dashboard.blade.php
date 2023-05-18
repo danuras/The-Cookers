@@ -19,6 +19,9 @@
 
     <!-- My styles -->
     <link rel="stylesheet" href="{{asset('css/style.css')}}" />
+
+    <!-- CSS sweetalert2-->
+    <link rel="stylesheet" href="{{asset('plugins/sweetalert2.min.css')}}">
   </head>
   <body>
     <!-- 
@@ -50,7 +53,8 @@
         <a class="menu-list" href="{{route('register')}}">@lang('dashboard.signup')</a>
         <a class="menu-list" href="{{route('login')}}">@lang('dashboard.signin')</a>
         @else
-        <a class="menu-list" href="{{ route('logout') }}">@lang('dashboard.logout')</a>
+        <!-- <a class="menu-list" href="{{ route('logout') }}">@lang('dashboard.logout')</a> -->
+        <a href="#" class="logout" id="log" onclick="logoutConfirmation()">@lang('dashboard.logout')</a>
         @endif
         <a class="menu-list" href="{{ route('profiles.index') }}">@lang('dashboard.profile')</a>
         <form class="menu-list" method="POST" action="{{ route('change-locale') }}">
@@ -95,5 +99,26 @@
 
     <!-- My JavaScript -->
     <script src="{{asset('js/script.js')}}"></script>
+
+    <!-- JS sweetalert2-->
+    <script src="{{asset('plugins/sweetalert2.min.js')}}"></script>
+    <script>
+        function logoutConfirmation() {
+            Swal.fire({
+                title: 'Logout?',
+                text: "Apakah Anda yakin",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Logout'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                  let url = "{{ route('logout') }}";
+                  document.location.href = url;
+                }
+            })
+        }
+    </script>
   </body>
 </html>
