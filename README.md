@@ -19,6 +19,7 @@
     <li>Duplikat file <code style="white-space: pre;">.env.example</code> lalu rename hasil duplikatnya dengan <code style="white-space: pre;">.env</code></li>
     <li>konfigurasi file <code style="white-space: pre;">.env</code> seperti yang sudah di kirim digrup whatsapp (copas aja semua isinya lalu tempel di <code style="white-space: pre;">.env</code>)</li>
     <li>Run <code style="white-space: pre;">php artisan migrate</code> untuk membuat table-table database</li>
+    <li>Run <code style="white-space: pre;">php artisan db:seed --class=DatabaseSeeder</code> untuk mengisi data di database dengan data dami. Data daminya berupa akun user a@a dengan password = password</li>
 </ol>
 
 <h2>Cara Me-run projek</h2>
