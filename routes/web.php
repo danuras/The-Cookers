@@ -19,7 +19,7 @@ use App\Models\User;
 |
 */
 Route::get('/', function () {
-    $locale = Session::get('locale')??'en';
+    $locale = Session::get('locale')??'id';
     App::setLocale($locale);
     return view('dashboard');
 });

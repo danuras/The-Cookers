@@ -3,7 +3,7 @@ return [
 	'signup' => 'Daftar',
 	"signin" => "Masuk",
 	"logout" => "Keluar",
-	"home" => "home",
+	"home" => "Beranda",
 	"aboutus" => "Tentang Kami",
 	"recipe" => "Resep",
 	"contact" => "Kontak",

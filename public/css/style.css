@@ -76,16 +76,16 @@ body {
     line-height: 30px;
     position: relative;
     margin-bottom: 40px;
-  }
-  
-  .select span {
+}
+
+.select span {
     display: block;
     color: #333;
     font-size: 12px;
     padding: 0 10px;
-  }
-  
-  .select ul {
+}
+
+.select ul {
     display: none;
     background: #fff;
     border: 1px solid #ddd;
@@ -97,24 +97,24 @@ body {
     margin: 0;
     padding: 0;
     z-index: 10;
-  }
-  
-  .select ul > li {
+}
+
+.select ul>li {
     font-size: 12px;
-  }
-  
-  .select ul > li {
+}
+
+.select ul>li {
     color: #333;
     display: block;
     padding: 2px 8px;
     text-decoration: none;
     line-height: 24px;
-  }
-  
-  .select ul > li:hover {
+}
+
+.select ul>li:hover {
     background: #e4f4fa;
     cursor: pointer;
-  }
+}
 
 .navbar .navbar-extra .menu-list {
     color: #000;
@@ -235,7 +235,7 @@ body {
     }
 }
 
-.navbar .logout {
+.navbar .auth {
     display: inline-block;
     padding: 0.5rem 1.5rem;
     font-size: 1rem;
