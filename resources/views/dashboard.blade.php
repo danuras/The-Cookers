@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Cookers</title>
 
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="{{asset('assets/cookers.png')}}">
+
     <!-- Feathere Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
 
