@@ -43,7 +43,23 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $pp = '';
         $user = User::find(Auth::user()->id);
+        
+        
+        if ($request->file('photo_profile')) {
+            $validator = Validator::make($request->all(), [
+                'photo_profile' => 'image|mimes:jpeg,png,jpg,gif|max:2048|dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000',
+            ]);
+
+            if ($validator->fails()) {
+                return back()->withErrors($validator->errors());
+            }
+            $file = $request->file('photo_profile');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('images/user/photo_profile/'), $filename);
+            $pp = 'images/user/photo_profile/' . $filename;
+        }
         $validator = Validator::make($request->all(),[
             'name' => 'required',
             'gender' => 'required|max:1',
@@ -54,7 +70,6 @@ class ProfileController extends Controller
                 'email',
                 Rule::unique('users')->ignore($user->email, 'email'),
             ],
-            'photo_profile' => 'image|mimes:jpeg,png,jpg,gif|max:2048|dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000',
             'username' => [
                 'required',
                 Rule::unique('users')->ignore($user->username, 'username'),
@@ -66,7 +81,7 @@ class ProfileController extends Controller
             if($request->file('photo_profile')){
                 
                 return back()->withErrors($validator->errors())->with([
-                    'photo_profile_c'=>base64_encode(file_get_contents($request->file('photo_profile'))),
+                    'photo_profile_c'=>$pp,
                 ]);
             }else if($request->last_pp){
                 return back()->withErrors($validator->errors())->with([
@@ -85,9 +100,10 @@ class ProfileController extends Controller
         $user->info = $request->info;
         $user->email = $request->email;
         if ($request->file('photo_profile')) {
-            $user->photo_profile = file_get_contents($request->file('photo_profile'));
+            $user->photo_profile = $pp;
         } else if($request->last_pp){
-            $user->photo_profile = base64_decode($request->last_pp);
+            $pp = $request->last_pp;
+            $user->photo_profile = $pp;
         }
 
         if ($user->isDirty('email')) {

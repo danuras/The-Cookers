@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -15,6 +16,7 @@ use App\Mail\SendEmailVerificationCode;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rules\Password;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class AuthController extends Controller
 {
@@ -36,8 +38,24 @@ class AuthController extends Controller
      */
     public function register(Request $request): RedirectResponse
     {
+        $pp = '';
+
         $this->loadLocale();
         Session::flashInput($request->input());
+
+        if ($request->file('photo_profile')) {
+            $validator = Validator::make($request->all(), [
+                'photo_profile' => 'image|mimes:jpeg,png,jpg,gif|max:2048|dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000',
+            ]);
+
+            if ($validator->fails()) {
+                return back()->withErrors($validator->errors());
+            }
+            $file = $request->file('photo_profile');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('images/user/photo_profile/'), $filename);
+            $pp = 'images/user/photo_profile/' . $filename;
+        }
 
         $validator = Validator::make($request->all(), [
             'name' => 'required',
@@ -57,7 +75,6 @@ class AuthController extends Controller
             'password_confirmation' => [
                 'required',
             ],
-            'photo_profile' => 'image|mimes:jpeg,png,jpg,gif|max:2048|dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000',
             'gender' => 'required|max:1',
             'info' => 'max:30',
             'bio' => 'max:500',
@@ -66,7 +83,7 @@ class AuthController extends Controller
             if ($request->file('photo_profile')) {
 
                 return back()->withErrors($validator->errors())->with([
-                    'photo_profile_c' => base64_encode(file_get_contents($request->file('photo_profile'))),
+                    'photo_profile_c' => $pp,
                 ]);
             } else if ($request->last_pp) {
                 return back()->withErrors($validator->errors())->with([
@@ -90,10 +107,12 @@ class AuthController extends Controller
         $user->verification_code_expired_at = Carbon::now()->addMinutes(5);
         $user->password = Hash::make($request->password);
         if ($request->file('photo_profile')) {
-            $user->photo_profile = file_get_contents($request->file('photo_profile'));
+            $user->photo_profile = $pp;
         } else if ($request->last_pp) {
-            $user->photo_profile = base64_decode($request->last_pp);
+            $pp = $request->last_pp;
+            $user->photo_profile = $pp;
         }
+
         $remember = $request->has('remember_me');
         $user->save();
         Mail::to($request->email)->send(new SendEmailVerificationCode($token));
@@ -280,7 +299,7 @@ class AuthController extends Controller
                     ->numbers()
                     ->symbols()
                     ->uncompromised(),
-                    'confirmed',
+                'confirmed',
             ],
             'password_confirmation' => [
                 'required',
