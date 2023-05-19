@@ -219,7 +219,7 @@ body {
         right: 0;
     }
 
-    .navbar .navbar-nav a {
+    .navbar .navbar-nav .menu-list {
         color: var(--bg);
         display: block;
         margin: 1.5rem;
@@ -227,11 +227,11 @@ body {
         font-size: 2rem;
     }
 
-    .navbar .navbar-nav a::after {
+    .navbar .navbar-nav .menu-list::after {
         transform-origin: 0 0;
     }
 
-    .navbar .navbar-nav a:hover::after {
+    .navbar .navbar-nav .menu-list:hover::after {
         transform: scaleX(0.2);
     }
 }

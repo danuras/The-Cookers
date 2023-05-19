@@ -86,7 +86,7 @@
                         <div class="form-group">
                             <strong>@lang('register.photo_profile'):</strong>
                             @if(session('photo_profile_c'))
-                                <img id="gambar-preview"  onclick = 'document.getElementById("pp").click()' src="data:image/png;base64,{{ session('photo_profile_c') }}" alt="Preview Gambar"  width="200" height="200">
+                                <img id="gambar-preview"  onclick = 'document.getElementById("pp").click()' src="{{ session('photo_profile_c') }}" alt="Preview Gambar"  width="200" height="200">
                                 
                                 <input type="hidden" id = 'last_pp' name="last_pp" value = "{{session('photo_profile_c')}}"  class="form-control">
                             @else
