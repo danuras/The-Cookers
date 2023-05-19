@@ -1,3 +1,11 @@
+/* Color Pallete
+#CA054D rose red
+#3B1C32 dark purple
+#A4D4B4 celadon
+#FFCF9C sunset
+#B96D40 brown sugar
+ */
+
 :root {
     --primary: #b96d40;
     --bg: #ffcf9c;
@@ -235,12 +243,15 @@ body {
     }
 }
 
+/* button register login logout */
 .navbar .auth {
     display: inline-block;
     padding: 0.5rem 1.5rem;
-    font-size: 1rem;
-    color: #ffcf9c;
-    background-color: #b96d40;
+    margin-right: 10px;
+    color: white;
+    background-color: #CA054D;
     border-radius: 0.5rem;
     box-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
+    font-size: 1.25em;
+    font-weight: bold;
 }
