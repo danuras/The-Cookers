@@ -6,224 +6,8 @@
 #B96D40 brown sugar
  */
 
-:root {
-    --primary: #b96d40;
-    --bg: #ffcf9c;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    outline: none;
-    border: none;
-    text-decoration: none;
-}
-
-body {
-    font-family: "Poppins", sans-serif;
-    background-color: var(--bg);
-    color: #fff;
-}
-
-/* Navbar */
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.4rem 7%;
-    background-color: var(--bg);
-    border-bottom: 1px solid var(--primary);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 9999;
-}
-
-.navbar .navbar-logo {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #3b1c32;
-    font-style: italic;
-}
-
-.navbar .navbar-logo span {
-    color: #ca054d;
-}
-
-.navbar .navbar-nav .menu-list {
-    color: #000;
-    display: inline-block;
-    font-size: 1.4rem;
-    margin: 0 1rem;
-}
-
-.navbar .navbar-nav .menu-list:hover {
-    color: var(--primary);
-}
-
-.navbar .navbar-nav .menu-list::after {
-    content: "";
-    display: block;
-    padding-bottom: 0.5rem;
-    border-bottom: 0.1rem solid var(--primary);
-    transform: scaleX(0);
-    transition: 0.2s linear;
-}
-
-.navbar .navbar-nav .menu-list:hover::after {
-    transform: scaleX(0.5);
-}
-
-.select {
-    width: 200px;
-    height: 30px;
-    border: 1px solid #ddd;
-    line-height: 30px;
-    position: relative;
-    margin-bottom: 40px;
-}
-
-.select span {
-    display: block;
-    color: #333;
-    font-size: 12px;
-    padding: 0 10px;
-}
-
-.select ul {
-    display: none;
-    background: #fff;
-    border: 1px solid #ddd;
-    min-width: 300px;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    z-index: 10;
-}
-
-.select ul>li {
-    font-size: 12px;
-}
-
-.select ul>li {
-    color: #333;
-    display: block;
-    padding: 2px 8px;
-    text-decoration: none;
-    line-height: 24px;
-}
-
-.select ul>li:hover {
-    background: #e4f4fa;
-    cursor: pointer;
-}
-
-.navbar .navbar-extra .menu-list {
-    color: #000;
-    margin: 0 0.5rem;
-}
-
-.navbar .navbar-extra .menu-list:hover {
-    color: var(--primary);
-}
-
-#hamburger-menu {
-    display: none;
-}
-
-/* Hero Section */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    background-image: url("../assets/bg-cookers.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-size: cover;
-    background-position: center;
-}
-
-.hero .content {
-    padding: 1.4rem 7%;
-    max-width: 60rem;
-}
-
-.hero .content h1 {
-    font-size: 5em;
-    color: #3b1c32;
-    text-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
-    line-height: 1.2;
-}
-
-.hero .content h1 span {
-    color: #ca054d;
-}
-
-.hero .content p {
-    font-size: 1.6rem;
-    margin-top: 1rem;
-    line-height: 1.4;
-    font-weight: 300;
-    color: #fff;
-    mix-blend-mode: difference;
-}
-
-/* button call to action */
-.btn-call-to-action {
-    align-items: center;
-    appearance: none;
-    background-color: #CA054D;
-    border-radius: 4px;
-    border-width: 0;
-    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #CA054D 0 -3px 0 inset;
-    box-sizing: border-box;
-    color: white;
-    cursor: pointer;
-    display: inline-flex;
-    font-family: "Poppins", sans-serif;
-    font-weight: bolder;
-    height: 48px;
-    justify-content: center;
-    line-height: 1;
-    list-style: none;
-    overflow: hidden;
-    padding-left: 16px;
-    padding-right: 16px;
-    position: relative;
-    text-align: left;
-    text-decoration: none;
-    transition: box-shadow .15s, transform .15s;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
-    will-change: box-shadow, transform;
-    font-size: 18px;
-}
-
-.btn-call-to-action:focus {
-    box-shadow: #CA054D 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #CA054D 0 -3px 0 inset;
-}
-
-.btn-call-to-action:hover {
-    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #CA054D 0 -3px 0 inset;
-    transform: translateY(-2px);
-}
-
-.btn-call-to-action:active {
-    box-shadow: #CA054D 0 3px 7px inset;
-    transform: translateY(2px);
-}
-
+/* batas responsive */
 /* Media Queries */
-
 /* Laptop */
 @media (max-width: 1366px) {
     html {
@@ -279,8 +63,77 @@ body {
     }
 }
 
-/* button register login logout */
-.navbar .auth {
+:root {
+    --primary: #b96d40;
+    --bg: #ffcf9c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: var(--bg);
+    color: #fff;
+}
+
+/* Navbar start*/
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem 7%;
+    background-color: var(--bg);
+    border-bottom: 1px solid var(--primary);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+}
+
+.navbar .logo .navbar-logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #3b1c32;
+    font-style: italic;
+}
+
+.navbar .logo .navbar-logo span {
+    color: #ca054d;
+}
+
+.navbar .navbar-nav .menu-list {
+    color: #000;
+    display: inline-block;
+    font-size: 1.4rem;
+    margin: 0 1rem;
+}
+
+.navbar .navbar-nav .menu-list:hover {
+    color: var(--primary);
+}
+
+.navbar .navbar-nav .menu-list::after {
+    content: "";
+    display: block;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.1rem solid var(--primary);
+    transform: scaleX(0);
+    transition: 0.2s linear;
+}
+
+.navbar .navbar-nav .menu-list:hover::after {
+    transform: scaleX(0.5);
+}
+
+.navbar .navbar-nav .auth {
     display: inline-block;
     padding: 0.5rem 1.5rem;
     margin-right: 10px;
@@ -290,4 +143,90 @@ body {
     box-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
     font-size: 1.25em;
     font-weight: bold;
+}
+
+/* Hero start */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-image: url("../assets/bg-cookers.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-size: cover;
+    background-position: center;
+}
+
+.hero .content {
+    padding: 1.4rem 7%;
+    max-width: 60rem;
+}
+
+.hero .content h1 {
+    font-size: 5em;
+    color: #CA054D;
+    text-shadow: 2px 2px 3px rgba(1, 1, 3, 0.5);
+    line-height: 1.2;
+}
+
+.hero .content h1 span {
+    color: #ca054d;
+}
+
+.hero .content p {
+    font-size: 1.6rem;
+    margin-top: 1rem;
+    line-height: 1.4;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 2px 2px 3px rgba(1, 1, 3, 0.5);
+}
+
+/* button call to action */
+.btn-call-to-action {
+    margin-top: 15px;
+    align-items: center;
+    appearance: none;
+    background-color: #CA054D;
+    border-radius: 4px;
+    border-width: 0;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #CA054D 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "Poppins", sans-serif;
+    font-weight: bolder;
+    height: 48px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s, transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow, transform;
+    font-size: 18px;
+}
+
+.btn-call-to-action:focus {
+    box-shadow: #CA054D 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #CA054D 0 -3px 0 inset;
+}
+
+.btn-call-to-action:hover {
+    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #CA054D 0 -3px 0 inset;
+    transform: translateY(-2px);
+}
+
+.btn-call-to-action:active {
+    box-shadow: #CA054D 0 3px 7px inset;
+    transform: translateY(2px);
 }

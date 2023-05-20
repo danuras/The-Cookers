@@ -16,10 +16,10 @@ document.addEventListener("click", function (e) {
 });
 
 // Code to convert select to UL
-$('.select').each(function() {
+$('.select').each(function () {
   var $select = $(this).find('select'),
     $list = $('<ul />');
-  $select.find('option').each(function() {
+  $select.find('option').each(function () {
     $list.append('<li>' + $(this).text() + '</li>');
   });
   //Remove the select after the values are taken
@@ -32,13 +32,13 @@ $('.select').each(function() {
   $(this).find('span').text(firsttxt)
 
   // On click show the UL
-  $(this).on('click', 'span', function(e) {
+  $(this).on('click', 'span', function (e) {
     e.stopPropagation();
     $(this).parent().find('ul').show();
   });
 
   // On select of list select the item
-  $(this).on('click', 'li', function() {
+  $(this).on('click', 'li', function () {
     var gettext = $(this).text();
     $(this).parents('.select').find('span').text(gettext);
     $(this).parent().fadeOut();
@@ -48,6 +48,28 @@ $('.select').each(function() {
 
 
 // On click out hide the UL
-$(document).on('click', function() {
+$(document).on('click', function () {
   $('.select ul').fadeOut();
 });
+
+// pop up logout
+function logoutConfirmation() {
+  Swal.fire({
+    title: 'keluar?',
+    text: "Apakah Anda yakin?",
+    icon: 'question',
+    showCancelButton: true,
+    cancelButtonColor: '#3085d6',
+    cancelButtonText: 'Batal',
+    confirmButtonColor: '#d33',
+    confirmButtonText: 'Keluar',
+    focusCancel: true,
+    background: '#ffcf9c'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      var baseUrl = window.location.origin;
+      var routeUrl = baseUrl + '/logout'
+      document.location.href = routeUrl;
+    }
+  })
+}
