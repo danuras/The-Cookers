@@ -89,7 +89,11 @@
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores,
           similique?
         </p>
-        <a href="#" class="cta">@lang('dashboard.cooknow')</a>
+        <!-- button call to action -->
+        <a href="#">
+          <button class="btn btn-call-to-action">@lang('dashboard.cooknow')</button>
+        </a>
+        
       </main>
     </section>
     <!-- Hero Section End -->
