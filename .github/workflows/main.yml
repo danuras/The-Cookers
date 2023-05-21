@@ -72,9 +72,6 @@ jobs:
       - name: Generate app key
         run: php artisan key:generate
 
-      - name: Sync public folder
-        run: rsync -av --exclude='index.php' ./public/ ./
-
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
