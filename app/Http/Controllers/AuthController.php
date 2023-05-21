@@ -184,7 +184,7 @@ class AuthController extends Controller
     {
         $this->loadLocale();
         if (Auth::user()->hasVerifiedEmail()) {
-            return redirect()->route('/');
+            return redirect()->intended('/');
         }
         $email = Auth::user()->email;
 
@@ -192,7 +192,7 @@ class AuthController extends Controller
             $token = Str::random(6);
             $user = DB::update('update users set verification_code = ?, verification_code_expired_at = ? where email = ?', [Hash::make($token), Carbon::now()->addMinutes(5), $email]);
             Mail::to($email)->send(new SendEmailVerificationCode($token));
-            return back()->withErrors([
+            return back()->with([
                 'ecode' => 'Kode Verifikasi Telah Dikirim',
             ]);
         }
@@ -270,7 +270,7 @@ class AuthController extends Controller
             $user->verification_code_expired_at = Carbon::now()->addMinutes(5);
             $user->save();
             Mail::to($email)->send(new SendEmailVerificationCode($token));
-            return back()->withErrors([
+            return back()->with([
                 'ecode' => 'Kode Verifikasi Telah Dikirim',
             ]);
         }
