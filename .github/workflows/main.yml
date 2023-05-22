@@ -52,21 +52,21 @@ jobs:
           php-version: 8.1
           extension-csv: mbstring, bcmath, mysqli
 
-      - name: Restore composer cache
-        uses: actions/cache@v2
-        with:
-         path: vendor
-         key: ${{ runner.os }}-php-${{ hashFiles('composer.lock') }}
-         restore-keys: |
-            ${{ runner.os }}-php-
+      #- name: Restore composer cache
+      #  uses: actions/cache@v2
+      #  with:
+      #   path: vendor
+      #   key: ${{ runner.os }}-php-${{ hashFiles('composer.lock') }}
+      #   restore-keys: |
+      #      ${{ runner.os }}-php-
             
-      - name: Install Composer dependencies
-        run: composer install --no-dev --prefer-dist
+      #- name: Install Composer dependencies
+      #  run: composer install --no-dev --prefer-dist
         
-      - name: Copy environment file
-        run: |
-          cp .env.example .env
-          echo '${{secrets.DOT_ENV_DEPLOY}}' >> .env
+      #- name: Copy environment file
+      #  run: |
+      #    cp .env.example .env
+      #    echo '${{secrets.DOT_ENV_DEPLOY}}' >> .env
               
               
       - name: Generate app key
