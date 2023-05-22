@@ -64,6 +64,6 @@ jobs:
               server: ${{ secrets.FTP_SERVER }}
               username: ${{ secrets.FTP_USER }}
               password: ${{ secrets.FTP_PASS }}
-              protocol: ftps #menggunnakan ftps agar lebih aman
+              protocol: ftps 
               port: ${{ secrets.FTP_PORT }}
               server-dir: /public_html/
