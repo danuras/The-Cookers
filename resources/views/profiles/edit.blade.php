@@ -69,14 +69,13 @@
                         <div class="form-group">
                             <strong>Photo Profile:</strong>
                                 @if(session('photo_profile_c'))
-                                    <img id="gambar-preview"  onclick = 'document.getElementById("pp").click()' src="{{ asset(session('photo_profile_c')) }}" alt="Preview Gambar"  width="200" height="200">
+                                    <img id="gambar-preview"  onclick = 'document.getElementById("pp").click()' src="{{ asset(session('photo_profile_c')) }}" alt="profile.png"  width="200" height="200">
                                     
                                     <input type="hidden" id = 'last_pp' name="last_pp" value = "{{session('photo_profile_c')}}"  class="form-control">
                                 @elseif ($profile->photo_profile)
-                                {{$profile->phone_profile}}
                                     <img src="{{ asset($profile->photo_profile) }}"  id="gambar-preview" onclick = 'document.getElementById("pp").click()' alt="profile.png"  width="200" height="200">
                                 @else
-                                    <img id="gambar-preview" onclick = 'document.getElementById("pp").click()' src="{{asset('assets/default/profile.png')}}" alt="Preview Gambar"  width="200" height="200">
+                                    <img id="gambar-preview" onclick = 'document.getElementById("pp").click()' src="{{asset('assets/default/profile.png')}}" alt="profile.png"  width="200" height="200">
 
                                 @endif
                             <input type="file" onchange="tampilkanGambar(this);" id = 'pp' name="photo_profile"  class="form-control" accept="image/*" hidden>

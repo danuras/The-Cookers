@@ -45,8 +45,8 @@ class ProfileController extends Controller
     {
         $pp = '';
         $user = User::find(Auth::user()->id);
-        
-        
+
+
         if ($request->file('photo_profile')) {
             $validator = Validator::make($request->all(), [
                 'photo_profile' => 'image|mimes:jpeg,png,jpg,gif|max:2048|dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000',
@@ -60,7 +60,7 @@ class ProfileController extends Controller
             $file->move(public_path('images/user/photo_profile/'), $filename);
             $pp = 'images/user/photo_profile/' . $filename;
         }
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'gender' => 'required|max:1',
             'info' => 'max:30',
@@ -76,16 +76,16 @@ class ProfileController extends Controller
             ],
         ]);
 
-        
-        if($validator->fails()){
-            if($request->file('photo_profile')){
-                
+
+        if ($validator->fails()) {
+            if ($request->file('photo_profile')) {
+
                 return back()->withErrors($validator->errors())->with([
-                    'photo_profile_c'=>$pp,
+                    'photo_profile_c' => $pp,
                 ]);
-            }else if($request->last_pp){
+            } else if ($request->last_pp) {
                 return back()->withErrors($validator->errors())->with([
-                    'photo_profile_c'=>$request->last_pp,
+                    'photo_profile_c' => $request->last_pp,
                 ]);
             } else {
                 return back()->withErrors($validator->errors());
@@ -101,7 +101,7 @@ class ProfileController extends Controller
         $user->email = $request->email;
         if ($request->file('photo_profile')) {
             $user->photo_profile = $pp;
-        } else if($request->last_pp){
+        } else if ($request->last_pp) {
             $pp = $request->last_pp;
             $user->photo_profile = $pp;
         }
@@ -115,10 +115,15 @@ class ProfileController extends Controller
             Mail::to($request->email)->send(new SendEmailVerificationCode($token));
             return redirect()->intended('show-verification-code')->with('user', $user);
         }
-        $user->save();
+        if ($user->save()) {
 
-        return redirect()->route('profiles.index')
-            ->with('success', 'User Has Been updated successfully');
+            return redirect()->route('profiles.index')
+                ->with('success', 'User Has Been updated successfully');
+        }
+        return back()->withErrors([
+            'ecode' => 'Update gagal',
+        ]);
+
     }
     /**
      * Menghapus data user
@@ -126,13 +131,13 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request, User $user)
     {
-        if(Hash::check($request->password, Auth::user()->password)){
+        if (Hash::check($request->password, Auth::user()->password)) {
             Auth::user()->delete();
-            
+
             return redirect()->intended('/')
-            ->with('success', 'User has been deleted successfully');
-        } 
-        
+                ->with('success', 'User has been deleted successfully');
+        }
+
         return back()->withErrors([
             'ecode' => 'Password Salah',
         ]);
