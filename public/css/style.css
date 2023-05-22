@@ -6,6 +6,59 @@
 #B96D40 brown sugar
  */
 
+/* batas responsive */
+/* Media Queries */
+/* Laptop */
+@media (max-width: 1366px) {
+    html {
+        font-size: 75%;
+    }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+    html {
+        font-size: 62.5%;
+    }
+
+    .navbar ul {
+        width: 65%;
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    html {
+        font-size: 55%;
+    }
+
+    nav ul {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100vh;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        z-index: -1;
+        background-color: var(--bg);
+        transform: translateX(100%);
+    }
+
+    nav ul.slide {
+        transform: translateX(0);
+    }
+
+    main .hero {
+        position: absolute;
+        z-index: -2;
+    }
+
+    .navbar .menu-toggle {
+        display: flex;
+    }
+}
+
 :root {
     --primary: #b96d40;
     --bg: #ffcf9c;
@@ -24,47 +77,43 @@ body {
     font-family: "Poppins", sans-serif;
     background-color: var(--bg);
     color: #fff;
+    overflow-x: hidden;
 }
 
-/* Navbar */
-
-.navbar {
+/* Navbar start*/
+nav {
     display: flex;
+    height: 10vh;
+    background-color: var(--bg);
+    justify-content: space-around;
+    padding: 0 20px;
+    border-bottom: 1px solid var(--primary);
+    align-items: center;
+}
+
+.logo {
+    margin-right: auto;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    width: 55%;
     justify-content: space-between;
     align-items: center;
-    padding: 1.4rem 7%;
-    background-color: var(--bg);
-    border-bottom: 1px solid var(--primary);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 9999;
 }
 
-.navbar .navbar-logo {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #3b1c32;
-    font-style: italic;
-}
-
-.navbar .navbar-logo span {
-    color: #ca054d;
-}
-
-.navbar .navbar-nav .menu-list {
+nav ul li a {
+    text-decoration: none;
     color: #000;
-    display: inline-block;
     font-size: 1.4rem;
-    margin: 0 1rem;
 }
 
-.navbar .navbar-nav .menu-list:hover {
+nav ul li a:hover {
     color: var(--primary);
 }
 
-.navbar .navbar-nav .menu-list::after {
+nav ul li a::after {
     content: "";
     display: block;
     padding-bottom: 0.5rem;
@@ -73,73 +122,84 @@ body {
     transition: 0.2s linear;
 }
 
-.navbar .navbar-nav .menu-list:hover::after {
+nav ul li a:hover::after {
     transform: scaleX(0.5);
 }
 
-.select {
-    width: 200px;
-    height: 30px;
-    border: 1px solid #ddd;
-    line-height: 30px;
-    position: relative;
-    margin-bottom: 40px;
+.menu-list.tentang {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.select span {
-    display: block;
-    color: #333;
-    font-size: 12px;
-    padding: 0 10px;
-}
-
-.select ul {
-    display: none;
-    background: #fff;
-    border: 1px solid #ddd;
-    min-width: 300px;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    z-index: 10;
-}
-
-.select ul>li {
-    font-size: 12px;
-}
-
-.select ul>li {
-    color: #333;
-    display: block;
-    padding: 2px 8px;
-    text-decoration: none;
-    line-height: 24px;
-}
-
-.select ul>li:hover {
-    background: #e4f4fa;
+.navbar .btn-menu {
+    display: inline-block;
+    align-items: center;
+    color: white;
+    background-color: #CA054D;
+    border-radius: 0.5rem;
+    box-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
+    font-weight: bold;
     cursor: pointer;
+    padding: 10px 20px;
 }
 
-.navbar .navbar-extra .menu-list {
-    color: #000;
-    margin: 0 0.5rem;
-}
-
-.navbar .navbar-extra .menu-list:hover {
-    color: var(--primary);
-}
-
-#hamburger-menu {
+/* hamburger menu */
+.menu-toggle {
     display: none;
+    flex-direction: column;
+    height: 20px;
+    justify-content: space-between;
+    position: relative;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
-/* Hero Section */
+.menu-toggle input {
+    position: absolute;
+    width: 40px;
+    height: 28px;
+    left: -5px;
+    top: -5px;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+    transition: all 0.5s;
+}
+
+/* hamburger menu animation */
+.menu-toggle span:nth-child(2) {
+    transform-origin: 0 0;
+}
+
+.menu-toggle span:nth-child(4) {
+    transform-origin: 0 100%;
+}
+
+.menu-toggle input:checked~span:nth-child(2) {
+    transform: rotate(45deg) translate(-1px, -1px);
+}
+
+.menu-toggle input:checked~span:nth-child(4) {
+    transform: rotate(-45deg) translate(-1px, 0);
+}
+
+.menu-toggle input:checked~span:nth-child(3) {
+    transform: scale(0);
+    opacity: 0;
+}
+
+/* Hero start */
 .hero {
-    min-height: 100vh;
+    min-height: 90vh;
     display: flex;
     align-items: center;
     background-image: url("../assets/bg-cookers.jpg");
@@ -157,8 +217,8 @@ body {
 
 .hero .content h1 {
     font-size: 5em;
-    color: #3b1c32;
-    text-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
+    color: #CA054D;
+    text-shadow: 2px 2px 3px rgba(1, 1, 3, 0.5);
     line-height: 1.2;
 }
 
@@ -170,88 +230,55 @@ body {
     font-size: 1.6rem;
     margin-top: 1rem;
     line-height: 1.4;
-    font-weight: 300;
+    font-weight: 800;
     color: #fff;
-    mix-blend-mode: difference;
+    text-shadow: 2px 2px 3px rgba(1, 1, 3, 0.5);
 }
 
-.hero .content .cta {
-    margin-top: 1rem;
-    display: inline-block;
-    padding: 1rem 3rem;
-    font-size: 1.4rem;
-    color: #fff;
-    background-color: var(--primary);
-    border-radius: 0.5rem;
-    box-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
-}
-
-/* Media Queries */
-
-/* Laptop */
-@media (max-width: 1366px) {
-    html {
-        font-size: 75%;
-    }
-}
-
-/* Tablet */
-@media (max-width: 768px) {
-    html {
-        font-size: 62.5%;
-    }
-
-    #hamburger-menu {
-        display: inline-block;
-    }
-
-    .navbar .navbar-nav {
-        position: absolute;
-        top: 100%;
-        right: -100%;
-        background-color: #000;
-        width: 30rem;
-        height: 100vh;
-        transition: 0.3ms;
-    }
-
-    .navbar .navbar-nav.active {
-        right: 0;
-    }
-
-    .navbar .navbar-nav .menu-list {
-        color: var(--bg);
-        display: block;
-        margin: 1.5rem;
-        padding: 0.5rem;
-        font-size: 2rem;
-    }
-
-    .navbar .navbar-nav .menu-list::after {
-        transform-origin: 0 0;
-    }
-
-    .navbar .navbar-nav .menu-list:hover::after {
-        transform: scaleX(0.2);
-    }
-}
-
-/* Handphone */
-@media (max-width: 450px) {
-    html {
-        font-size: 55%;
-    }
-}
-
-/* button register login logout */
-.navbar .auth {
-    display: inline-block;
-    padding: 0.5rem 1.5rem;
-    margin-right: 10px;
-    color: white;
+/* button call to action */
+.btn-call-to-action {
+    margin-top: 15px;
+    align-items: center;
+    appearance: none;
     background-color: #CA054D;
-    border-radius: 0.5rem;
-    box-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
-    font-size: 1.25em;
-    font-weight: bold;
+    border-radius: 4px;
+    border-width: 0;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #CA054D 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "Poppins", sans-serif;
+    font-weight: bolder;
+    height: 48px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s, transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow, transform;
+    font-size: 18px;
+}
+
+.btn:focus {
+    box-shadow: #CA054D 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #CA054D 0 -3px 0 inset;
+}
+
+.btn:hover {
+    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #CA054D 0 -3px 0 inset;
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    box-shadow: #CA054D 0 3px 7px inset;
+    transform: translateY(2px);
 }
