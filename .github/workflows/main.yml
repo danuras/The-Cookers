@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [ perbaikan ]
+    branches: [ main ]
 permissions:
   contents: read
 name: 🚀 Tests and Deploy website on push
