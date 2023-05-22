@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{asset('plugins/sweetalert2.min.css')}}">
 
     <!-- script javascript -->
-    <script src="{{asset('js/script.js')}}"></script>
+    
   </head>
   <body>
     <!-- Navbar start -->
@@ -34,43 +34,50 @@
         <a href="#" class="navbar-logo">the<span>cookers</span>.</a>
       </div>
 
-      <div class="navbar-nav">
-        <a class="menu-list beranda" href="#home">Beranda</a>
-        <a class="menu-list tentang" href="#about">Tentang Kami</a>
-        <a class="menu-list resep" href="#resep">Resep</a>
-        <a class="menu-list kontak" href="#contact">Kontak</a>
-        
+      <ul> 
+        <li><a class="menu-list beranda" href="#home">Beranda</a></li>
+        <li><a class="menu-list tentang" href="#about">Tentang Kami</a></li>
+        <li><a class="menu-list resep" href="#resep">Resep</a></li>
+        <li><a class="menu-list kontak" href="#contact">Kontak</a></li>
         <!-- daftar masuk keluar -->
         @if (!auth()->check())
-        <a class="auth daftar" href="{{route('register')}}">Daftar</a>
-        <a class="auth masuk" href="{{route('login')}}">Masuk</a>
+        <li><a class="menu-list daftar" href="{{route('register')}}">
+          <button class="btn btn-menu daftar">Daftar</button>
+        </a></li>
+        <li><a class="menu-list masuk" href="{{route('login')}}">
+          <button class="btn btn-menu masuk">Masuk</button>
+        </a></li>
         @else
-        <a href="#" class="auth keluar" id="log" onclick="logoutConfirmation()">Keluar</a>
+        <li><a href="#" class="menu-list keluar" id="log" onclick="logoutConfirmation()">
+          <button class="btn btn-menu keluar">Keluar</button>
+        </a></li>
         @endif
-      </div>
+      </ul>
 
-      <div class="navbar-extra">
-        <a href="#" id="search"><i data-feather="search"></i></a>
-        <a href="#" id="buku-resep"><i data-feather="book"></i></a>
-        <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+      <div class="menu-toggle">
+        <input type="checkbox">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </nav>
     <!-- Navbar end -->
 
     <!-- Hero Section Start -->
-    <section class="hero" id="home">
-      <main class="content">
-        <h1>Ayo <span>Masak!</span></h1>
-        <p>
-          Dapatkan Inspirasi Kuliner Terbaru dengan Resep Pilihan Terbaik Kami!
-        </p>
-        <!-- button call to action -->
-        <a href="#">
-          <button class="btn btn-call-to-action">Masak Sekarang</button>
-        </a>
-        
-      </main>
-    </section>
+    <main>
+      <div class="hero">
+        <div class="content">
+          <h1>Ayo <span>Masak!</span></h1>
+          <p>
+            Dapatkan Inspirasi Kuliner Terbaru dengan Resep Pilihan Terbaik Kami!
+          </p>
+          <!-- button call to action -->
+          <a href="#">
+            <button class="btn btn-call-to-action">Masak Sekarang</button>
+          </a>
+        </div>
+      </div>
+    </main>
     <!-- Hero Section End -->
 
     <!-- Feather Icons -->
@@ -79,9 +86,10 @@
     </script> -->
     
     <!-- My JavaScript -->
-    <script src="{{asset('js/script.js')}}"></script>
+    <!-- <script src="{{asset('js/script.js')}}"></script> -->
 
     <!-- JS pop up konfirmasi logout-->
     <script src="{{asset('plugins/sweetalert2.min.js')}}"></script>
+    <script src="{{asset('js/script.js')}}"></script>
   </body>
 </html>
