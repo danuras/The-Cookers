@@ -12,9 +12,13 @@ use Illuminate\Support\Facades\Hash;
 
 class UserTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
+    /** @test */
+    public function test_show_login_view()
+    {
+        $response = $this->get('login');
+        $response->assertStatus(200);
+        $response->assertViewIs('auth.login');
+    }
     /** @test */
     public function it_deletes_user_if_password_is_correct()
     {
