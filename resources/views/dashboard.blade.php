@@ -31,7 +31,6 @@
     <!-- Navbar start -->
     <nav class="navbar">
       <div class="logo">
-        <!-- <a href="#" class="navbar-logo">the<span>cookers</span>.</a> -->
         <img class="logo-cookers" src="{{asset('assets/cookers.png')}}" alt="logo the cookers">
       </div>
 
