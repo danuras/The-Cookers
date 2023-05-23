@@ -95,6 +95,12 @@ nav {
     margin-right: auto;
 }
 
+.logo .logo-cookers {
+    width: 65px;
+    height: auto;
+    margin-top: 4px;
+}
+
 nav ul {
     display: flex;
     list-style: none;
