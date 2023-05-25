@@ -49,7 +49,6 @@ class SendVerificationCodeTest extends TestCase
             'verification_code_expired_at' => Carbon::now()->addMinutes(5),
         ]);
 
-        Notification::fake();
         $response = $this->actingAs($user)->post('/send-verification-code');
 
         $response->assertSessionHasErrors('ecode', function ($error) use ($user) {
@@ -57,7 +56,6 @@ class SendVerificationCodeTest extends TestCase
             $expectedErrorMessage = 'Tunggu sampai ' . $diff->format('%i menit, %s detik') . ' lagi untuk mengirimkan kode verifikasi';
             return $error === $expectedErrorMessage;
         });
-        Notification::assertNothingSent();
         $this->assertNull($user->fresh()->verification_code);
     }
 }

@@ -25,7 +25,7 @@ class LogoutTest extends TestCase
         // Logout
         $response = $this->get('logout');
 
-        // Memastikan user telah logout dan 
+        // Memastikan user telah logout 
         $response->assertStatus(302);
         $response->assertRedirect('/');
 
