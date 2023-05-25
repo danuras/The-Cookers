@@ -16,7 +16,7 @@ public function it_saves_new_password_and_redirects_to_homepage_on_success()
 {
     $email = fake()->unique()->safeEmail();
     $tokenCode = '123456';
-    $newPassword = '@@!';
+    $newPassword = '@NewPassword123!';
 
     $user = User::factory()->create([
         'email' => $email,
