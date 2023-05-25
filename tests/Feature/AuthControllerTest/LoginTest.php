@@ -25,11 +25,11 @@ class LoginTest extends TestCase
             'password' => 'password', // Ganti dengan password pengguna yang valid
         ]);
 
-        // Assert that user is logged in and redirected to '/'
+        // Memastikan user di arahkan ke '/' dan status kode 302
         $response->assertStatus(302);
         $response->assertRedirect('/');
 
-        // Assert that user is authenticated
+        // Memastikan user di autentikasi
         $this->assertTrue(Auth::check());
 
     }
@@ -45,12 +45,12 @@ class LoginTest extends TestCase
             'password' => 'wrongPassword', // Ganti dengan password pengguna yang valid
         ]);
 
-        // Assert that user is redirected back to the login page with errors
+        // Memastikan user tetap berada di login page dan ada pesan errornya
         $response->assertStatus(302);
         $response->assertRedirect(null);
         $response->assertSessionHasErrors(['logine']);
 
-        // Assert that user is not authenticated
+        // Memastikan user tidak di autentikasi
         $this->assertFalse(Auth::check());
     }
 }
