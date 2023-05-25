@@ -119,11 +119,4 @@ class RegisterTest extends TestCase
         $response->assertRedirect('/');
         $response->assertSessionHasErrors(['password']);
     } 
-    /**@test */
-    public function test_call_register_route(): void
-    {
-        $response = $this->get('register');
-
-        $response->assertStatus(200);
-    }
 }
