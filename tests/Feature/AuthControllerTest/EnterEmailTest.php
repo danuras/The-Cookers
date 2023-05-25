@@ -10,14 +10,14 @@ use Tests\TestCase;
 
 class EnterEmailTest extends TestCase
 {
-    public function testShowEnterEmailView()
+    public function test_show_enter_email_view()
     {
         $response = $this->get('reset-password');
         $response->assertStatus(200);
         $response->assertViewIs('auth.reset_password.enterEmail');
     }
 
-    public function testEnterEmailWithRegisteredEmail()
+    public function test_enter_email_with_registered_email()
     {
 
         $email = fake()->unique()->safeEmail();
@@ -32,7 +32,7 @@ class EnterEmailTest extends TestCase
         $response->assertSessionHas('email', $email);
     }
 
-    public function testEnterEmailWithUnregisteredEmail()
+    public function test_enter_email_with_unregistered_email()
     {
         $response = $this->post('reset-password', [
             'email' => 'nonexistent@example.com',
