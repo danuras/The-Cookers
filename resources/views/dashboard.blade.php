@@ -17,14 +17,12 @@
       rel="stylesheet"
     />
 
-    <!-- <script src="https://unpkg.com/feather-icons"></script> -->
-
-    <!-- styles css -->
+    <!-- styles  -->
     <link rel="stylesheet" href="{{asset('css/style.css')}}" />
-    <!-- CSS sweetalert2-->
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <!-- sweetalert2-->
     <link rel="stylesheet" href="{{asset('plugins/sweetalert2.min.css')}}">
-
-    <!-- script javascript -->
     
   </head>
   <body>
@@ -34,25 +32,27 @@
         <img class="logo-cookers" src="{{asset('assets/cookers.png')}}" alt="logo the cookers">
       </div>
 
-      <ul> 
-        <li><a class="menu-list beranda" href="#home">Beranda</a></li>
-        <li><a class="menu-list tentang" href="#about">Tentang Kami</a></li>
-        <li><a class="menu-list resep" href="#resep">Resep</a></li>
-        <li><a class="menu-list kontak" href="#contact">Kontak</a></li>
-        <!-- daftar masuk keluar -->
-        @if (!auth()->check())
-        <li><a class="menu-list daftar" href="{{route('register')}}">
-          <button class="btn btn-menu daftar">Daftar</button>
-        </a></li>
-        <li><a class="menu-list masuk" href="{{route('login')}}">
-          <button class="btn btn-menu masuk">Masuk</button>
-        </a></li>
-        @else
-        <li><a href="#" class="menu-list keluar" id="log" onclick="logoutConfirmation()">
-          <button class="btn btn-menu keluar">Keluar</button>
-        </a></li>
-        @endif
-      </ul>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav"> 
+          <li class="nav-item action"><a class="nav-link active beranda" href="#home">Beranda</a></li>
+          <li class="nav-item action"><a class="nav-link active tentang" href="#about">Tentang Kami</a></li>
+          <li class="nav-item action"><a class="nav-link active resep" href="#resep">Resep</a></li>
+          <li class="nav-item action"><a class="nav-link active kontak" href="#contact">Kontak</a></li>
+          <!-- daftar masuk keluar -->
+          @if (!auth()->check())
+          <li><a class="menu-list daftar" href="{{route('register')}}">
+            <button class="btn btn-menu daftar">Daftar</button>
+          </a></li>
+          <li><a class="menu-list masuk" href="{{route('login')}}">
+            <button class="btn btn-menu masuk">Masuk</button>
+          </a></li>
+          @else
+          <li><a href="#" class="menu-list keluar" id="log" onclick="logoutConfirmation()">
+            <button class="btn btn-menu keluar">Keluar</button>
+          </a></li>
+          @endif
+        </ul>
+      </div>
 
       <div class="menu-toggle">
         <input type="checkbox">
@@ -80,16 +80,11 @@
     </main>
     <!-- Hero Section End -->
 
-    <!-- Feather Icons -->
-    <!-- <script>
-      feather.replace();
-    </script> -->
-    
-    <!-- My JavaScript -->
-    <!-- <script src="{{asset('js/script.js')}}"></script> -->
-
-    <!-- JS pop up konfirmasi logout-->
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <!-- sweetalert2-->
     <script src="{{asset('plugins/sweetalert2.min.js')}}"></script>
+    <!-- script -->
     <script src="{{asset('js/script.js')}}"></script>
   </body>
 </html>
