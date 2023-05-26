@@ -9,14 +9,14 @@
 /* batas responsive */
 /* Media Queries */
 /* Laptop */
-@media (max-width: 1366px) {
+@media screen and (max-width: 1366px) {
     html {
         font-size: 75%;
     }
 }
 
 /* Tablet */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     html {
         font-size: 62.5%;
     }
@@ -27,7 +27,7 @@
 }
 
 /* Mobile */
-@media (max-width: 576px) {
+@media screen and (max-width: 576px) {
     html {
         font-size: 55%;
     }
