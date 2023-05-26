@@ -86,7 +86,6 @@
         <p>
           Dapatkan Inspirasi Kuliner Terbaru dengan Resep Pilihan Terbaik Kami!
         </p>
-        <!-- button call to action -->
         <a href="#">
           <button class="btn btn-call-to-action">Masak Sekarang</button>
         </a>
