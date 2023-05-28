@@ -84,11 +84,14 @@
           </span>
         </h1>
         <p>
-          Dapatkan Inspirasi Kuliner Terbaru dengan Resep Pilihan Terbaik Kami!
+          Dapatkan Inspirasi Kuliner Terbaru dengan Resep Pilihan Terbaik Kami
         </p>
         <a href="#">
           <button class="btn btn-call-to-action">Masak Sekarang</button>
         </a>
+      </div>
+      <div class="kanan">
+        <a href=""></a>
       </div>
     </div>
   </main>
