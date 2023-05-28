@@ -32,14 +32,10 @@ header {
     justify-content: space-between;
 }
 
-.logo {
-    margin-right: auto;
-}
-
-.logo .logo-cookers {
+.logo img {
+    display: flex;
+    justify-content: center;
     width: 60px;
-    height: auto;
-    margin-top: 4px;
 }
 
 .hamburger {
@@ -178,6 +174,10 @@ nav ul li a.auth:hover {
 }
 
 @media only screen and (max-width: 900px) {
+    .logo img {
+        width: 50px;
+    }
+
     .hamburger {
         display: block;
         cursor: pointer;
