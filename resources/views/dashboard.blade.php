@@ -70,6 +70,11 @@
               Keluar
             </a>
           </li>
+          <li>
+            <a class="profil" href="{{route('profiles.index')}}">
+              Profil
+            </a>
+          </li>
           @endif
       </ul>
     </nav>
