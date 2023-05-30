@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->integer('portion');
+            $table->unsignedInteger('portion');
+            $table->string('image_url');
             $table->string('video_url');
             $table->string('cooking_time');
             $table->unsignedBigInteger('user_id');

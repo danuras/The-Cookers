@@ -1,10 +1,11 @@
 // hamburger menu
-const menuToggle = document.querySelector('.menu-toggle input');
-const nav = document.querySelector('nav ul');
+const hamburger = document.querySelector(".hamburger");
 
-menuToggle.addEventListener('click', function () {
-  nav.classList.toggle('slide');
-});
+hamburger.onclick = function () {
+  const navBar = document.querySelector("nav");
+
+  navBar.classList.toggle("active");
+}
 
 // pop up logout
 function logoutConfirmation() {
