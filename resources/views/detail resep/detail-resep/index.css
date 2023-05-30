@@ -1,0 +1,220 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: sans-serif;
+    font-size: 16px;
+}
+
+/*Navbar*/
+.navbar {
+    margin-top: 0px;
+    background-color: #ffcf9c;
+}
+
+.navbar .container img {
+    width: 50px;
+    height: 50px;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: #b96d40;
+}
+
+.navbar .navbar-nav .nav-link:hover {
+    color: #3b1c32;
+}
+
+.navbar .navbar-brand {
+    font-size: 30px;
+}
+
+.container .upload-resep {
+    background-color: #ca054d;
+    color: #ffcf9c;
+    border: none;
+    border-radius: 8px;
+    margin-top: 8.5px;
+    margin-right: 10px;
+}
+
+.container .upload-resep:hover {
+    opacity: 80%;
+}
+
+.container .profil {
+    background-color: #ca054d;
+    color: #ffcf9c;
+    border: none;
+    border-radius: 8px;
+    margin-top: 8.5px;
+    margin-left: 10px;
+}
+
+.container .profil:hover {
+    opacity: 80%;
+}
+
+/*Akhir Navbar*/
+
+.container .menu img {
+    width: 280px;
+    height: 200px;
+    margin-top: 15px;
+    margin-left: 380px;
+}
+
+.judul {
+    text-align: center;
+}
+
+.navbar-2 {
+    display: flex;
+    margin-bottom: 0px;
+    cursor: pointer;
+}
+
+.fork {
+    width: 22px;
+    height: 22px;
+    margin-left: 780px;
+}
+
+.waktu {
+    margin-left: 30px;
+}
+
+.porsi {
+    margin-left: 15px;
+}
+
+.navbar-3 {
+    display: flex;
+    cursor: pointer;
+}
+
+.star {
+    margin-left: 20px;
+    margin-top: 3px;
+}
+
+.rating {
+    margin-left: 5px;
+    margin-top: 3px;
+}
+
+.btn-rate {
+    background-color: #ca054d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    width: 85px;
+    height: 35px;
+    align-items: center;
+    margin-top: 0px;
+}
+
+.btn-rate:hover {
+    opacity: 80%;
+}
+
+.bookmark {
+    width: 20px;
+    height: 20px;
+    margin-top: 3.5px;
+    margin-left: 230px;
+}
+
+.fav {
+    margin-left: 3px;
+}
+
+.share {
+    margin-left: 310px;
+    margin-top: 3px;
+}
+
+.p-share {
+    margin-left: 3px;
+    margin-top: 1px;
+}
+
+.youtube {
+    width: 100px;
+    height: 90px;
+    margin-left: 505px;
+}
+
+.tutorial {
+    text-align: center;
+}
+
+.bumbu {
+    margin-top: 15px;
+}
+
+.cara {
+    margin-top: 15px;
+}
+
+.square {
+    background-color: #ca054d;
+    width: 200px;
+    height: 10px;
+    margin-left: 10px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.langkah1 {
+    margin-left: 500px;
+}
+
+.ket {
+    text-align: center;
+}
+
+.step {
+    display: flex;
+    margin-top: 15px;
+}
+/* .navbar-2 .navbar-2-menu .icon {
+    margin-left: 50px;
+} */
+
+/* .container .RT {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.container .PR {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.card-body .button {
+    background-color: #ffcf9c;
+    color: #b96d40;
+    border: none;
+    border-radius: 8px;
+    width: 215px;
+    height: 30px;
+    margin: 0;
+}
+
+.card-body .button:hover {
+    opacity: 80%;
+} */
+
+/*Home*/
+/* .judul {
+    margin-bottom: 120px;
+} */
+
+/* .card-img:hover {
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+} */
+
+/*Akhir Home*/
