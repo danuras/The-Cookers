@@ -21,6 +21,10 @@ a {
     text-decoration: none;
 }
 
+.btn-back{
+    background-color: #ffcf9c;
+}
+
 .header__wrapper header {
     width: 100%;
     background: url("../img/bg_profil.jpg") no-repeat 50% 20% / cover;

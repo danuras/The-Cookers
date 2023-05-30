@@ -13,7 +13,7 @@
     <body>
         <div class="header__wrapper">
             <header>
-                <button>
+                <button class="btn-back">
                     <a href="/">
                         Kembali
                     </a>
