@@ -78,8 +78,6 @@ class ProfileController extends Controller
 
 
         if ($validator->fails()) {
-        dd($validator->errors());
-
             if ($request->file('photo_profile')) {
 
                 return back()->withErrors($validator->errors())->with([
