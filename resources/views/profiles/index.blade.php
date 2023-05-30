@@ -1,91 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <title>Profil</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Responsive Profile Page</title>
+
+        <link rel="icon" type="image/png" href="{{asset('assets/cookers.png')}}">
+        <linkrel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+        <link rel="stylesheet" href="css/style-profil.css" />
     </head>
     <body>
-        <div class="container mt-2">
+        <div class="header__wrapper">
+            <header>
+                <button>
+                    <a href="/">
+                        Kembali
+                    </a>
+                </button>
+            </header>
+            <div class="cols__container">
+                <div class="left__col">
+                    <div class="img__container">
+                        <img src={{ asset('images/img-profil/user.jpeg') }} alt="Anna Smith" />
+                        <span></span>
+                    </div>
+                    <h2>Shani Indira</h2>
+                    <!-- <p>UX/UI Designer</p> -->
+                    <p>shani@gmail.com</p>
 
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
-            <div class="row">
-                <div class="col-lg-12 margin-tb">
-                    <div class="pull-left">
-                        <h2>Profil</h2>
+                    <ul class="about">
+                        <li><span>25</span>Saved</li>
+                        <!-- <li><span>3</span></li> -->
+                        <li><span>3</span>Receipt</li>
+                    </ul>
+
+                    <div class="content">
+                        <p>Semanis coklat, selembut sutra.</p>
+
+                        <ul>
+                            <li><i class="fab fa-twitter"></i></li>
+                            <i class="fab fa-pinterest"></i>
+                            <i class="fab fa-facebook"></i>
+                            <i class="fab fa-dribbble"></i>
+                        </ul>
                     </div>
-                    
-                <div class="pull-right">
-                    <a class="btn btn-primary" href="/">Kembali</a>
                 </div>
+                <div class="right__col">
+                    <nav>
+                        <ul>
+                            <li><a href="">saved</a></li>
+                            <li><a href="">receipt</a></li>
+                            <!-- <li><a href="">groups</a></li>
+                            <li><a href="">about</a></li> -->
+                        </ul>
+                        <button>
+                            <a href="{{ route('profiles.edit',$profiles->id) }}">
+                                Pengaturan Akun
+                            </a>
+                        </button>
+                    </nav>
+
+                    <div class="saved">
+                        <img
+                            src={{asset('images/img-profil/donat.jpg')}}
+                            alt="saved"
+                        />
+                        <img
+                            src={{asset('images/img-profil/ayam-bakar.jpg')}}
+                            alt="saved"
+                        />
+                        <img
+                            src={{asset('images/img-profil/brownies.jpg')}}
+                            alt="saved"
+                        />
+                        <img
+                            src={{asset('images/img-profil/burger.jpg')}}
+                            alt="saved"
+                        />
+                        <img
+                            src={{asset('images/img-profil/ikan-bumbu.jpg')}}
+                            alt="saved"
+                        />
+                        <img
+                            src={{asset('images/img-profil/kue-lumpur.jpg')}}
+                            alt="saved"
+                        />
+                    </div>
+
+                    <div class="resep">
+                        <img
+                            src="{{asset('images/img-profil/ayam-goreng.jpg')}}"
+                            alt="resep"
+                        />
+                        <img
+                            src={{asset('images/img-profil/nasi-goreng.jpg')}}
+                            alt="resep"
+                        />
+                        <img
+                            src={{asset('images/img-profil/salad.jpg')}}
+                            alt="resep"
+                        />
+                        <img
+                            src={{asset('images/img-profil/salmon.jpg')}}
+                            alt="resep"
+                        />
+                        <img
+                            src={{asset('images/img-profil/spageti.jpg')}}
+                            alt="resep"
+                        />
+                        <img
+                            src={{asset('images/img-profil/tumis-tahu.jpg')}}
+                            alt="resep"
+                        />
+                    </div>
                 </div>
             </div>
-            
-            <div class="col-lg-12 margin-tb">
-                @if ($profiles->photo_profile)
-                    <img src="{{ asset($profiles->photo_profile) }}" alt="profile.png" width="200" height="200">
-                @else
-                    <img src="{{ asset('assets/default/profile.png') }}" alt="Foto Profil Default"  width="200" height="200">
-                @endif
-                
-            </div>
-            
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Nama:</strong>
-                                <p>{{$profiles->name}}</p>
-                            </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Username:</strong>
-                                <p>{{$profiles->username}}</p>
-                            </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <strong>Email:</strong>    
-                            <p>{{$profiles->email}}</p>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <strong>Gender:</strong>
-                        @if($profiles->gender == 'L')
-                            <p>Laki-laki</p>
-                        @else
-                            <p>Perempuan</p>
-                        @endif
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Info:</strong>
-                                <p>{{$profiles->info}}</p>
-                            </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Bio:</strong>
-                                <p>{{$profiles->bio}}</p>
-                            </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>No_telp:</strong>
-                                <p>{{$profiles->no_phone}}</p>
-                            </div>
-                    </div>
-                    <a class="btn btn-primary" href="{{ route('profiles.edit',$profiles->id) }}">Edit</a>
-                    
-            
-            <form action="{{ route('profiles.destroy', $profiles->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-primary ml-3">Hapus Akun</button>
-            </form>
         </div>
     </body>
 </html>
