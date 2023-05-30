@@ -10,11 +10,8 @@
   <link rel="icon" type="image/png" href="{{asset('assets/cookers.png')}}">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;700&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="{{asset('css/style.css')}}" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="{{asset('css/style-dashboard.css')}}"/>
   <link rel="stylesheet" href="{{asset('plugins/sweetalert2.min.css')}}">
   
 </head>
@@ -68,6 +65,11 @@
           <li>
             <a class="auth" href="#" id="log" onclick="logoutConfirmation()">
               Keluar
+            </a>
+          </li>
+          <li>
+            <a class="profil" href="{{route('profiles.index')}}">
+              Profil
             </a>
           </li>
           @endif
