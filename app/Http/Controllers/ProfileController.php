@@ -116,10 +116,10 @@ class ProfileController extends Controller
             return redirect()->intended('show-verification-code')->with('user', $user);
         }
         if ($user->save()) {
-
             return redirect()->route('profiles.index')
                 ->with('success', 'User Has Been updated successfully');
         }
+
         return back()->withErrors([
             'ecode' => 'Update gagal',
         ]);
