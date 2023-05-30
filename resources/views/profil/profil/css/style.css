@@ -75,9 +75,11 @@ a {
     margin: 0;
 }
 .header__wrapper .cols__container .left__col .about {
-    justify-content: space-between;
+    /* justify-content: space-between; */
     position: relative;
     margin: 35px 0;
+    text-align: center;
+    justify-content: space-around;
 }
 .header__wrapper .cols__container .left__col .about li {
     display: flex;
@@ -89,7 +91,8 @@ a {
     color: #1d1d1d;
     font-weight: 600;
 }
-.header__wrapper .cols__container .left__col .about:after {
+
+/* .header__wrapper .cols__container .left__col .about:after {
     position: absolute;
     content: "";
     bottom: -16px;
@@ -97,7 +100,8 @@ a {
     background: #3b1c32;
     height: 1px;
     width: 100%;
-}
+} */
+
 .header__wrapper .cols__container .content p {
     font-size: 1rem;
     color: #1d1d1d;
@@ -122,6 +126,11 @@ a {
     justify-content: space-between;
     flex-direction: column;
 }
+
+.header__wrapper .cols__container .left__col .content ul {
+    cursor: pointer;
+}
+
 .header__wrapper .cols__container .right__col nav ul {
     display: flex;
     gap: 20px;
@@ -131,10 +140,11 @@ a {
     text-transform: uppercase;
     color: #3b1c32;
 }
-.header__wrapper .cols__container .right__col nav ul li:nth-child(1) a {
+/* .header__wrapper .cols__container .right__col nav ul li:nth-child(1) a {
     color: #1d1d1d;
     font-weight: 600;
-}
+} */
+
 .header__wrapper .cols__container .right__col nav button {
     background: #b96d40;
     color: #ffcf9c;
@@ -146,17 +156,95 @@ a {
 }
 .header__wrapper .cols__container .right__col nav button:hover {
     opacity: 0.8;
+    color: #3b1c32;
 }
+
+/* .header__wrapper .cols__container .right__col .line1 {
+} */
+
 .header__wrapper .cols__container .right__col .saved {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
     gap: 20px;
 }
+
 .header__wrapper .cols__container .right__col .saved img {
     max-width: 100%;
     display: block;
     height: 100%;
     object-fit: cover;
+}
+
+.header__wrapper .cols__container .right__col .button1 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 20px;
+}
+
+.header__wrapper .cols__container .right__col .button1 button {
+    max-width: 100%;
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    color: #ffcf9c;
+    background-color: #b96d40;
+    text-decoration: none;
+    text-shadow: none;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.header__wrapper .cols__container .right__col .button1 button li {
+    text-align: right;
+    display: block;
+}
+
+.header__wrapper .cols__container .right__col .button1 button:hover {
+    opacity: 0.8;
+    color: #3b1c32;
+}
+
+.header__wrapper .cols__container .right__col .saved2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 20px;
+}
+.header__wrapper .cols__container .right__col .saved2 img {
+    max-width: 100%;
+    display: block;
+    height: 100%;
+    object-fit: cover;
+}
+
+.header__wrapper .cols__container .right__col .button2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 20px;
+}
+
+.header__wrapper .cols__container .right__col .button2 button {
+    max-width: 100%;
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    color: #ffcf9c;
+    background-color: #b96d40;
+    text-decoration: none;
+    text-shadow: none;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.header__wrapper .cols__container .right__col .button2 button li {
+    text-align: right;
+    display: block;
+}
+
+.header__wrapper .cols__container .right__col .button2 button:hover {
+    opacity: 0.8;
+    color: #3b1c32;
 }
 
 .header__wrapper .cols__container .right__col .resep {
@@ -186,6 +274,7 @@ a {
     .header__wrapper .cols__container .left__col {
         padding: 25px 0px;
     }
+
     .header__wrapper .cols__container .right__col nav ul {
         flex-direction: row;
         gap: 30px;

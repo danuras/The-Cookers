@@ -101,6 +101,21 @@
                                 ></i>
                                 Security
                             </a>
+                            <!-- <a
+                                class="nav-link"
+                                id="hapus-akun-tab"
+                                data-toggle="pill"
+                                href="#hapus-akun"
+                                role="tab"
+                                aria-controls="hapus-akun"
+                                aria-selected="false"
+                            >
+                                <button
+                                    class="fa fa-user text-center mr-1"
+                                    id="hapus-akun"
+                                ></button>
+                                Hapus Akun
+                            </a> -->
                         </div>
                     </div>
                     <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
@@ -330,6 +345,24 @@
             inputFile.onchange = function () {
                 profilePic.src = URL.createObjectURL(inputFile.files[0]);
             };
+
+            // // ketika hapus akun di klik
+            // document.querySelector(".hapus-akun").onclick = () => {
+            //     navbarNav.classList.toggle("active"),
+            //         confirm("are you sure want to logout?");
+            // };
+
+            // // Klik di luar sidebar untuk menghilangkan nav
+            // const logout = document.querySelector(".hapus-akun");
+
+            // document.addEventListener("click", function (e) {
+            //     if (
+            //         !logout.contains(e.target) &&
+            //         !navbarNav.contains(e.target)
+            //     ) {
+            //         navbarNav.classList.remove("active");
+            //     }
+            // });
         </script>
     </body>
 </html>

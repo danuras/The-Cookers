@@ -3,14 +3,14 @@ body {
     font-family: "Roboto", sans-serif;
 }
 
-.bg {
+/* .bg {
     background-image: url("../img/bg.jpg");
     background-size: cover;
     background-position: center;
     display: flex;
     background-repeat: no-repeat;
     align-items: center;
-}
+} */
 
 .container {
     background-color: #ffcf9c;
