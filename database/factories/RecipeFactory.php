@@ -20,8 +20,8 @@ class RecipeFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'image_url' => fake(),
-            'video_url' => fake(),
+            'image_url' => fake()->text(),
+            'video_url' => '',
             'portion' => fake()->numberBetween(0, 20),
             'cooking_time' => fake()->time(),
             'description' => fake()->text(),

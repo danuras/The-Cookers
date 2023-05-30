@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Recipe;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Step>
@@ -19,7 +20,7 @@ class StepFactory extends Factory
     {
         return [
             'images'=>fake(),
-            'value' => fake()->value(),
+            'value' => Str::random(20),
             'recipe_id' => Recipe::factory(),
         ];
     }

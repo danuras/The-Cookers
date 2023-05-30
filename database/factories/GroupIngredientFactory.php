@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Recipe;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\GroupIngredient>
@@ -18,7 +19,7 @@ class GroupIngredientFactory extends Factory
     public function definition(): array
     {
         return [
-            'value' => fake()->name(),
+            'value' => Str::random(20),
             'recipe_id' => Recipe::factory(),
         ];
     }
