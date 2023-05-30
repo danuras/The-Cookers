@@ -40,13 +40,29 @@ body {
 }
 /*Akhir Navbar*/
 
-.container .btn {
-    background-color: #b96d40;
+.container .upload-resep {
+    background-color: #ca054d;
     color: #ffcf9c;
     border: none;
+    border-radius: 8px;
+    margin-top: 8.5px;
+    margin-right: 10px;
 }
 
-.container .btn:hover {
+.container .upload-resep:hover {
+    opacity: 80%;
+}
+
+.container .profil {
+    background-color: #ca054d;
+    color: #ffcf9c;
+    border: none;
+    border-radius: 8px;
+    margin-top: 8.5px;
+    margin-left: 10px;
+}
+
+.container .profil:hover {
     opacity: 80%;
 }
 
