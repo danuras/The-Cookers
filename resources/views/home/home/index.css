@@ -20,10 +20,55 @@ body {
 
 .navbar .navbar-nav .nav-link {
     color: #b96d40;
+    display: inline-block;
+    font-size: 1.4rem;
+    margin: 0 1rem;
 }
 
 .navbar .navbar-nav .nav-link:hover {
     color: #3b1c32;
+}
+
+.navbar .navbar-nav .nav-link::after {
+    content: "";
+    display: block;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.1rem solid #ca054d;
+    transform: scaleX(0);
+    transition: 0.2s linear;
+}
+
+/* .navbar .navbar-nav a {
+    color: #000;
+    display: inline-block;
+    font-size: 1.4rem;
+    margin: 0 1rem;
+} */
+
+/* .navbar .navbar-nav a:hover {
+    color: var(--primary);
+} */
+
+/* .navbar .navbar-nav a::after {
+    content: "";
+    display: block;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.1rem solid var(--primary);
+    transform: scaleX(0);
+    transition: 0.2s linear;
+} */
+
+.navbar .navbar-nav a:hover::after {
+    transform: scaleX(0.5);
+}
+
+.navbar .hamburger a {
+    color: #000;
+    margin: 0 0.5rem;
+}
+
+.navbar .hamburger a:hover {
+    color: #ca054d;
 }
 
 /* .pencarian {
@@ -38,6 +83,16 @@ body {
 .navbar .navbar-brand {
     font-size: 30px;
 }
+
+#hamburger-menu {
+    display: none;
+    color: #b96d40;
+}
+
+#hamburger-menu {
+    color: #3b1c32;
+}
+
 /*Akhir Navbar*/
 
 .container .upload-resep {
@@ -100,3 +155,90 @@ body {
 }
 
 /*Akhir Home*/
+
+/* Media Query */
+
+/* Laptop */
+@media (max-width: 1366px) {
+    html {
+        font-size: 75%;
+    }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+    html {
+        font-size: 62.5%;
+    }
+
+    #hamburger-menu {
+        display: inline-block;
+    }
+
+    .navbar .navbar-nav {
+        position: absolute;
+        top: 100%;
+        right: -100%;
+        background-color: #b96d40;
+        width: 30rem;
+        height: 100vh;
+        transition: 0.3ms;
+    }
+
+    .navbar .navbar-nav.active {
+        right: 0;
+    }
+
+    /* .navbar .navbar-nav {
+        position: absolute;
+        top: 100%;
+        right: -100%;
+        background-color: #000;
+        width: 30rem;
+        height: 100vh;
+        transition: 0.3ms;
+    }
+
+    .navbar .navbar-nav.active {
+        right: 0;
+    } */
+
+    .navbar .navbar-nav .nav-link {
+        color: #ffcf9c;
+        display: block;
+        margin: 1.5rem;
+        padding: 0.5rem;
+        font-size: 2rem;
+    }
+
+    .navbar .navbar-nav .nav-link::after {
+        transform-origin: 0 0;
+    }
+
+    .navbar .navbar-nav .nav-link:hover::after {
+        transform: scaleX(0.2);
+    }
+
+    /* .navbar .navbar-nav a {
+        color: var(--bg);
+        display: block;
+        margin: 1.5rem;
+        padding: 0.5rem;
+        font-size: 2rem;
+    } */
+
+    /* .navbar .navbar-nav a::after {
+        transform-origin: 0 0;
+    }
+
+    .navbar .navbar-nav a:hover::after {
+        transform: scaleX(0.2);
+    } */
+}
+
+/* Handphone */
+@media (max-width: 450px) {
+    html {
+        font-size: 55%;
+    }
+}
