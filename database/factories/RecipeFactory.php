@@ -19,7 +19,7 @@ class RecipeFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'name' => fake()->text(50),
             'image_url' => fake()->text(),
             'video_url' => '',
             'portion' => fake()->numberBetween(0, 20),

@@ -19,7 +19,7 @@ class IngredientFactory extends Factory
     public function definition(): array
     {
         return [
-            'value' => Str::random(20),
+            'value' => fake()->text(20),
             'group_ingredient_id' => GroupIngredient::factory(),
         ];
     }

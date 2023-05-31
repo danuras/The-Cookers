@@ -20,15 +20,15 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            'value'=>  Str::random(20),
-            'images'=>fake(),
+            'value' => fake()->text(20),
+            'images' => fake(),
             'recipe_id' => Recipe::factory(),
             'user_id' => User::factory(),
         ];
     }
     public function unverified(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'value' => null,
             'recipe_id' => null,
             'user_id' => null,
