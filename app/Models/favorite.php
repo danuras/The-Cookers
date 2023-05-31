@@ -9,3 +9,4 @@ class Favorite extends Model
 {
     use HasFactory;
 }
+
