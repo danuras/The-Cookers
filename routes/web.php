@@ -1,12 +1,10 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CompanyCRUDController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LocaleController;
-use App\Mail\SendEmailVerificationCode;
-use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +16,7 @@ use App\Models\User;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', function () {
-    $locale = Session::get('locale')??'id';
-    Session::put('locale',$locale);
-    App::setLocale($locale);
-    return view('dashboard');
-});
+Route::get('/', [DashboardController::class, 'index']);
 
 Route::post('change-locale', [LocaleController::class, 'changeLocale'])->name('change-locale');
 

@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class GroupIngredient extends Model
 {
     use HasFactory;
+    
+    public function ingrdients()
+    {
+        return $this->hasMany(Ingredient::class);
+    }
 }
