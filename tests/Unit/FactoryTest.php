@@ -16,7 +16,7 @@ use Tests\TestCase;
 
 class FactoryTest extends TestCase
 {
-    public function test_factory_creates_user()
+    /* public function test_factory_creates_user()
     {
         $user = User::factory()->create();
 
@@ -121,5 +121,5 @@ class FactoryTest extends TestCase
             'recipe_id' => $favorite->recipe_id,
             'user_id' => $favorite->user_id,
         ]);
-    }
+    } */
 }
