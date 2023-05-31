@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->index('recipe_id');
             $table->index('user_id');
+            $table->unique(['user_id', 'recipe_id']);
             $table->timestamps();
         });
     }

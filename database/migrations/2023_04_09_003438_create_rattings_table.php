@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('rattings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedTinyInteger('value');
+            $table->unsignedTinyInteger('value')->digits(5);
             $table->unsignedBigInteger('recipe_id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('recipe_id')->references('id')->on('recipes');

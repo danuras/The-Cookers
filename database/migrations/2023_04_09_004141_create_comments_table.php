@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->string('value');
+            $table->boolean('is_opened')->default(false);
             $table->json('images')->nullable();
             $table->unsignedBigInteger('recipe_id');
             $table->unsignedBigInteger('user_id');
