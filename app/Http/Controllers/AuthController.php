@@ -28,7 +28,7 @@ class AuthController extends Controller
 
     public function showRegistrationView()
     {
-        $this->loadLocale();
+        
         return view('auth.register');
     }
     /**
@@ -40,7 +40,7 @@ class AuthController extends Controller
     {
         $pp = '';
 
-        $this->loadLocale();
+        
         Session::flashInput($request->input());
 
         if ($request->file('photo_profile')) {
@@ -130,7 +130,7 @@ class AuthController extends Controller
      */
     public function showLoginView()
     {
-        $this->loadLocale();
+        
         return view('auth.login');
     }
 
@@ -141,7 +141,7 @@ class AuthController extends Controller
      */
     public function login(Request $request): RedirectResponse
     {
-        $this->loadLocale();
+        
         Session::flashInput($request->input());
         $credentials = $request->validate([
             'email' => ['required', 'email'],
@@ -166,7 +166,7 @@ class AuthController extends Controller
      */
     public function logout(Request $request): RedirectResponse
     {
-        $this->loadLocale();
+        
         Auth::logout();
 
         $request->session()->invalidate();
@@ -182,7 +182,7 @@ class AuthController extends Controller
      */
     public function sendVerificationCode(Request $request): RedirectResponse
     {
-        $this->loadLocale();
+        
         if (Auth::user()->hasVerifiedEmail()) {
             return redirect()->intended('/');
         }
@@ -209,7 +209,7 @@ class AuthController extends Controller
 
     public function showEnterEmailView()
     {
-        $this->loadLocale();
+        
         return view('auth.reset_password.enterEmail');
     }
     /**
@@ -219,7 +219,7 @@ class AuthController extends Controller
      */
     public function enterEmail(Request $request): RedirectResponse
     {
-        $this->loadLocale();
+        
         Session::flashInput($request->input());
         $email = $request->email;
         $user = User::where('email', $email)->first();
@@ -245,7 +245,7 @@ class AuthController extends Controller
      */
     public function showVerificationCodeResetPassword()
     {
-        $this->loadLocale();
+        
         if (Session::get('erp')) {
             return view('auth.reset_password.enterVerificationCode');
         } else {
@@ -260,7 +260,7 @@ class AuthController extends Controller
      */
     public function sendVerificationCodeResetPassword(Request $request): RedirectResponse
     {
-        $this->loadLocale();
+        
         Session::flashInput($request->input());
         $email = $request->email;
         $user = User::where('email', $email)->first();
@@ -287,7 +287,7 @@ class AuthController extends Controller
      */
     public function saveNewPassword(Request $request)
     {
-        $this->loadLocale();
+        
         Session::flashInput($request->input());
         $email = Session::get('erp');
         $request->validate([
@@ -330,7 +330,7 @@ class AuthController extends Controller
      */
     public function verifyCode(Request $request)
     {
-        $this->loadLocale();
+        
         Session::flashInput($request->input());
         $request->validate([
             'verification_code' => 'required',
@@ -360,7 +360,7 @@ class AuthController extends Controller
      */
     public function showEnterNewPassword()
     {
-        $this->loadLocale();
+        
         if (Session::get('erp') && Session::get('token_code')) {
             return view('auth.reset_password.enterNewPassword');
         } else if (Session::get('erp')) {
@@ -379,7 +379,7 @@ class AuthController extends Controller
      */
     public function verifyEmail(Request $request): RedirectResponse
     {
-        $this->loadLocale();
+        
         Session::flashInput($request->input());
 
         if (Auth::user()->hasVerifiedEmail()) {
@@ -413,7 +413,7 @@ class AuthController extends Controller
      */
     public function showVerificationCode()
     {
-        $this->loadLocale();
+        
 
         if (Auth::user()->hasVerifiedEmail()) {
             return redirect()->intended('/');
