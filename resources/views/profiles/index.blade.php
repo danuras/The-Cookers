@@ -11,7 +11,7 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         />
         <!-- CSS -->
-        <link rel="stylesheet" href="css/style-profil.css" />
+        <link rel="stylesheet" href="{{ asset('css/style-profil.css') }}">
     </head>
     <body>
         <div class="header__wrapper">
