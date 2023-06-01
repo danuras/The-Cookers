@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RecipeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
@@ -46,7 +47,9 @@ Route::middleware('auth')/* ->prefix('{locale}') */->group(function () {
     Route::post('verify-email', [AuthController::class, 'verifyEmail'])->name('verify-email');
     Route::get('show-verification-code', [AuthController::class, 'showVerificationCode'])->name('show-verification-code');
     Route::resource('profiles', ProfileController::class);
-    
+    Route::prefix('recipe')->group(function (){
+        Route::get('detail-recipe/{recipeId}', [RecipeController::class, 'showDetail']);
+    });
 
     /*  Route::get('verify-email', EmailVerificationPromptController::class)
     ->name('verification.notice');
