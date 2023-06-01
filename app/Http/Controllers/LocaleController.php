@@ -13,12 +13,12 @@ class LocaleController extends Controller
      *
      *
      */
-    public function changeLocale(Request $request)
+    /* public function changeLocale(Request $request)
     {
         Session::put('locale', $request->locale);
        
         $this->loadLocale();
         App::setLocale($request->locale);
         return redirect('/');
-    }
+    } */
 }

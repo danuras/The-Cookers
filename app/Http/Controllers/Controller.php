@@ -16,8 +16,8 @@ class Controller extends BaseController
      *
      *
      */
-    public function loadLocale()
+    /* public function loadLocale()
     {
         App::setLocale(Session::get('locale'));
-    }
+    } */
 }
