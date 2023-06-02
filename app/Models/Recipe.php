@@ -12,12 +12,12 @@ class Recipe extends Model
     {
         return $this->hasMany(Favorite::class);
     }
-    
+
     public function rattings()
     {
         return $this->hasMany(Ratting::class);
     }
-    
+
     public function comments()
     {
         return $this->hasMany(Comment::class);
@@ -29,5 +29,10 @@ class Recipe extends Model
     public function group_ingredients()
     {
         return $this->hasMany(GroupIngredient::class);
+    }
+
+    public function averageRatting()
+    {
+        return $this->rattings()->avg('value');
     }
 }

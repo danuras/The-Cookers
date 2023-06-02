@@ -5,12 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\GroupIngredient;
 use App\Models\Ingredient;
+use App\Models\Ratting;
 use App\Models\Recipe;
 use App\Models\Step;
+use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RecipeController extends Controller
 {
+    /**
+     * Mengambil data resep, bahan-bahan resep, langkah-langkah resep, komentar-komentar resep, dan rata-rata rattingnya
+     */
     public function showDetail($recipeId)
     {
         $recipe = Recipe::where('id', $recipeId)->first();
@@ -20,19 +26,15 @@ class RecipeController extends Controller
         foreach ($groups as $group) {
             array_push(
                 $groupIngredients, 
-                Ingredient::select('id', 'value', 'group_ingredient_id')->where(
-                    [
-                        ['group_ingredient_id', $group->id],
-                    ], 
-                )->get(), 
+                $group->ingredients, 
             );
         }
 
-        $steps = Step::select('id', 'value', 'images', 'recipe_id')->where('recipe_id', [$recipeId])->get();
-
         $data['groupIngredients'] = $groupIngredients;
         $data['recipe'] = $recipe;
-        $data['steps'] = $steps;
+        $data['steps'] = $recipe->steps;
+        $data['comments'] = $recipe->comments;
+        $data['avg_ratting'] = $recipe->averageRatting();
         return view('recipe.detail_recipe', $data);
     }
 }
