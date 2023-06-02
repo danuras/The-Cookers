@@ -52,12 +52,12 @@
           </li>
           @if (!auth()->check())
           <li>
-            <a class="auth" href="{{route('register')}}">
+            <a class="auth" href="{{route('login')}}?action=daftar">
               Daftar
             </a>
           </li>
           <li>
-            <a class="auth" href="{{route('login')}}">
+            <a class="auth" href="{{route('login')}}?action=masuk">
               Masuk
             </a>
           </li>
