@@ -40,7 +40,6 @@ class AuthController extends Controller
     {
         $pp = '';
 
-
         Session::flashInput($request->input());
 
         if ($request->file('photo_profile')) {

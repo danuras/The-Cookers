@@ -1,0 +1,56 @@
+:root {
+    --rose-red: #CA054D;
+    --dark-purple: #3B1C32;
+    --celadon: #A4D4B4;
+    --sunset: #FFCF9C;
+    --brownn-sugar: #B96D40;
+}
+
+body {
+    background-color: var(--sunset);
+}
+
+.fa-eye {
+    cursor: pointer;
+}
+
+#gambar-preview {
+    cursor: pointer;
+}
+
+#btn-submit {
+    margin-top: 30px;
+    align-items: center;
+    appearance: none;
+    background-color: #CA054D;
+    border-radius: 4px;
+    border-width: 0;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #CA054D 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    display: inline-flex;
+    height: 42px;
+    width: 100px;
+    font-weight: bold;
+    justify-content: center;
+    padding-left: 16px;
+    padding-right: 16px;
+    text-align: left;
+    transition: box-shadow .15s, transform .15s;
+    font-size: 18px;
+}
+
+#btn-submit:focus {
+    box-shadow: #CA054D 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #CA054D 0 -3px 0 inset;
+}
+
+#btn-submit:hover {
+    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #CA054D 0 -3px 0 inset;
+    transform: translateY(-2px);
+}
+
+#btn-submit:active {
+    box-shadow: #CA054D 0 3px 7px inset;
+    transform: translateY(2px);
+}
