@@ -31,3 +31,13 @@ function countCharacterBio() {
   var maxLength = input.getAttribute("maxlength");
   countElement.textContent = count + "/" + maxLength;
 }
+
+function tampilkanGambar(input) {
+  if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+          document.getElementById("gambar-preview").setAttribute("src", e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+  }
+}
