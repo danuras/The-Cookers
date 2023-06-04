@@ -17,10 +17,9 @@ class RecipeController extends Controller
     /**
      * Mengambil data resep, bahan-bahan resep, langkah-langkah resep, komentar-komentar resep, dan rata-rata rattingnya
      */
-    public function showDetail($recipeId)
+    public function showDetail(Recipe $recipe)
     {
-        $recipe = Recipe::where('id', $recipeId)->first();
-        $groups = GroupIngredient::where('recipe_id', $recipeId)->get();
+        $groups = GroupIngredient::where('recipe_id', $recipe->id)->get();
         $groupIngredients = [];
 
         foreach ($groups as $group) {

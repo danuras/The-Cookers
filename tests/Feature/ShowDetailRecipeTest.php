@@ -67,7 +67,7 @@ class ShowDetailRecipeTest extends TestCase
         }
 
         // Melakukan permintaan GET ke endpoint showDetail
-        $response = $this->get('/recipe/detail-recipe/' . $recipe->id);
+        $response = $this->get('/recipe/' . $recipe->id);
 
         // Memastikan bahwa respons berhasil (successful)
         $response->assertStatus(200);
