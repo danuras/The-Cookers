@@ -1,41 +1,33 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const loginText = document.querySelector(".title-text .login");
-  const loginForm = document.querySelector("form.login");
-  const signupForm = document.querySelector("form.signup");
-  const loginBtn = document.querySelector("label.login");
-  const signupBtn = document.querySelector("label.signup");
-  const signupLink = document.querySelector("form.login .signup-link a");
+const showPassword = document.querySelector("#show-password");
+const passwordField = document.querySelector("#password");
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const action = urlParams.get('action');
+showPassword.addEventListener("click", function () {
+  this.classList.toggle("fa-eye-slash");
+  const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+  passwordField.setAttribute("type", type);
+})
 
-  const loginRadio = document.getElementById('login');
-  const signupRadio = document.getElementById('signup');
+const showPasswordConfirm = document.querySelector("#show-password-confirm");
+const paswordFieldConfirm = document.querySelector("#password-confirm");
 
-  if (action === 'masuk') {
-    loginRadio.checked = true;
-    showLoginForm();
-  } else if (action === 'daftar') {
-    signupRadio.checked = true;
-    showSignupForm();
-  }
+showPasswordConfirm.addEventListener("click", function () {
+  this.classList.toggle("fa-eye-slash");
+  const type = paswordFieldConfirm.getAttribute("type") === "password" ? "text" : "password";
+  paswordFieldConfirm.setAttribute("type", type);
+})
 
-  function showLoginForm() {
-    loginForm.style.transform = 'translateX(0%)';
-    signupForm.style.transform = 'translateX(100%)';
-  }
+function countCharacterInfo() {
+    var input = document.getElementById("info");
+    var countElement = document.getElementById("infoCount");
+    var count = input.value.length;
+    var maxLength = input.getAttribute("maxlength");
+    countElement.textContent = count + "/" + maxLength;
+}
 
-  function showSignupForm() {
-    loginForm.style.transform = 'translateX(-100%)';
-    signupForm.style.transform = 'translateX(-100%)';
-  }
-
-  loginRadio.addEventListener('click', showLoginForm);
-  signupRadio.addEventListener('click', showSignupForm);
-
-  signupLink.addEventListener('click', function (event) {
-    signupRadio.checked = true;
-    showSignupForm();
-    event.preventDefault();
-  });
-});
+function countCharacterBio() {
+  var input = document.getElementById("bio");
+  var countElement = document.getElementById("bioCount");
+  var count = input.value.length;
+  var maxLength = input.getAttribute("maxlength");
+  countElement.textContent = count + "/" + maxLength;
+}

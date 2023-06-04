@@ -1,68 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Membuat Form Login</title>
-  <link rel="stylesheet" href="{{ asset('css/style-auth.css') }}">
-  <script>
-
-  </script>
-</head>
-<body>
-<div class="wrapper">
-      <div class="title-text">
-        <div class="title login">Form Login</div>
-        <div class="title signup">Form Registrasi</div>
-      </div>
-      <div class="form-container">
-        <div class="slide-controls">
-          <input type="radio" name="slide" id="login" checked>
-          <input type="radio" name="slide" id="signup">
-          <label for="login" class="slide login">Login</label>
-          <label for="signup" class="slide signup">Daftar</label>
-          <div class="slider-tab"></div>
+    <head>
+        <meta charset="UTF-8">
+        <title>Login</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
+    </head>
+    <body>
+        <div class="container mt-2">
+            <div class="row">
+                <div class="col-lg-12 margin-tb">
+                    <div class="pull-left mb-2">
+                        <h2>Login</h2>
+                    </div>
+                <div class="pull-right">
+                    <a class="btn btn-primary" href="/"> Kembali</a>
+                </div>
+            </div>
         </div>
-        <div class="form-inner">
-          <form action="#" class="login">
-            <pre>
-            </pre>
-            <div class="field">
-              <input type="text" placeholder="Masukan Email " required>
+        @if(session('status'))
+            <div class="alert alert-success mb-1 mt-1">
+                {{ session('status') }}
             </div>
-            <div class="field">
-              <input type="password" placeholder="Masukan Password" required>
-            </div>
-            <div class="pass-link"><a href="#">Lupa password?</a></div>
-            <div class="field btn">
-              <div class="btn-layer"></div>
-              <input type="submit" value="Login">
-            </div>
-            <div class="signup-link">Buat akun <a href="">Daftar sekarang</a></div>
-          </form>
-          <form action="#" class="signup">
-            <div class="field">
-              <input type="text" placeholder="Masukan Nama" required>
-            </div>
-            <div class="field">
-              <input type="text" placeholder="Masukan Email" required>
-            </div>
-            <div class="field">
-              <input type="password" placeholder="Masukan Password" required>
-            </div>
-            <div class="field">
-              <input type="password" placeholder="Ulangi password" required>
-            </div>
-            <div class="field btn">
-              <div class="btn-layer"></div>
-              <input type="submit" value="Daftar">
-            </div>
-            <div class="signup-link">Sudah punya akun? <a href="">Login</a></div>
-          </form>
-        </div>
-      </div>
-    </div>
-  <script src="{{ asset('js/script-auth.js') }}"></script>
-
-</body>
+        @endif
+            <form action="{{ route('login') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+                @csrf
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <strong>Email:</strong>
+                                <input type="email" name="email" value="{{old('email')}}" class="form-control" placeholder="Email">
+                                @error('email')
+                                    <div class="alert alert-danger mt-1 mb-1">{{$message}}</div>
+                                @enderror
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <strong>Password:</strong>
+                                <input type="password" name="password" value="{{old('password')}}" class="form-control" placeholder="password">
+                                    @error('password')
+                                        <div class="alert alert-danger mt-1 mb-1">{{$message}}</div>
+                                    @enderror
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <input type="checkbox" id="remember_me" name="remember_me">
+                        <label for="remember_me">Ingat Saya</label>
+                    </div>
+                    @error('logine')
+                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                    @enderror
+                    <button type="submit" class="btn btn-primary ml-3">Submit</button>
+                </div>
+            </form>
+            
+            <form action="{{ route('reset-password') }}" method="GET" enctype="multipart/form-data">
+                <div class="row">
+                    <button type="submit" class="btn btn-primary ml-3">Lupa Password</button>
+                </div>  
+            </form>
+            
+    </body>
 </html>
