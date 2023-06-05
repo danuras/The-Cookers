@@ -74,22 +74,15 @@ class DatabaseSeeder extends Seeder
 
                     ]);
                 }
-                $gi = GroupIngredient::factory()->create([
-                    'recipe_id' => $recipe->id,
-                ]);
 
                 for ($k = 0; $k < mt_rand(1, 5); $k++) {
                     Ingredient::factory()->create([
-                        'group_ingredient_id' => $gi->id,
+                        'recipe_id' => $recipe->id,
                     ]);
                 }
-
-                $gi = GroupIngredient::factory()->create([
-                    'recipe_id' => $recipe->id,
-                ]);
                 for ($k = 0; $k < mt_rand(1, 5); $k++) {
                     Ingredient::factory()->create([
-                        'group_ingredient_id' => $gi->id,
+                        'recipe_id' => $recipe->id,
                     ]);
                 }
             }
