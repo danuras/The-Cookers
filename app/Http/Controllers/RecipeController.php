@@ -3,15 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\GroupIngredient;
-use App\Models\Ingredient;
-use App\Models\Ratting;
 use App\Models\Recipe;
-use App\Models\Step;
-use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
@@ -22,17 +16,7 @@ class RecipeController extends Controller
      */
     public function showDetail(Recipe $recipe)
     {
-        $groups = GroupIngredient::where('recipe_id', $recipe->id)->get();
-        $groupIngredients = [];
-
-        foreach ($groups as $group) {
-            array_push(
-                $groupIngredients,
-                $group->ingredients,
-            );
-        }
-
-        $data['groupIngredients'] = $groupIngredients;
+        $data['ingredients'] = $recipe->ingredients;
         $data['recipe'] = $recipe;
         $data['steps'] = $recipe->steps;
         $data['comments'] = $recipe->comments;
@@ -64,7 +48,7 @@ class RecipeController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return back(303)->withErrors($validator->errors());
+                return back()->withErrors($validator->errors());
             }
             $file = $request->file('image_url');
             $filename = date('YmdHi') . $file->getClientOriginalName();
@@ -156,11 +140,28 @@ class RecipeController extends Controller
         $recipe->image_url = Session::get('image_url_r');
         $recipe->user_id = Auth::user()->id;
         $recipe->save();
+        Session::put('recipe_id_r', $recipe->id);
         Session::forget('name_r');
         Session::forget('description_r');
         Session::forget('portion_r');
         Session::forget('cooking_time_r');
         Session::forget('image_url_r');
+        return redirect()->route('recipes.upload-recipe-ingredient-and-step');
+    }
+    /**
+     * Menampilkan halaman untuk mengupload bahan-bahan dan langkah-langkah
+     */
+    public function showUploadIngredientsAndSteps(){
+        $recipe_id = Session::get('recipe_id_r');
+        $recipe = Recipe::find($recipe_id);
+        $data['steps'] = $recipe->steps();
+        $data['ingredients'] = $recipe->ingredients();
+        return view('recipes.upload_recipe.upload_recipe_ingredients_and_steps', $data);
+    }
+    /**
+     * Menampilkan halaman ketika upload bahan-bahan dan langkah-langkah selesai
+     */
+    public function showFinishUploadRecipe(){
         return view('recipes.upload_recipe.finish');
     }
 }

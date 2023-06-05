@@ -3,14 +3,11 @@
 namespace Tests\Feature;
 
 use App\Models\Comment;
-use App\Models\GroupIngredient;
 use App\Models\Ingredient;
 use App\Models\Ratting;
 use App\Models\Recipe;
 use App\Models\Step;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class ShowDetailRecipeTest extends TestCase
@@ -32,17 +29,10 @@ class ShowDetailRecipeTest extends TestCase
         // Membuat sebuah resep
         $recipe = Recipe::factory()->create();
 
-        // Membuat kelompok bahan untuk resep
-        $groupIngredients = GroupIngredient::factory()->count(3)->create([
+        // Membuat bahan-bahan untuk resep
+        $ingredients = Ingredient::factory()->count(3)->create([
             'recipe_id' => $recipe->id,
         ]);
-
-        // Membuat bahan untuk setiap kelompok bahan
-        foreach ($groupIngredients as $groupIngredient) {
-            Ingredient::factory()->count(2)->create([
-                'group_ingredient_id' => $groupIngredient->id,
-            ]);
-        }
 
         // Membuat langkah-langkah untuk resep
         $steps = Step::factory()->count(5)->create([
@@ -80,7 +70,7 @@ class ShowDetailRecipeTest extends TestCase
         $response->assertViewHas('recipe', $recipe);
 
         // Memastikan bahwa data kelompok bahan diteruskan ke tampilan (view)
-        $response->assertViewHas('groupIngredients');
+        $response->assertViewHas('ingredients');
 
         // Memastikan bahwa data langkah-langkah diteruskan ke tampilan (view)
         $response->assertViewHas('steps', $recipe->steps);

@@ -1,1 +1,1 @@
-<h1>Halaman ketika upload resep selesai</h1>
+<h1>Halaman saat selesai upload resep, bahan-bahan, dan langkah-langkah</h1>

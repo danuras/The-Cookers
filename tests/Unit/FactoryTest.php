@@ -58,22 +58,13 @@ class FactoryTest extends TestCase
             'recipe_id' => $step->recipe_id,
         ]);
     }
-    public function test_factory_creates_group_ingredient()
-    {
-        $groupIngredient = GroupIngredient::factory()->create();
-
-        $this->assertDatabaseHas('group_ingredients', [
-            'value' => $groupIngredient->value,
-            'recipe_id' => $groupIngredient->recipe_id,
-        ]);
-    }
     public function test_factory_creates_ingredient()
     {
         $Ingredient = Ingredient::factory()->create();
 
         $this->assertDatabaseHas('ingredients', [
             'value' => $Ingredient->value,
-            'group_ingredient_id' => $Ingredient->group_ingredient_id,
+            'recipe_id' => $Ingredient->recipe_id,
         ]);
     }
 

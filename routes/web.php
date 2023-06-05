@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\StepController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LocaleController;
+use App\Http\Controllers\IngredientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,10 +57,23 @@ Route::middleware('auth')/* ->prefix('{locale}') */->group(function () {
         Route::post('upload-recipe-atribute', [RecipeController::class, 'uploadRecipeAtribute']);
         Route::get('review-upload-recipe', [RecipeController::class, 'showReviewUploadRecipe'])->name('recipes.review-upload-recipe');
         Route::post('submit-recipe', [RecipeController::class, 'submitRecipe']);
+        Route::get('upload-recipe-ingredient-and-step', [RecipeController::class, 'showUploadIngredientsAndSteps'])->name('recipes.upload-recipe-ingredient-and-step');
+        Route::get('finish-upload-recipe', [RecipeController::class, 'showFinishUploadRecipe'])->name('recipes.finish-upload-recipe');
         /* Route::delete('{recipe}', [RecipeController::class, 'delete']);
         Route::put('{recipe}/edit', [RecipeController::class, 'update']);
         Route::get('{recipe}/edit', [RecipeController::class, 'showEdit']);
         Route::post('create', [RecipeController::class, 'create']); */
+    });
+    Route::prefix('steps')->group(function (){
+        Route::post('create', [StepController::class, 'create']);
+        Route::put('update/{id}', [StepController::class, 'update']);
+        Route::delete('delete/{step}', [StepController::class, 'delete']);
+    });
+    
+    Route::prefix('ingredients')->group(function (){
+        Route::post('create', [IngredientController::class, 'create']);
+        Route::put('update/{id}', [IngredientController::class, 'update']);
+        Route::delete('delete/{ingredient}', [IngredientController::class, 'delete']);
     });
 
     /*  Route::get('verify-email', EmailVerificationPromptController::class)
