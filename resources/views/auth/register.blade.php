@@ -44,7 +44,8 @@
                         {{-- username --}}
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" name='username' class="form-control" id="username" aria-describedby="username" value = '{{old("username")}}' autocomplete="off"/>
+                            <input type="text" name='username' class="form-control" id="username"
+                                aria-describedby="username" value='{{ old('username') }}' autocomplete="off" />
                             @error('username')
                                 <div class="alert alert-danger mt-1 mb-1">
                                     {{ $message }}
@@ -54,7 +55,8 @@
                         {{-- nama --}}
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama</label>
-                            <input type="text" name='name' value = '{{old("name")}}' class="form-control" id="nama" aria-describedby="nama" autocomplete="off"/>
+                            <input type="text" name='name' value='{{ old('name') }}' class="form-control"
+                                id="nama" aria-describedby="nama" autocomplete="off" />
                             @error('name')
                                 <div class="alert alert-danger mt-1 mb-1">
                                     {{ $message }}
@@ -64,7 +66,8 @@
                         {{-- email --}}
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" name='email' value = '{{old("email")}}' class="form-control" id="email" aria-describedby="email" autocomplete="off"/>
+                            <input type="email" name='email' value='{{ old('email') }}' class="form-control"
+                                id="email" aria-describedby="email" autocomplete="off" />
                             @error('email')
                                 <div class="alert alert-danger mt-1 mb-1">
                                     {{ $message }}
@@ -75,27 +78,30 @@
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
                             <div class="input-group">
-                                <input type="password"  name='password' value = '{{old("password")}}' class="form-control" id="password"
-                                    aria-describedby="password" autocomplete="new-password"/>
+                                <input type="password" name='password' value='{{ old('password') }}'
+                                    class="form-control" id="password" aria-describedby="password"
+                                    autocomplete="new-password" />
                                 <span class="input-group-text" type="button">
                                     <i class="fa-solid fa-eye" id="show-password"></i>
                                 </span>
+                                <div id="password" class="form-text">
+                                    Password harus minimal 8 karakter, mengandung kombinasi huruf besar dan kecil, angka
+                                    serta simbol.
+                                </div>
                                 @error('password')
                                     <div class="alert alert-danger mt-1 mb-1">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
-                            <div id="password" class="form-text">
-                                Password harus
-                            </div>
                         </div>
                         {{-- ulangi password --}}
                         <div class="mb-3">
                             <label for="password-confirm" class="form-label">Ulangi Password</label>
                             <div class="input-group">
-                                <input type="password" value = '{{old("password_confirmation")}}' name='password_confirmation' class="form-control" id="password-confirm"
-                                    aria-describedby="password-confirm" autocomplete="off"/>
+                                <input type="password" value='{{ old('password_confirmation') }}'
+                                    name='password_confirmation' class="form-control" id="password-confirm"
+                                    aria-describedby="password-confirm" autocomplete="off" />
                                 <span class="input-group-text" type="button">
                                     <i class="fa-solid fa-eye" id="show-password-confirm"></i>
                                 </span>
@@ -106,10 +112,6 @@
                                 @enderror
                             </div>
                         </div>
-                        {{-- button submit --}}
-                        <button type="submit" id="btn-submit">
-                            Daftar
-                        </button>
                     </div>
                     <div class="col-md-4">
                         {{-- foto profil --}}
@@ -120,7 +122,6 @@
                                     <img id="gambar-preview" onclick='document.getElementById("pp").click()'
                                         src="{{ asset(session('photo_profile_c')) }}" alt="Preview Gambar"
                                         width="200" height="200">
-
                                     <input type="hidden" id='last_pp' name="last_pp"
                                         value="{{ session('photo_profile_c') }}" class="form-control">
                                 @else
@@ -142,15 +143,14 @@
                         </div>
                         {{-- jenis kelamin --}}
                         <div class="mb-3">
-
                             <label for="jenis-kelamin" class="form-label">Jenis kelamin</label>
                             <div class="input-group">
                                 <select class="form-select" id="inputGroupSelect01" name='gender'>
-                                    @if(old('gender')==2)
+                                    @if (old('gender') == 2)
                                         <option value="1">Laki-laki</option>
                                         <option value="2" selected>Perempuan</option>
                                         <option value="3">Tidak ingin memberitahu</option>
-                                    @elseif(old('gender') == 3)                                    
+                                    @elseif(old('gender') == 3)
                                         <option value="1">Laki-laki</option>
                                         <option value="2">Perempuan</option>
                                         <option value="3" selected>Tidak ingin memberitahu</option>
@@ -159,15 +159,16 @@
                                         <option value="2">Perempuan</option>
                                         <option value="3">Tidak ingin memberitahu</option>
                                     @endif
-                                    
+
                                 </select>
                             </div>
                         </div>
                         {{-- info --}}
                         <div class="mb-3">
                             <label for="info" class="form-label">Info</label>
-                            <input type="text" class="form-control" id="info" name="info" value = '{{old("info")}}' aria-describedby="info"
-                                maxlength="100" oninput="countCharacterInfo()" autocomplete="off"/>
+                            <input type="text" class="form-control" id="info" name="info"
+                                value='{{ old('info') }}' aria-describedby="info" maxlength="100"
+                                oninput="countCharacterInfo()" autocomplete="off" />
                             @error('info')
                                 <div class="alert alert-danger mt-1 mb-1">
                                     {{ $message }}
@@ -178,14 +179,20 @@
                         {{-- bio --}}
                         <div class="mb-3">
                             <label for="bio" class="form-label">Bio</label>
-                            <textarea name="bio"  id="bio" rows="5" class="form-control" maxlength="500"
-                                oninput="countCharacterBio()" autocomplete="off">{{old("bio")}}</textarea>
+                            <textarea name="bio" id="bio" rows="5" class="form-control" maxlength="500"
+                                oninput="countCharacterBio()" autocomplete="off">{{ old('bio') }}</textarea>
                             @error('bio')
                                 <div class="alert alert-danger mt-1 mb-1">
                                     {{ $message }}
                                 </div>
                             @enderror
                             <small id="bioCount" class="form-text text-muted">0/500</small>
+                        </div>
+                        {{-- button submit --}}
+                        <div class="pb-3">
+                            <button type="submit" id="btn-submit">
+                                Daftar
+                            </button>
                         </div>
                     </div>
                 </div>
