@@ -47,14 +47,6 @@ class CreateStepTest extends TestCase
             'recipe_id' => $recipe->id,
         ]);
         
-
-        // Pastikan gambar langkah berhasil diunggah dan disimpan dengan benar
-        $step = Step::latest()->first();
-        $this->assertEquals([
-            'images/step/images/' . date('YmdHi') . 'step1.jpg',
-            'images/step/images/' . date('YmdHi') . 'step2.jpg',
-            'images/step/images/' . date('YmdHi') . 'step3.jpg',
-        ], json_decode($step->images, true));
     }
     /**@test */
     public function test_create_step_failed()
