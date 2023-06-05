@@ -10,6 +10,7 @@ use App\Models\Recipe;
 use App\Models\Step;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -108,7 +109,7 @@ class RecipeController extends Controller
         Session::put('description_r', $request->description);
         Session::put('portion_r', $request->portion);
         Session::put('cooking_time_r', $request->cooking_time);
-        return redirect()->intended('show-review-upload-recipe');
+        return redirect()->route('recipes.review-upload-recipe');
     }
 
     /**
@@ -153,6 +154,7 @@ class RecipeController extends Controller
         $recipe->portion = Session::get('portion_r');
         $recipe->cooking_time = Session::get('cooking_time_r');
         $recipe->image_url = Session::get('image_url_r');
+        $recipe->user_id = Auth::user()->id;
         $recipe->save();
         Session::forget('name_r');
         Session::forget('description_r');
