@@ -89,63 +89,15 @@ class RecipeController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator->errors());
         }
-        Session::put('name_r', $request->name);
-        Session::put('description_r', $request->description);
-        Session::put('portion_r', $request->portion);
-        Session::put('cooking_time_r', $request->cooking_time);
-        return redirect()->route('recipes.review-upload-recipe');
-    }
-
-    /**
-     * Menampilkan halaman review_upload_recipe
-     */
-    public function showReviewUploadRecipe()
-    {
-
-        if (
-            Session::has([
-                'name_r',
-                'description_r',
-                'portion_r',
-                'cooking_time_r',
-                'image_url_r',
-            ])
-        ) {
-            return view('recipes.upload_recipe.review_upload_recipe')->with([
-                'image_url_r' => Session::get('image_url_r'),
-                'name_r' => Session::get('name_r'),
-                'description_r' => Session::get('description_r'),
-                'portion_r' => Session::get('portion_r'),
-                'cooking_time_r' => Session::get('cooking_time_r'),
-            ]);
-        } else if (Session::has(['image_url_r'])) {
-            return view('recipes.upload_recipe.upload_recipe_atribute')->with([
-                'image_url_r' => Session::get('image_url_r'),
-            ]);
-        } else {
-            return view('recipes.upload_recipe.upload_image');
-        }
-    }
-    /**
-     * Mensubmit/menyimpan data resep yang diinputkan user ke database
-     * lalu menampilkan halaman finish
-     */
-    public function submitRecipe(Request $request)
-    {
         $recipe = new Recipe;
-        $recipe->name = Session::get('name_r');
-        $recipe->description = Session::get('description_r');
-        $recipe->portion = Session::get('portion_r');
-        $recipe->cooking_time = Session::get('cooking_time_r');
+        $recipe->name = $request->name;
+        $recipe->description =  $request->description;
+        $recipe->portion = $request->portion;
+        $recipe->cooking_time = $request->cooking_time;
         $recipe->image_url = Session::get('image_url_r');
         $recipe->user_id = Auth::user()->id;
         $recipe->save();
         Session::put('recipe_id_r', $recipe->id);
-        Session::forget('name_r');
-        Session::forget('description_r');
-        Session::forget('portion_r');
-        Session::forget('cooking_time_r');
-        Session::forget('image_url_r');
         return redirect()->route('recipes.upload-recipe-ingredient-and-step');
     }
     /**
@@ -158,10 +110,38 @@ class RecipeController extends Controller
         $data['ingredients'] = $recipe->ingredients();
         return view('recipes.upload_recipe.upload_recipe_ingredients_and_steps', $data);
     }
+
+    /**
+     * Menampilkan halaman review_upload_recipe
+     */
+    public function showReviewUploadRecipe()
+    {
+
+        if (
+            Session::has([
+                'recipe_id_r',
+                'image_url_r'
+            ])
+        ) {
+            $recipe = Recipe::find(Session::get('recipe_id_r'));
+            $data['recipe'] = $recipe;
+            $data['ingredients'] = $recipe->ingredients();
+            $data['steps'] = $recipe->steps();
+            return view('recipes.upload_recipe.review_upload_recipe', $data);
+        } else if (Session::has(['image_url_r'])) {
+            return view('recipes.upload_recipe.upload_recipe_atribute')->with([
+                'image_url_r' => Session::get('image_url_r'),
+            ]);
+        } else {
+            return view('recipes.upload_recipe.upload_image');
+        }
+    }
     /**
      * Menampilkan halaman ketika upload bahan-bahan dan langkah-langkah selesai
      */
     public function showFinishUploadRecipe(){
+        Session::forget('image_url_r');
+        Session::forget('recipe_id_r');
         return view('recipes.upload_recipe.finish');
     }
 }

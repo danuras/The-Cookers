@@ -33,7 +33,7 @@ Route::middleware('guest')->group(function () {
 
 
     Route::get('reset-password', [AuthController::class, 'showEnterEmailView'])->name('reset-password');
-    Route::post('reset-password', [AuthController::class, 'enterEmail'])->name('reset-password');
+    Route::post('reset-password', [AuthController::class, 'enterEmail']);
 
     Route::get('show-verification-code-reset-password', [AuthController::class, 'showVerificationCodeResetPassword']);
     Route::post('send-verification-code-reset-password', [AuthController::class, 'sendVerificationCodeResetPassword'])->name('send-verification-code-reset-password');
@@ -56,7 +56,6 @@ Route::middleware('auth')/* ->prefix('{locale}') */->group(function () {
         Route::get('upload-recipe-atribute', [RecipeController::class, 'showUploadRecipeAtribute'])->name('recipes.upload-recipe-atribute');
         Route::post('upload-recipe-atribute', [RecipeController::class, 'uploadRecipeAtribute']);
         Route::get('review-upload-recipe', [RecipeController::class, 'showReviewUploadRecipe'])->name('recipes.review-upload-recipe');
-        Route::post('submit-recipe', [RecipeController::class, 'submitRecipe']);
         Route::get('upload-recipe-ingredient-and-step', [RecipeController::class, 'showUploadIngredientsAndSteps'])->name('recipes.upload-recipe-ingredient-and-step');
         Route::get('finish-upload-recipe', [RecipeController::class, 'showFinishUploadRecipe'])->name('recipes.finish-upload-recipe');
         /* Route::delete('{recipe}', [RecipeController::class, 'delete']);
