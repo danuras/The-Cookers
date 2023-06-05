@@ -67,13 +67,13 @@ class ShowDetailRecipeTest extends TestCase
         }
 
         // Melakukan permintaan GET ke endpoint showDetail
-        $response = $this->get('/recipe/' . $recipe->id);
+        $response = $this->get('/recipes/' . $recipe->id);
 
         // Memastikan bahwa respons berhasil (successful)
         $response->assertStatus(200);
 
         // Memastikan bahwa view yang dipanggil adalah view detail_resep
-        $response->assertViewIs('recipe.detail_recipe');
+        $response->assertViewIs('recipes.detail_recipe');
 
         // Memastikan bahwa data resep diteruskan ke tampilan (view)
         $response->assertViewHas('recipe', $recipe);

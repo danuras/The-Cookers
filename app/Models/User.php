@@ -48,18 +48,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Recipe::class);
     }
-    public function favorites()
-    {
-        return $this->hasMany(Favorite::class);
-    }
-    
-    public function rattings()
-    {
-        return $this->hasMany(Ratting::class);
-    }
-    
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    }
 }

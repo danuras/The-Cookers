@@ -46,9 +46,15 @@ Route::middleware('auth')/* ->prefix('{locale}') */->group(function () {
     Route::post('send-verification-code', [AuthController::class, 'sendVerificationCode'])->name('send-verification-code');
     Route::post('verify-email', [AuthController::class, 'verifyEmail'])->name('verify-email');
     Route::get('show-verification-code', [AuthController::class, 'showVerificationCode'])->name('show-verification-code');
-    Route::resource('profiles', ProfileController::class)/* ->only(['index', 'edit','update', 'destroy']) */;
+    Route::resource('profiles', ProfileController::class)->only(['index', 'edit','update', 'destroy']);
     Route::prefix('recipes')->group(function (){
         Route::get('{recipe}', [RecipeController::class, 'showDetail']);
+        Route::get('upload-image', [RecipeController::class, 'showUploadImage']);
+        Route::post('upload-image', [RecipeController::class, 'uploadImage']);
+        Route::get('upload-recipe-atribute', [RecipeController::class, 'showUploadRecipeAtribute']);
+        Route::post('upload-recipe-atribute', [RecipeController::class, 'uploadRecipeAtribute']);
+        Route::get('review-upload-recipe', [RecipeController::class, 'showReviewUploadRecipe']);
+        Route::get('submit-recipe', [RecipeController::class, 'submitRecipe']);
         /* Route::delete('{recipe}', [RecipeController::class, 'delete']);
         Route::put('{recipe}/edit', [RecipeController::class, 'update']);
         Route::get('{recipe}/edit', [RecipeController::class, 'showEdit']);
