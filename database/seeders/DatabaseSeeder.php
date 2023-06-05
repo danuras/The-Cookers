@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 use App\Models\Comment;
-use App\Models\Country;
 use App\Models\Favorite;
 use App\Models\GroupIngredient;
 use App\Models\Ingredient;
@@ -51,11 +50,6 @@ class DatabaseSeeder extends Seeder
             'dami/tumis-tahu.jpg',
         ]);
         $i = 0;
-        for ($i = 0; $i < 10; $i++) {
-            Country::factory()->create();
-        }
-        $last_country = Country::orderBy('id', 'Desc')->first();
-        $i = 0;
         $j = 0;
         $k = 0;
         $num_of_recipe = 0;
@@ -66,7 +60,6 @@ class DatabaseSeeder extends Seeder
                 $recipe = Recipe::factory()->create([
                     'image_url' => $array_image->random(),
                     'user_id' => $user->id,
-                    'country_id' => mt_rand($last_country->id - 9, $last_country->id),
                 ]);
                 $num_of_recipe += 1;
 

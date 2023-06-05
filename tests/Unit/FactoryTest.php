@@ -3,7 +3,6 @@
 namespace Tests\Unit;
 
 use App\Models\Comment;
-use App\Models\Country;
 use App\Models\Favorite;
 use App\Models\GroupIngredient;
 use App\Models\Ingredient;
@@ -26,14 +25,6 @@ class FactoryTest extends TestCase
             'email' => $user->email,
         ]);
     }
-    public function test_factory_creates_country()
-    {
-        $country = Country::factory()->create();
-
-        $this->assertDatabaseHas('countries', [
-            'name' => $country->name,
-        ]);
-    }
     public function test_factory_creates_recipe()
     {
         $recipe = Recipe::factory()->create(
@@ -48,7 +39,6 @@ class FactoryTest extends TestCase
             'video_url' => $recipe->video_url,
             'portion' => $recipe->portion,
             'description' => $recipe->description,
-            'country_id' => $recipe->country_id,
             'user_id' => $recipe->user_id,
             'cooking_time' => $recipe->cooking_time,
         ]);

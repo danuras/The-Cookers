@@ -18,13 +18,10 @@ return new class extends Migration
             $table->unsignedInteger('portion');
             $table->string('image_url');
             $table->string('video_url')->nullable();
-            $table->string('cooking_time');
+            $table->unsignedInteger('cooking_time');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->index('user_id');
-            $table->unsignedBigInteger('country_id');
-            $table->foreign('country_id')->references('id')->on('countries');
-            $table->index('country_id');
             $table->timestamps();
         });
     }

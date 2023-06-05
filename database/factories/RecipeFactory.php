@@ -23,9 +23,8 @@ class RecipeFactory extends Factory
             'image_url' => fake()->text(),
             'video_url' => '',
             'portion' => fake()->numberBetween(0, 20),
-            'cooking_time' => fake()->time(),
+            'cooking_time' => fake()->numberBetween(0, 100),
             'description' => fake()->text(),
-            'country_id' => Country::factory(),
             'user_id' => User::factory(),
         ];
     }
