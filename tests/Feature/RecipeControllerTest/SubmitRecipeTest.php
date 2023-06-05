@@ -11,7 +11,7 @@ use Tests\TestCase;
 class SubmitRecipeTest extends TestCase
 {
     /**@test */
-    public function testSubmitRecipe()
+    public function test_submit_recipe()
     {
         // Membuat user baru 
         $user = User::factory()->create();
@@ -34,8 +34,8 @@ class SubmitRecipeTest extends TestCase
         // Mengakses rute submit-recipe dengan metode POST
         $response = $this->post('recipes/submit-recipe');
 
-        // Memastikan respons berhasil dengan status 200
-        $response->assertStatus(200);
+        // Memastikan respons redirect dengan status 302
+        $response->assertStatus(302);
 
         // Memastikan bahwa resep telah disimpan dalam database
         $this->assertDatabaseHas('recipes', [
@@ -54,6 +54,6 @@ class SubmitRecipeTest extends TestCase
         $this->assertNull(Session::get('image_url_r'));
 
         // Memastikan tampilan finish ditampilkan
-        $response->assertViewIs('recipes.upload_recipe.finish');
+        $response->assertRedirect(route('recipes.upload-recipe-ingredient-and-step'));
     }
 }

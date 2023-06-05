@@ -26,9 +26,9 @@ class Recipe extends Model
     {
         return $this->hasMany(Step::class);
     }
-    public function group_ingredients()
+    public function ingredients()
     {
-        return $this->hasMany(GroupIngredient::class);
+        return $this->hasMany(Ingredient::class);
     }
 
     public function averageRatting()

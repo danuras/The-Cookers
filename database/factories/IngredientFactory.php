@@ -2,7 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\GroupIngredient;
+use App\Models\Ingredient;
+use App\Models\Recipe;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -20,14 +21,14 @@ class IngredientFactory extends Factory
     {
         return [
             'value' => fake()->text(20),
-            'group_ingredient_id' => GroupIngredient::factory(),
+            'recipe_id' => Recipe::factory(),
         ];
     }
     public function unverified(): static
     {
         return $this->state(fn (array $attributes) => [
             'value' => null,
-            'group_ingredient_id' => null,
+            'recipe_id' => null,
         ]);
     }
 }
