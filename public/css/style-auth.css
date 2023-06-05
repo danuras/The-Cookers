@@ -54,3 +54,19 @@ body {
     box-shadow: #CA054D 0 3px 7px inset;
     transform: translateY(2px);
 }
+
+#btn-lupa-password {
+    background-color: var(--sunset);
+    border-radius: 4px;
+    border-width: 0;
+}
+
+#btn-kembali {
+    background-color: var(--celadon);
+    border-width: 1;
+}
+
+#btn-kembali a {
+    text-decoration: none;
+    color: black;
+}
