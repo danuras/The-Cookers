@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Recipe;
 use App\Models\Step;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -24,9 +25,9 @@ class CreateStepTest extends TestCase
             'email' => $user->email,
             'password' => 'password', // Ganti dengan password pengguna yang valid
         ]);
-        // Buat ID resep palsu untuk pengujian
-        $recipeId = 1;
-        Session::put('recipe_id_r', $recipeId);
+        // Buat resep palsu untuk pengujian
+        $recipe = Recipe::factory()->create();
+        Session::put('recipe_id_r', $recipe->id);
 
         // Persiapkan data permintaan
         $data = [
@@ -43,7 +44,7 @@ class CreateStepTest extends TestCase
         $response->assertRedirect();
         $this->assertDatabaseHas('steps', [
             'value' => $data['value'],
-            'recipe_id' => $recipeId,
+            'recipe_id' => $recipe->id,
         ]);
         
 
@@ -66,9 +67,9 @@ class CreateStepTest extends TestCase
             'email' => $user->email,
             'password' => 'password', // Ganti dengan password pengguna yang valid
         ]);
-        // Buat ID resep palsu untuk pengujian
-        $recipeId = 1;
-        Session::put('recipe_id_r', $recipeId);
+        // Buat resep palsu untuk pengujian
+        $recipe = Recipe::factory()->create();
+        Session::put('recipe_id_r', $recipe->id);
 
         // Persiapkan data permintaan
         $data = [
@@ -85,7 +86,7 @@ class CreateStepTest extends TestCase
         $response->assertRedirect();
         $this->assertDatabaseMissing('steps', [
             'value' => $data['value'],
-            'recipe_id' => $recipeId,
+            'recipe_id' => $recipe->id,
         ]);
         $response->assertSessionHasErrors(['value']);
     }
