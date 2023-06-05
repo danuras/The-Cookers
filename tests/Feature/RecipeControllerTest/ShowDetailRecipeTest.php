@@ -16,9 +16,10 @@ use Tests\TestCase;
 class ShowDetailRecipeTest extends TestCase
 {
     /**
+     * 
      * @test
      */
-    public function test_show_detail(): void
+    public function test_show_detail()
     {
         // Membuat user baru untuk dihapus
         $user = User::factory()->create();
@@ -67,7 +68,7 @@ class ShowDetailRecipeTest extends TestCase
         }
 
         // Melakukan permintaan GET ke endpoint showDetail
-        $response = $this->get('/recipes/' . $recipe->id);
+        $response = $this->get('/recipes/' . $recipe->id.'/detail');
 
         // Memastikan bahwa respons berhasil (successful)
         $response->assertStatus(200);

@@ -48,10 +48,10 @@ Route::middleware('auth')/* ->prefix('{locale}') */->group(function () {
     Route::get('show-verification-code', [AuthController::class, 'showVerificationCode'])->name('show-verification-code');
     Route::resource('profiles', ProfileController::class)->only(['index', 'edit','update', 'destroy']);
     Route::prefix('recipes')->group(function (){
-        Route::get('{recipe}', [RecipeController::class, 'showDetail']);
+        Route::get('{recipe}/detail', [RecipeController::class, 'showDetail']);
         Route::get('upload-image', [RecipeController::class, 'showUploadImage']);
         Route::post('upload-image', [RecipeController::class, 'uploadImage']);
-        Route::get('upload-recipe-atribute', [RecipeController::class, 'showUploadRecipeAtribute']);
+        Route::get('upload-recipe-atribute', [RecipeController::class, 'showUploadRecipeAtribute'])->name('recipes.upload-recipe-atribute');
         Route::post('upload-recipe-atribute', [RecipeController::class, 'uploadRecipeAtribute']);
         Route::get('review-upload-recipe', [RecipeController::class, 'showReviewUploadRecipe']);
         Route::get('submit-recipe', [RecipeController::class, 'submitRecipe']);

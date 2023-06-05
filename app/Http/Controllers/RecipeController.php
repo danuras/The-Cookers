@@ -63,7 +63,7 @@ class RecipeController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return back()->withErrors($validator->errors());
+                return back(303)->withErrors($validator->errors());
             }
             $file = $request->file('image_url');
             $filename = date('YmdHi') . $file->getClientOriginalName();
@@ -71,7 +71,7 @@ class RecipeController extends Controller
             $image = 'images/recipe/image_url/' . $filename;
             Session::put('image_url_r', $image);
         }
-        return redirect()->intended('show-upload-recipe-atribute');
+        return redirect()->route('recipes.upload-recipe-atribute');
     }
 
     /**
@@ -99,7 +99,6 @@ class RecipeController extends Controller
             'description' => 'required|min:30|max:1000',
             'portion' => 'required|numeric|min:0',
             'cooking_time' => 'required|numeric|min:0',
-            'country_id' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -109,7 +108,6 @@ class RecipeController extends Controller
         Session::put('description_r', $request->description);
         Session::put('portion_r', $request->portion);
         Session::put('cooking_time_r', $request->cooking_time);
-        Session::put('country_id_r', $request->country_id);
         return redirect()->intended('show-review-upload-recipe');
     }
 
@@ -125,7 +123,6 @@ class RecipeController extends Controller
                 'description_r',
                 'portion_r',
                 'cooking_time_r',
-                'country_id_r',
                 'image_url_r',
             ])
         ) {
@@ -135,7 +132,6 @@ class RecipeController extends Controller
                 'description_r' => Session::get('description_r'),
                 'portion_r' => Session::get('portion_r'),
                 'cooking_time_r' => Session::get('cooking_time_r'),
-                'country_id_r' => Session::get('country_id_r'),
             ]);
         } else if (Session::has(['image_url_r'])) {
             return view('recipes.upload_recipe.upload_recipe_atribute')->with([
@@ -156,14 +152,12 @@ class RecipeController extends Controller
         $recipe->description = Session::get('description_r');
         $recipe->portion = Session::get('portion_r');
         $recipe->cooking_time = Session::get('cooking_time_r');
-        $recipe->country_id = Session::get('country_id_r');
         $recipe->image_url = Session::get('image_url_r');
         $recipe->save();
         Session::forget('name_r');
         Session::forget('description_r');
         Session::forget('portion_r');
         Session::forget('cooking_time_r');
-        Session::forget('country_id_r');
         Session::forget('image_url_r');
         return view('recipes.upload_recipe.finish');
     }
