@@ -7,6 +7,7 @@
 
     <title>Daftar</title>
 
+    <link rel="icon" type="image/png" href="{{ asset('assets/cookers.png') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
@@ -19,7 +20,14 @@
     <!-- header -->
     <header>
         <div class="container">
-            <div class="row">
+             <div class="row pt-3">
+                <div class="col-md">
+                    <button id="btn-kembali">
+                        <a href="/">Kembali</a>
+                    </button>
+                </div>
+            </div>
+            <div class="row pt-3">
                 <div class="col">
                     <h1 class="">Daftar</h1>
                     <p class="">Sudah punya akun? <a href="{{ route('login') }}">Masuk</a></p>
@@ -45,7 +53,7 @@
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
                             <input type="text" name='username' class="form-control" id="username"
-                                aria-describedby="username" value='{{ old('username') }}' autocomplete="off" />
+                                aria-describedby="username" value='{{ old('username') }}' />
                             @error('username')
                                 <div class="alert alert-danger mt-1 mb-1">
                                     {{ $message }}
@@ -56,7 +64,7 @@
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama</label>
                             <input type="text" name='name' value='{{ old('name') }}' class="form-control"
-                                id="nama" aria-describedby="nama" autocomplete="off" />
+                                id="nama" aria-describedby="nama" />
                             @error('name')
                                 <div class="alert alert-danger mt-1 mb-1">
                                     {{ $message }}
@@ -67,7 +75,7 @@
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" name='email' value='{{ old('email') }}' class="form-control"
-                                id="email" aria-describedby="email" autocomplete="off" />
+                                id="email" aria-describedby="email" />
                             @error('email')
                                 <div class="alert alert-danger mt-1 mb-1">
                                     {{ $message }}
@@ -101,7 +109,7 @@
                             <div class="input-group">
                                 <input type="password" value='{{ old('password_confirmation') }}'
                                     name='password_confirmation' class="form-control" id="password-confirm"
-                                    aria-describedby="password-confirm" autocomplete="off" />
+                                    aria-describedby="password-confirm" />
                                 <span class="input-group-text" type="button">
                                     <i class="fa-solid fa-eye" id="show-password-confirm"></i>
                                 </span>
@@ -168,7 +176,7 @@
                             <label for="info" class="form-label">Info</label>
                             <input type="text" class="form-control" id="info" name="info"
                                 value='{{ old('info') }}' aria-describedby="info" maxlength="100"
-                                oninput="countCharacterInfo()" autocomplete="off" />
+                                oninput="countCharacterInfo()" />
                             @error('info')
                                 <div class="alert alert-danger mt-1 mb-1">
                                     {{ $message }}
@@ -200,6 +208,7 @@
         </div>
     </section>
     <!-- form end -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
