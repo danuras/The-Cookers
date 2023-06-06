@@ -33,7 +33,7 @@ Route::middleware('guest')->group(function () {
 
 
     Route::get('reset-password', [AuthController::class, 'showEnterEmailView'])->name('reset-password');
-    Route::post('reset-password', [AuthController::class, 'enterEmail'])->name('reset-password');
+    Route::post('reset-password', [AuthController::class, 'enterEmail']);
 
     Route::get('show-verification-code-reset-password', [AuthController::class, 'showVerificationCodeResetPassword']);
     Route::post('send-verification-code-reset-password', [AuthController::class, 'sendVerificationCodeResetPassword'])->name('send-verification-code-reset-password');
@@ -56,7 +56,6 @@ Route::middleware('auth')/* ->prefix('{locale}') */->group(function () {
         Route::get('upload-recipe-atribute', [RecipeController::class, 'showUploadRecipeAtribute'])->name('recipes.upload-recipe-atribute');
         Route::post('upload-recipe-atribute', [RecipeController::class, 'uploadRecipeAtribute']);
         Route::get('review-upload-recipe', [RecipeController::class, 'showReviewUploadRecipe'])->name('recipes.review-upload-recipe');
-        Route::post('submit-recipe', [RecipeController::class, 'submitRecipe']);
         Route::get('upload-recipe-ingredient-and-step', [RecipeController::class, 'showUploadIngredientsAndSteps'])->name('recipes.upload-recipe-ingredient-and-step');
         Route::get('finish-upload-recipe', [RecipeController::class, 'showFinishUploadRecipe'])->name('recipes.finish-upload-recipe');
         /* Route::delete('{recipe}', [RecipeController::class, 'delete']);
@@ -76,18 +75,5 @@ Route::middleware('auth')/* ->prefix('{locale}') */->group(function () {
         Route::delete('delete/{ingredient}', [IngredientController::class, 'delete']);
     });
 
-    /*  Route::get('verify-email', EmailVerificationPromptController::class)
-    ->name('verification.notice');
-    Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
-    ->middleware(['signed', 'throttle:6,1'])
-    ->name('verification.verify');
-    Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-    ->middleware('throttle:6,1')
-    ->name('verification.send');
-    Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])
-    ->name('password.confirm');
-    Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
-    Route::put('password', [PasswordController::class, 'update'])->name('password.update');
-    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-    ->name('logout');  */
+    
 });

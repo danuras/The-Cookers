@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Recipe;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -20,15 +21,11 @@ class ShowReviewUploadTest extends TestCase
              'email' => $user->email,
              'password' => 'password', // Ganti dengan password pengguna yang valid
          ]);
-        // Menyiapkan data dalam sesi
-        $sessionData = [
-            'name_r' => 'Recipe Name',
-            'description_r' => 'Recipe Description',
-            'portion_r' => 4,
-            'cooking_time_r' => 30,
-            'image_url_r' => 'images/recipe/image_url/test_image.jpg',
-        ];
-        Session::put($sessionData);
+         
+        // Buat resep palsu untuk pengujian
+        $recipe = Recipe::factory()->create();
+        Session::put('recipe_id_r', $recipe->id);
+        Session::put('image_url_r','recipe.jpg');
 
         // Mengakses rute review-upload-recipe
         $response = $this->get('recipes/review-upload-recipe');
@@ -37,11 +34,10 @@ class ShowReviewUploadTest extends TestCase
         $response->assertStatus(200);
 
         // Memastikan bahwa data dalam sesi disertakan dalam tampilan
-        $response->assertViewHas('image_url_r', $sessionData['image_url_r']);
-        $response->assertViewHas('name_r', $sessionData['name_r']);
-        $response->assertViewHas('description_r', $sessionData['description_r']);
-        $response->assertViewHas('portion_r', $sessionData['portion_r']);
-        $response->assertViewHas('cooking_time_r', $sessionData['cooking_time_r']);
+        $recipe = Recipe::find($recipe->id);
+        $response->assertViewHas('recipe', $recipe);
+        $response->assertViewHas('ingredients', $recipe->ingredients());
+        $response->assertViewHas('steps', $recipe->steps());
     }
 
     public function testShowReviewUploadRecipe_NoDataInSession()
