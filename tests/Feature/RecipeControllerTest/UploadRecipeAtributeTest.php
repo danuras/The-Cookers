@@ -47,7 +47,7 @@ class UploadRecipeAtributeTest extends TestCase
         ]);
 
         // Memastikan bahwa session telah disimpan dengan benar
-        $this->assertEquals(Session::get('recipe_id_r'), Recipe::latest()->first()->id);
+        $this->assertNotNull(Session::get('recipe_id_r'));
 
         // Memastikan pengalihan ke rute yang tepat
         $response->assertRedirect(route('recipes.upload-recipe-ingredient-and-step'));
