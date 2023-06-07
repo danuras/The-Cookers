@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Recipe;
 use App\Models\Step;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -24,14 +25,14 @@ class CreateIngredientTest extends TestCase
             'email' => $user->email,
             'password' => 'password', // Ganti dengan password pengguna yang valid
         ]);
-        // Buat ID resep palsu untuk pengujian
-        $recipeId = 1;
-        Session::put('recipe_id_r', $recipeId);
+        // Buat resep palsu untuk pengujian
+        $recipe = Recipe::factory()->create(['user_id'=>$user->id]);
+        Session::put('recipe_id_r', $recipe->id);
 
         // Persiapkan data permintaan
         $data = [
             'value' => 'Lorem ipsum dolor sit amet',
-            'recipe_id'=>$recipeId,
+            'recipe_id'=>$recipe->id,
         ];
 
         // Simpan bahan
@@ -41,7 +42,7 @@ class CreateIngredientTest extends TestCase
         $response->assertRedirect();
         $this->assertDatabaseHas('ingredients', [
             'value' => $data['value'],
-            'recipe_id' => $recipeId,
+            'recipe_id' => $recipe->id,
         ]);
     }
     /**@test */
@@ -55,14 +56,14 @@ class CreateIngredientTest extends TestCase
             'email' => $user->email,
             'password' => 'password', // Ganti dengan password pengguna yang valid
         ]);
-        // Buat ID resep palsu untuk pengujian
-        $recipeId = 1;
-        Session::put('recipe_id_r', $recipeId);
+        // Buat resep palsu untuk pengujian
+        $recipe = Recipe::factory()->create(['user_id'=>$user->id]);
+        Session::put('recipe_id_r', $recipe->id);
 
         // Persiapkan data permintaan
         $data = [
             'value' => '',
-            'recipe_id'=>$recipeId,
+            'recipe_id'=>$recipe->id,
         ];
 
         // Simpan bahan
@@ -72,8 +73,36 @@ class CreateIngredientTest extends TestCase
         $response->assertRedirect();
         $this->assertDatabaseMissing('ingredients', [
             'value' => $data['value'],
-            'recipe_id' => $recipeId,
+            'recipe_id' => $recipe->id,
         ]);
         $response->assertSessionHasErrors(['value']);
+    }
+    /**@test */
+    public function test_create_ingredient_unauthorized()
+    {
+        // Membuat user baru 
+        $user = User::factory()->create();
+        $user2 = User::factory()->create();
+
+        // Menjalankan HTTP POST request ke route 'login' untuk mengotentikasi pengguna
+        $this->post(route('login'), [
+            'email' => $user->email,
+            'password' => 'password', // Ganti dengan password pengguna yang valid
+        ]);
+        // Buat resep palsu untuk pengujian
+        $recipe = Recipe::factory()->create(['user_id'=>$user2->id]);
+        Session::put('recipe_id_r', $recipe->id);
+
+        // Persiapkan data permintaan
+        $data = [
+            'value' => 'Lorem ipsum dolor sit amet',
+            'recipe_id'=>$recipe->id,
+        ];
+
+        // Simpan bahan
+        $response = $this->post('ingredients/create', $data);
+
+        // Pastikan bahwa user tidak terotorisasi
+        $response->assertStatus(403);
     }
 }
