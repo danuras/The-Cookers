@@ -30,7 +30,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <img
-                    src="{{asset ('images/img/logo.png')}}"
+                    src="{{asset ('assets/img/logo.png')}}"
                     alt=""
                 />
                 <!-- <a class="navbar-brand text-white" href="index.html"><strong>Bakso</strong> Solo Baru</a> -->
@@ -89,7 +89,7 @@
         <div class="container">
             <ul class="menu">
                 <img
-                    src="{{asset ('images/img-detailresep/mendoan.jpg')}}"
+                    src="{{asset ('assets/img-detailresep/mendoan.jpg')}}"
                     alt=""
                 />
             </ul>
@@ -101,7 +101,7 @@
                 <p class="waktu">Waktu memasak 45 menit</p>
                 <img
                     class="fork"
-                    src="{{asset ('images/img-detailresep/fork.png')}}"
+                    src="{{asset ('assets/img-detailresep/fork.png')}}"
                     alt=""
                 />
                 <p class="porsi">7 porsi</p>
@@ -122,7 +122,7 @@
 
                 <img
                     class="bookmark"
-                    src="{{asset ('images/img-detailresep/bookmark.png')}}"
+                    src="{{asset ('assets/img-detailresep/bookmark.png')}}"
                     alt=""
                 />
 
@@ -138,7 +138,7 @@
 
             <img
                 class="youtube"
-                src="{{asset ('images/img-detailresep/youtube.png')}}"
+                src="{{asset ('assets/img-detailresep/youtube.png')}}"
                 alt=""
             />
             <h5 class="tutorial">Watch Video Tutorial</h5>
@@ -237,7 +237,7 @@
             <div class="komentar">
                 <img
                     class="profpict"
-                    src="{{asset ('images/img-detailresep/profpict.png')}}"
+                    src="{{asset ('assets/img-detailresep/profpict.png')}}"
                     alt=""
                 />
 
@@ -254,7 +254,7 @@
             <div class="komentar2">
                 <img
                     class="profpict2"
-                    src="{{asset ('images/img-detailresep/profpict2.png')}}"
+                    src="{{asset ('assets/img-detailresep/profpict2.png')}}"
                     alt=""
                 />
 

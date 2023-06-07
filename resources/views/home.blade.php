@@ -30,7 +30,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <img
-                    src='{{asset ('images/img/logo.png')}}'
+                    src='{{asset ('assets/img/logo.png')}}'
                     alt=""
                 />
                 <!-- <a class="navbar-brand text-white" href="index.html"><strong>Bakso</strong> Solo Baru</a> -->
@@ -104,7 +104,7 @@
                 <div class="col-md-3">
                     <div class="card border">
                         <img
-                            src="{{asset ('images/images/bakso.jpeg')}}"
+                            src="{{asset ('assets/images/bakso.jpeg')}}"
                             class="card-img-top"
                             alt="..."
                         />
@@ -117,7 +117,7 @@
                 <div class="col-md-3">
                     <div class="card border">
                         <img
-                            src="{{asset ('images/iages/mieayam.jpg')}}"
+                            src="{{asset ('assets/images/mieayam.jpg')}}"
                             class="card-img-top"
                             alt="..."
                         />
@@ -130,7 +130,7 @@
                 <div class="col-md-3">
                     <div class="card border">
                         <img
-                            src="{{asset ('images/images/nasgor.jpg')}}"
+                            src="{{asset ('assets/images/nasgor.jpg')}}"
                             class="card-img-top"
                             alt="..."
                         />
@@ -143,7 +143,7 @@
                 <div class="col-md-3">
                     <div class="card border">
                         <img
-                            src="{{asset ('images/images/mieayambakso.jpg')}}"
+                            src="{{asset ('assets/images/mieayambakso.jpg')}}"
                             class="card-img-top"
                             alt="..."
                         />
@@ -160,7 +160,7 @@
                 <div class="col-md-3">
                     <div class="card border">
                         <img
-                            src="{{asset ('images/images/lele.jpg')}}"
+                            src="{{asset ('assets/images/lele.jpg')}}"
                             class="card-img-top"
                             alt="..."
                         />
@@ -173,7 +173,7 @@
                 <div class="col-md-3">
                     <div class="card border">
                         <img
-                            src="{{asset ('images/images/tehobeng.jpg')}}"
+                            src="{{asset ('assets/images/tehobeng.jpg')}}"
                             class="card-img-top"
                             alt="..."
                         />
@@ -186,7 +186,7 @@
                 <div class="col-md-3">
                     <div class="card border">
                         <img
-                            src="{{asset ('images/images/juspukat.jpg')}}"
+                            src="{{asset ('assets/images/juspukat.jpg')}}"
                             class="card-img-top"
                             alt="..."
                         />
@@ -199,7 +199,7 @@
                 <div class="col-md-3">
                     <div class="card border">
                         <img
-                            src="{{asset ('images/images/esjeruk.jpg')}}"
+                            src="{{asset ('assets/images/esjeruk.jpg')}}"
                             class="card-img-top"
                             alt="..."
                         />
