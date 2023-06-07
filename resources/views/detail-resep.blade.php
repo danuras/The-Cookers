@@ -30,7 +30,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <img
-                    src="{{asset ('assets/img/logo.png')}}"
+                    src="{{asset ('assets/logo.png')}}"
                     alt=""
                 />
                 <!-- <a class="navbar-brand text-white" href="index.html"><strong>Bakso</strong> Solo Baru</a> -->
@@ -89,7 +89,7 @@
         <div class="container">
             <ul class="menu">
                 <img
-                    src="{{asset ('assets/img-detailresep/mendoan.jpg')}}"
+                    src="{{asset ('assets/mendoan.jpg')}}"
                     alt=""
                 />
             </ul>
@@ -101,7 +101,7 @@
                 <p class="waktu">Waktu memasak 45 menit</p>
                 <img
                     class="fork"
-                    src="{{asset ('assets/img-detailresep/fork.png')}}"
+                    src="{{asset ('assets/fork.png')}}"
                     alt=""
                 />
                 <p class="porsi">7 porsi</p>
@@ -122,7 +122,7 @@
 
                 <img
                     class="bookmark"
-                    src="{{asset ('assets/img-detailresep/bookmark.png')}}"
+                    src="{{asset ('assets/bookmark.png')}}"
                     alt=""
                 />
 
@@ -138,7 +138,7 @@
 
             <img
                 class="youtube"
-                src="{{asset ('assets/img-detailresep/youtube.png')}}"
+                src="{{asset ('assets/youtube.png')}}"
                 alt=""
             />
             <h5 class="tutorial">Watch Video Tutorial</h5>
@@ -237,7 +237,7 @@
             <div class="komentar">
                 <img
                     class="profpict"
-                    src="{{asset ('assets/img-detailresep/profpict.png')}}"
+                    src="{{asset ('assets/profpict.png')}}"
                     alt=""
                 />
 
@@ -254,7 +254,7 @@
             <div class="komentar2">
                 <img
                     class="profpict2"
-                    src="{{asset ('assets/img-detailresep/profpict2.png')}}"
+                    src="{{asset ('assets/profpict2.png')}}"
                     alt=""
                 />
 
