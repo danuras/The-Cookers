@@ -25,7 +25,7 @@ class UpdateStepTest extends TestCase
             'password' => 'password', // Ganti dengan password pengguna yang valid
         ]);
         // Buat resep palsu untuk pengujian
-        $recipe = Recipe::factory()->create();
+        $recipe = Recipe::factory()->create(['user_id'=>$user->id]);
         Session::put('recipe_id_r', $recipe->id);
 
         // Persiapkan data permintaan
@@ -79,7 +79,7 @@ class UpdateStepTest extends TestCase
             'password' => 'password', // Ganti dengan password pengguna yang valid
         ]);
         // Buat resep palsu untuk pengujian
-        $recipe = Recipe::factory()->create();
+        $recipe = Recipe::factory()->create(['user_id'=>$user->id]);
         Session::put('recipe_id_r', $recipe->id);
 
         // Persiapkan data permintaan
@@ -106,5 +106,46 @@ class UpdateStepTest extends TestCase
 
         // Pastikan ada error value
         $response->assertSessionHasErrors(['value']);
+    }
+    /**@test */
+    public function test_update_step_unauthorized()
+    {
+        // Membuat user baru 
+        $user = User::factory()->create();
+        $user2 = User::factory()->create();
+
+        // Menjalankan HTTP POST request ke route 'login' untuk mengotentikasi pengguna
+        $this->post(route('login'), [
+            'email' => $user->email,
+            'password' => 'password', // Ganti dengan password pengguna yang valid
+        ]);
+        // Buat resep palsu untuk pengujian
+        $recipe = Recipe::factory()->create(['user_id'=>$user2->id]);
+        Session::put('recipe_id_r', $recipe->id);
+
+        // Persiapkan data permintaan
+        $data = [
+            'value' => 'ada',
+            'images1' => UploadedFile::fake()->image('step1.jpg'),
+            'images2' => UploadedFile::fake()->image('step2.jpg'),
+            'images3' => UploadedFile::fake()->image('step3.jpg'),
+        ];
+
+        // Buat step palsu untuk pengujian
+        $step = 
+        Step::factory()->create([
+            'images' => json_encode([
+                'images1' => UploadedFile::fake()->image('stup1.jpg'),
+                'images2' => UploadedFile::fake()->image('stup2.jpg'),
+                'images3' => UploadedFile::fake()->image('stup3.jpg'),
+            ]),
+            'recipe_id' => $recipe->id,
+
+        ]);
+        // Simpan langkah
+        $response = $this->put('steps/update/'.$step->id, $data);
+
+        // memastikan user tidak terotorisasi
+        $response->assertStatus(403);
     }
 }

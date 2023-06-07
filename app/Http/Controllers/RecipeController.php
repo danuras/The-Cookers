@@ -94,6 +94,7 @@ class RecipeController extends Controller
         $recipe->description =  $request->description;
         $recipe->portion = $request->portion;
         $recipe->cooking_time = $request->cooking_time;
+        $recipe->video_url = $request->video_url;
         $recipe->image_url = Session::get('image_url_r');
         $recipe->user_id = Auth::user()->id;
         $recipe->save();

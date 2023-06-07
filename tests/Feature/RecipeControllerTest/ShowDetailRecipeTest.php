@@ -70,7 +70,7 @@ class ShowDetailRecipeTest extends TestCase
         $response->assertViewHas('recipe', $recipe);
 
         // Memastikan bahwa data kelompok bahan diteruskan ke tampilan (view)
-        $response->assertViewHas('ingredients');
+        $response->assertViewHas('ingredients', $recipe->ingredients);
 
         // Memastikan bahwa data langkah-langkah diteruskan ke tampilan (view)
         $response->assertViewHas('steps', $recipe->steps);

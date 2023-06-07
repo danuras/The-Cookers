@@ -26,7 +26,9 @@ class CreateStepTest extends TestCase
             'password' => 'password', // Ganti dengan password pengguna yang valid
         ]);
         // Buat resep palsu untuk pengujian
-        $recipe = Recipe::factory()->create();
+        $recipe = Recipe::factory()->create([
+            'user_id'=>$user->id,
+        ]);
         Session::put('recipe_id_r', $recipe->id);
 
         // Persiapkan data permintaan
@@ -60,7 +62,9 @@ class CreateStepTest extends TestCase
             'password' => 'password', // Ganti dengan password pengguna yang valid
         ]);
         // Buat resep palsu untuk pengujian
-        $recipe = Recipe::factory()->create();
+        $recipe = Recipe::factory()->create([
+            'user_id'=>$user->id,
+        ]);
         Session::put('recipe_id_r', $recipe->id);
 
         // Persiapkan data permintaan
@@ -81,5 +85,38 @@ class CreateStepTest extends TestCase
             'recipe_id' => $recipe->id,
         ]);
         $response->assertSessionHasErrors(['value']);
+    }
+
+    /**@test */
+    public function test_create_step_not_authorized()
+    {
+        // Membuat user baru 
+        $user = User::factory()->create();
+
+        // Menjalankan HTTP POST request ke route 'login' untuk mengotentikasi pengguna
+        $this->post(route('login'), [
+            'email' => $user->email,
+            'password' => 'password', // Ganti dengan password pengguna yang valid
+        ]);
+        // Membuat user baru lagi 
+        $user2 = User::factory()->create();
+        
+        // Buat resep palsu untuk pengujian
+        $recipe = Recipe::factory()->create([
+            'user_id'=>$user2->id
+        ]);
+        Session::put('recipe_id_r', $recipe->id);
+        // Persiapkan data permintaan
+        $data = [
+            'value' => '',
+            'images1' => UploadedFile::fake()->image('step1.jpg'),
+            'images2' => UploadedFile::fake()->image('step2.jpg'),
+            'images3' => UploadedFile::fake()->image('step3.jpg'),
+        ];
+
+        // Simpan langkah
+        $response = $this->post('steps/create', $data);
+        // memastikan user tidak terotorisasi
+        $response->assertStatus(403);
     }
 }

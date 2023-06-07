@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Step;
@@ -14,6 +15,9 @@ class StepController extends Controller
      * Memasukan data langkah
      */
     public function create(Request $request){
+        if (! Gate::allows('create-step', Session::get('recipe_id_r'))) {
+            abort(403);
+        }
         $validator = Validator::make($request->all(), [
             'value' => 'required'
         ]);
@@ -60,6 +64,12 @@ class StepController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator->errors());
         }
+        $step = Step::find($id);
+        
+        if (! Gate::allows('admin-step', $step)) {
+            abort(403);
+        }
+        
         $images = ['', '', ''];
 
         if ($request->file('images1') || $request->file('images2') || $request->file('images3')) {
@@ -81,9 +91,7 @@ class StepController extends Controller
                 }
             }
         }
-        $step = Step::find($id);
         $step->value = $request->value;
-        $step->recipe_id = Session::get('recipe_id_r');
         $step->images = json_encode($images);
         $step->save();
         return back();
@@ -92,6 +100,9 @@ class StepController extends Controller
      * Menghapus data langkah
      */
     public function delete(Step $step){
+        if (! Gate::allows('admin-step', $step)) {
+            abort(403);
+        }
         $step->delete();
         return back();
     }

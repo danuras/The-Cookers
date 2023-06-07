@@ -3,7 +3,10 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use App\Policies\IngredientPolicy;
+use App\Policies\StepPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -21,6 +24,9 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::define('admin-ingredient', [IngredientPolicy::class, 'admin']);
+        Gate::define('create-ingredient', [IngredientPolicy::class, 'create']);
+        Gate::define('admin-step', [StepPolicy::class, 'admin']);
+        Gate::define('create-step', [StepPolicy::class, 'create']);
     }
 }
