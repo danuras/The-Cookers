@@ -19,12 +19,16 @@
             <div class="cols__container">
                 <div class="left__col">
                     <div class="img__container">
-                        <img src="{{ asset('images/img-profil/user.jpeg') }}" alt="Anna Smith" />
-                        <span></span>
+                    @if ($profiles->photo_profile)
+                        <img src="{{ asset($profiles->photo_profile) }}" alt="profile.png" width="200" height="200">
+                    @else
+                        <img src="{{ asset('assets/default/profile.png') }}" alt="Foto Profil Default"  width="200" height="200">
+                    @endif
+                    <span></span>
                     </div>
-                    <h2>Shani Indira</h2>
+                    <h2>{{$profiles->name}}</h2>
                     <!-- <p>UX/UI Designer</p> -->
-                    <p>shani@gmail.com</p>
+                    <p>{{$profiles->email}}</p>
 
                     <ul class="about">
                         <li><span>25</span>Saved</li>
@@ -32,7 +36,7 @@
                     </ul>
 
                     <div class="content">
-                        <p>Semanis coklat, selembut sutra.</p>
+                        <p>{{$profiles->info}}</p>
 
                         <ul>
                             <li><i class="fab fa-twitter"></i></li>
@@ -45,10 +49,10 @@
                 <div class="right__col">
                     <nav>
                         <ul>
-                            <li><a href="">home</a></li>
+                            <li><a href="/">home</a></li>
                             <li>
                                 <a
-                                    href="file:///C:/Users/Asus/Downloads/The-Cookers/resources/views/profil/profil/index.html"
+                                    href=""
                                     >favorite</a
                                 >
                             </li>
