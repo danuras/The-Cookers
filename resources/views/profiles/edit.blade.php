@@ -34,25 +34,33 @@
                     <div class="profile-tab-nav border-right" id="section-kiri">
                         <div class="p-4">
                             <div class="img-circle text-center mb-3">
-                                <img
-                                    src="{{ asset('images/img-profil-edit/user2.jpg') }}"
-                                    alt="Image"
+                            @if(session('photo_profile_c'))
+                                    <img 
                                     class="shadow"
-                                    id="profile-pic"
-                                />
+                                    id="profile-pic"  src="data:image/png;base64,{{ session('photo_profile_c') }}" alt="Profile"  width="200" height="200">
+                                    
+                                    <input type="hidden" id = 'last_pp' name="last_pp" value = "{{session('photo_profile_c')}}"  class="form-control">
+                                @elseif ($profile->photo_profile)
+                                    <img                                     
+                                    class="shadow"
+                                    id="profile-pic" src="data:image/png;base64,{{ base64_encode($profile->photo_profile) }}" alt="Profile"  width="200" height="200">
+                                @else
+                                    <img                                     
+                                    class="shadow"
+                                    id="profile-pic" src="{{asset('assets/default/profile.png')}}" alt="Profile"  width="200" height="200">
+                                @endif
                             </div>
 
                             <h4 class="text-center"><span></span></h4>
                         </div>
-                        <div class="upload-foto">
-                            <label for="input-file" class="foto"
+                        
+                        <div class="form-group">
+                            <label for="input-file" class="foto" 
                                 >Upload foto</label
                             >
-                            <input
-                                type="file"
-                                accept="image/jpeg, image/png, image/jpg"
-                                id="input-file"
-                            />
+                            @error('photo_profile')
+                                    <div class="alert alert-danger mt-1 mb-1">{{$message}}</div>
+                                @enderror
                         </div>
 
                         <div
@@ -122,6 +130,18 @@
                         >
                             <h3 class="mb-4">Edit profil</h3>
                             <form action="{{ route('profiles.update',$profile->id) }}" method="POST" enctype="multipart/form-data">
+                            @csrf    
+                            @method('PUT')
+                            
+                            <div class="form-group">
+                            <input
+                                type="file"
+                                accept="image/jpeg, image/png, image/jpg"
+                                id="input-file"
+                                name='photo_profile'
+                                class="form-control" hidden
+                            />
+</div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -131,6 +151,7 @@
                                                 id="name"
                                                 class="form-control"
                                                 value="{{ $profile->name }}"
+                                                name='name'
                                             />
                                             @error('name')
                                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -144,6 +165,7 @@
                                                 type="text"
                                                 class="form-control"
                                                 value="{{ $profile->username }}"
+                                                name='username'
                                             />
                                         @error('username')
                                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -157,6 +179,7 @@
                                                 type="text"
                                                 class="form-control"
                                                 value="{{ $profile->email }}"
+                                                name='email'
                                             />
                                             @error('email')
                                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -170,6 +193,7 @@
                                                 type="text" {{-- harusnya bukan text --}}
                                                 class="form-control"
                                                 value="{{ $profile->no_phone }}"
+                                                name='no_phone'
                                             />
                                             @error('') {{-- validasi no phone belum ada --}}
                                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -179,13 +203,20 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Gender</label>
-                                            <select class="form-control">
-                                                @if($profile->gender == 'L')
-                                                    <option value="L" selected>Laki-laki</option>
-                                                    <option value="P">Perempuan</option>
-                                                @else
-                                                    <option value="L">Laki-laki</option>
-                                                    <option value="P" selected>Perempuan</option>\
+                                            <select class="form-control" 
+                                                name='gender'>
+                                                @if($profile->gender == '1')
+                                                    <option value="1" selected>Laki-laki</option>
+                                                    <option value="2">Perempuan</option>
+                                                    <option value="3">Tidak ingin memberitahu</option>
+                                                @elseif($profile->gender == '2')
+                                                    <option value="1">Laki-laki</option>
+                                                    <option value="2" selected>Perempuan</option>
+                                                    <option value="3">Tidak ingin memberitahu</option>
+                                                @elseif($profile->gender == '3')
+                                                    <option value="1">Laki-laki</option>
+                                                    <option value="2" >Perempuan</option>
+                                                    <option value="3" selected>Tidak ingin memberitahu</option>
                                                 @endif
                                             </select>
                                         </div>
@@ -197,6 +228,7 @@
                                                 type="text"
                                                 class="form-control"
                                                 value="{{ $profile->info }}"
+                                                name='info'
                                             />
                                         </div>
                                     </div>
@@ -205,17 +237,18 @@
                                             <label>Bio</label> {{-- harusnya ada max character --}}
                                             <textarea
                                                 class="form-control"
+                                                name='bio'
                                                 rows="4">
                                                 {{ $profile->bio }}
                                             </textarea>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                            <div>
+                                <div>
                                 <button
                                     class="btn btn-primary"
                                     id="account-update"
+                                    type="submit"
                                 >
                                     Simpan
                                 </button>
@@ -228,6 +261,8 @@
                                 </a>
                                 </button>
                             </div>
+                            </form>
+                            
                         </div>
                         <div
                             class="tab-pane fade"
@@ -243,6 +278,7 @@
                                         <input
                                             type="password"
                                             class="form-control"
+                                                name='password'
                                         />
                                     </div>
                                 </div>
