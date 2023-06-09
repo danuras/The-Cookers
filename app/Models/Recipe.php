@@ -33,6 +33,6 @@ class Recipe extends Model
 
     public function averageRatting()
     {
-        return $this->rattings()->avg('value');
+        return number_format($this->rattings()->avg('value'),1);
     }
 }
