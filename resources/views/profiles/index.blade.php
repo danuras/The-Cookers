@@ -52,7 +52,7 @@
                             <li><a href="/">home</a></li>
                             <li>
                                 <a
-                                    href="{{ route('profiles..index',$profiles->id)}}"
+                                    href="{{ route('profiles.index',$profiles->id)}}"
                                     >favorite</a
                                 >
                             </li>
