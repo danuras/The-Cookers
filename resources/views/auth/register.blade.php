@@ -20,13 +20,6 @@
     <!-- header -->
     <header>
         <div class="container">
-             <div class="row pt-3">
-                <div class="col-md">
-                    <button id="btn-kembali">
-                        <a href="/">Kembali</a>
-                    </button>
-                </div>
-            </div>
             <div class="row pt-3">
                 <div class="col">
                     <h1 class="">Daftar</h1>
