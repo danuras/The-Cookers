@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
@@ -144,5 +145,19 @@ class RecipeController extends Controller
         Session::forget('image_url_r');
         Session::forget('recipe_id_r');
         return view('recipes.upload_recipe.finish');
+    }
+
+
+    /**
+     * Menghapus resep
+     */
+    public function destroy(Recipe $recipe){
+        
+        if (! Gate::allows('delete-recipe', $recipe)) {
+            abort(403);
+        }
+
+        $recipe->delete();
+        return back();
     }
 }

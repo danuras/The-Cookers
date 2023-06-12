@@ -4,6 +4,7 @@ namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
 use App\Policies\IngredientPolicy;
+use App\Policies\RecipePolicy;
 use App\Policies\StepPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -28,5 +29,6 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('create-ingredient', [IngredientPolicy::class, 'create']);
         Gate::define('admin-step', [StepPolicy::class, 'admin']);
         Gate::define('create-step', [StepPolicy::class, 'create']);
+        Gate::define('delete-recipe', [RecipePolicy::class, 'admin']);
     }
 }
