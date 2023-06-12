@@ -20,15 +20,8 @@
     {{-- header --}}
     <header>
         <div class="container">
-            <div class="row pt-3">
-                <div class="col-md">
-                    <button id="btn-kembali">
-                        <a href="/">Kembali</a>
-                    </button>
-                </div>
-            </div>
             <div class="row">
-                <div class="col-md text-center">
+                <div class="col-md text-center pt-5">
                     <h1>Masuk</h1>
                     <p class="">Belum punya akun? <a href="{{ route('register') }}">Daftar</a></p>
                 </div>

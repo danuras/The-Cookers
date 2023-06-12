@@ -165,3 +165,17 @@ input {
 #password {
     color: #b96d40;
 }
+
+#btn-hapus-akun {
+    width: 120px;
+    height: 30px;
+    border-radius: 10px;
+    border-width: 0;
+    background-color: red;
+}
+
+#btn-hapus-akun a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}

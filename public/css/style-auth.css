@@ -60,13 +60,3 @@ body {
     border-radius: 4px;
     border-width: 0;
 }
-
-#btn-kembali {
-    background-color: var(--celadon);
-    border-width: 1;
-}
-
-#btn-kembali a {
-    text-decoration: none;
-    color: black;
-}
