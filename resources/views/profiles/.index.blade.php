@@ -22,7 +22,7 @@
             <div class="cols__container">
                 <div class="left__col">
                     <div class="img__container">
-                        <img src={{ asset('images/img-profil/user.jpeg') }} alt="Anna Smith" />
+                        <img src={{ asset('assets/img-profil/user.jpeg') }} alt="Anna Smith" />
                         <span></span>
                     </div>
                     <h2>Shani Indira</h2>
@@ -49,8 +49,9 @@
                 <div class="right__col">
                     <nav>
                         <ul>
-                            <li><a href="">saved</a></li>
-                            <li><a href="">receipt</a></li>
+                            <li><a href="">home</a></li>
+                            <li><a href="{{ route('profiles..index',$profiles->id)}}">favorite</a></li>
+                            <li><a href="{{ route('profiles.index', $profiles->id)}}">my receipt</a></li>
                             <!-- <li><a href="">groups</a></li>
                             <li><a href="">about</a></li> -->
                         </ul>
@@ -63,54 +64,54 @@
 
                     <div class="saved">
                         <img
-                            src={{asset('images/img-profil/donat.jpg')}}
+                            src={{asset('assets/img-profil/donat.jpg')}}
                             alt="saved"
                         />
                         <img
-                            src={{asset('images/img-profil/ayam-bakar.jpg')}}
+                            src={{asset('assets/img-profil/ayam-bakar.jpg')}}
                             alt="saved"
                         />
                         <img
-                            src={{asset('images/img-profil/brownies.jpg')}}
+                            src={{asset('assets/img-profil/brownies.jpg')}}
                             alt="saved"
                         />
                         <img
-                            src={{asset('images/img-profil/burger.jpg')}}
+                            src={{asset('assets/img-profil/burger.jpg')}}
                             alt="saved"
                         />
                         <img
-                            src={{asset('images/img-profil/ikan-bumbu.jpg')}}
+                            src={{asset('assets/img-profil/ikan-bumbu.jpg')}}
                             alt="saved"
                         />
                         <img
-                            src={{asset('images/img-profil/kue-lumpur.jpg')}}
+                            src={{asset('assets/img-profil/kue-lumpur.jpg')}}
                             alt="saved"
                         />
                     </div>
 
                     <div class="resep">
                         <img
-                            src="{{asset('images/img-profil/ayam-goreng.jpg')}}"
+                            src="{{asset('assets/img-profil/ayam-goreng.jpg')}}"
                             alt="resep"
                         />
                         <img
-                            src={{asset('images/img-profil/nasi-goreng.jpg')}}
+                            src={{asset('assets/img-profil/nasi-goreng.jpg')}}
                             alt="resep"
                         />
                         <img
-                            src={{asset('images/img-profil/salad.jpg')}}
+                            src={{asset('assets/img-profil/salad.jpg')}}
                             alt="resep"
                         />
                         <img
-                            src={{asset('images/img-profil/salmon.jpg')}}
+                            src={{asset('assets/img-profil/salmon.jpg')}}
                             alt="resep"
                         />
                         <img
-                            src={{asset('images/img-profil/spageti.jpg')}}
+                            src={{asset('assets/img-profil/spageti.jpg')}}
                             alt="resep"
                         />
                         <img
-                            src={{asset('images/img-profil/tumis-tahu.jpg')}}
+                            src={{asset('assets/img-profil/tumis-tahu.jpg')}}
                             alt="resep"
                         />
                     </div>
