@@ -58,8 +58,8 @@ Route::middleware('auth')/* ->prefix('{locale}') */->group(function () {
         Route::get('review-upload-recipe', [RecipeController::class, 'showReviewUploadRecipe'])->name('recipes.review-upload-recipe');
         Route::get('upload-recipe-ingredient-and-step', [RecipeController::class, 'showUploadIngredientsAndSteps'])->name('recipes.upload-recipe-ingredient-and-step');
         Route::get('finish-upload-recipe', [RecipeController::class, 'showFinishUploadRecipe'])->name('recipes.finish-upload-recipe');
-        /* Route::delete('{recipe}', [RecipeController::class, 'delete']);
-        Route::put('{recipe}/edit', [RecipeController::class, 'update']);
+        Route::delete('{recipe}', [RecipeController::class, 'destroy']);
+        /*Route::put('{recipe}/edit', [RecipeController::class, 'update']);
         Route::get('{recipe}/edit', [RecipeController::class, 'showEdit']);
         Route::post('create', [RecipeController::class, 'create']); */
     });
