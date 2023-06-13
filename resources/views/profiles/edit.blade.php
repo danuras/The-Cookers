@@ -54,17 +54,17 @@
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab"
                             aria-controls="account" aria-selected="true">
-                            <i class="fa fa-home text-center mr-1" id="account"></i>
+                            <i class="fa fa-home text-center mr-1" id=""></i>
                             Akun
                         </a>
                         <a class="nav-link" id="password-tab" data-toggle="pill" href="#password" role="tab"
                             aria-controls="password" aria-selected="false">
-                            <i class="fa fa-key text-center mr-1" id="password"></i>
+                            <i class="fa fa-key text-center mr-1" id=""></i>
                             Password
                         </a>
                         <a class="nav-link" id="security-tab" data-toggle="pill" href="#security" role="tab"
                             aria-controls="security" aria-selected="false">
-                            <i class="fa fa-user text-center mr-1" id="security"></i>
+                            <i class="fa fa-user text-center mr-1" id=""></i>
                             Keamanan
                         </a>
                     </div>
@@ -185,39 +185,42 @@
 
                     </div>
                     <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
-                        <h3 class="mb-4">Password Settings</h3>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Old password</label>
-                                    <input type="password" class="form-control" name='password' />
+                        <form action="{{ route('profiles.update', $profile->id) }}" method="POST"
+                            enctype="multipart/form-data">
+                            <h3 class="mb-4">Password Settings</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Old password</label>
+                                        <input type="password" class="form-control" name='password' />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>New password</label>
-                                    <input type="password" class="form-control" />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>New password</label>
+                                        <input type="password" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Confirm new password</label>
+                                        <input type="password" class="form-control" />
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Confirm new password</label>
-                                    <input type="password" class="form-control" />
-                                </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary" id="password-update">
+                                    Simpan
+                                </button>
+                                <button class="btn btn-light" id="password-cancel">
+                                    <a href="">
+                                        Kembali
+                                    </a>
+                                </button>
                             </div>
-                        </div>
-                        <div>
-                            <button class="btn btn-primary" id="password-update">
-                                Simpan
-                            </button>
-                            <button class="btn btn-light" id="password-cancel">
-                                <a href="">
-                                    Kembali
-                                </a>
-                            </button>
-                        </div>
+                        </form>
                     </div>
                     <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
                         <h3 class="mb-4">Security Settings</h3>
