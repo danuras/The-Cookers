@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -176,6 +177,24 @@ class RecipeController extends Controller
             ->orderByDesc('created_at')
             ->paginate(25, ['*'], 'recipes');
         }
+        $data['recipes'] = $recipes;
+        return view('recipes.search_recipe', $data);
+    }
+
+    /**
+     * Mencari resep dengan informasi input tidak detail berdasarkan nama dan bahan resep
+     */
+    public function searchRecipeNotDetail($search){
+        $recipes = Recipe::select('id', 'image_url','name')
+        ->where([
+            ['name', 'like', '%'.$search.'%'],
+        ])->orWhereExists(function ($query) use ($search) {
+            $query->select(DB::raw(1))
+                  ->from('ingredients')
+                  ->whereColumn('recipe_id', 'recipes.id')
+                  ->where('value', 'like', '%'.$search.'%');
+        })
+        ->paginate(25, ['*'], 'recipes');
         $data['recipes'] = $recipes;
         return view('recipes.search_recipe', $data);
     }

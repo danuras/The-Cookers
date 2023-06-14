@@ -61,6 +61,7 @@ Route::middleware('auth')/* ->prefix('{locale}') */->group(function () {
         
         Route::prefix('search-recipe')->group(function (){
             Route::get('/page/{category}', [RecipeController::class, 'showSearchRecipe'])->name('recipes.search-recipe');
+            Route::get('/{search}/search-result', [RecipeController::class, 'searchRecipeNotDetail'])->name('recipes.result-recipe');
         });
         
         Route::delete('{recipe}', [RecipeController::class, 'destroy']);

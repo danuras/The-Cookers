@@ -59,7 +59,7 @@ class ShowSearchRecipeTest extends TestCase
 
         // Memastikan bahwa data 'recipes' berisi instance dari Paginator
         $recipes = $response->viewData('recipes');
-        $this->assertInstanceOf(\Illuminate\Pagination\LengthAwarePaginator::class, $response->viewData('recipes'));
+        $this->assertInstanceOf(\Illuminate\Pagination\LengthAwarePaginator::class, $recipes);
 
 
         // Memastikan bahwa jumlah data 'recipes' yang ditampilkan adalah 25
