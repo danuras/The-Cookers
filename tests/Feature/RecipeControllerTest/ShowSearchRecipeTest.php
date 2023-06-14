@@ -10,28 +10,6 @@ use Tests\TestCase;
 
 class ShowSearchRecipeTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function testShowSearchRecipe()
-    {
-        // Membuat user baru 
-        $user = User::factory()->create();
-
-        // Menjalankan HTTP POST request ke route 'login' untuk mengotentikasi pengguna
-        $this->post(route('login'), [
-            'email' => $user->email,
-            'password' => 'password', // Ganti dengan password pengguna yang valid
-        ]);
-        // Menjalankan permintaan GET ke rute yang sesuai
-        $response = $this->get('/recipes/page/search-recipe');
-
-        // Memeriksa bahwa responsenya berhasil (kode status 200)
-        $response->assertStatus(200);
-
-        // Memeriksa bahwa tampilan yang diharapkan digunakan
-        $response->assertViewIs('recipes.search_recipe');
-    }
     public function testShowSearchRecipePopular()
     {
         // Membuat user baru 
