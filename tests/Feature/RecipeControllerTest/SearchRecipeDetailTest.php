@@ -25,7 +25,7 @@ class SearchRecipeDetailTest extends TestCase
         for ($i = 0; $i < 25; $i++) {
 
             $recipe = Recipe::factory()->create([
-                'name' => 'chicken' . fake()->text(5),
+                'name' => 'fiesta' . fake()->text(5),
             ]);
 
             Ingredient::factory()->count(4)->create([
@@ -34,8 +34,8 @@ class SearchRecipeDetailTest extends TestCase
             ]);
         }
 
-        // Memanggil metode dengan parameter pencarian 'chicken'
-        $response = $this->get('/recipes/search-recipe/chicken/nugget/search-result-detail');
+        // Memanggil metode dengan parameter pencarian 'fiesta'
+        $response = $this->get('/recipes/search-recipe/fiesta/nugget/search-result-detail');
 
         // Memastikan bahwa respons statusnya adalah 200 (OK)
         $response->assertStatus(200);
@@ -53,9 +53,9 @@ class SearchRecipeDetailTest extends TestCase
         // Memastikan bahwa jumlah data 'recipes' yang ditampilkan adalah 25
         $this->assertCount(25, $recipes->items());
 
-        // Memastikan bahwa setiap item 'recipes' memiliki 'name' atau 'value' yang mengandung 'chicken'
+        // Memastikan bahwa setiap item 'recipes' memiliki 'name' atau 'value' yang mengandung 'fiesta'
         foreach ($recipes->items() as $recipe) {
-            $this->assertStringContainsString('chicken', $recipe->name);
+            $this->assertStringContainsString('fiesta', $recipe->name);
             foreach ($recipe->ingredients as $ingredient) {
                 $this->assertStringContainsString('nugget', $ingredient->value);
             }
