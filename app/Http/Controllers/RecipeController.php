@@ -160,4 +160,23 @@ class RecipeController extends Controller
         $recipe->delete();
         return back();
     }
+
+    /**
+     * Menampillkan halaman cari resep
+     */
+    public function showSearchRecipe($category){
+        $recipes = null;
+        if($category == 'popular'){
+            $recipes = Recipe::select('id', 'image_url', 'name')
+            ->withCount('favorites')
+            ->orderByDesc('favorites_count')
+            ->paginate(25, ['*'], 'recipes');
+        } else if($category == 'newest') {
+            $recipes = Recipe::select('id', 'image_url', 'name')
+            ->orderByDesc('created_at')
+            ->paginate(25, ['*'], 'recipes');
+        }
+        $data['recipes'] = $recipes;
+        return view('recipes.search_recipe', $data);
+    }
 }
