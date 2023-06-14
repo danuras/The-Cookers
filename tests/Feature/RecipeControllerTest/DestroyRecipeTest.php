@@ -52,7 +52,7 @@ class DestroyRecipeTest extends TestCase
         // Mengirim permintaan penghapusan resep sebagai pengguna terotentikasi
         $response = $this->delete('/recipes/'. $recipe->id);
 
-        // Memastikan bahwa permintaan berhasil dan mengarahkan kembali
+        // Memastikan bahwa user tidak terotorisasi
         $response->assertStatus(403);
     }
 }
