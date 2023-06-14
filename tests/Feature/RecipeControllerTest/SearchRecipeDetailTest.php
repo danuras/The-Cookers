@@ -57,7 +57,7 @@ class SearchRecipeDetailTest extends TestCase
         foreach ($recipes->items() as $recipe) {
             $this->assertStringContainsString('chicken', $recipe->name);
             foreach ($recipe->ingredients as $ingredient) {
-                $this->assertStringContainsString('nugget', $ingredient->name);
+                $this->assertStringContainsString('nugget', $ingredient->value);
             }
         }
     }
