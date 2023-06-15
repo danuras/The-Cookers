@@ -161,6 +161,19 @@ nav {
     font-size: 20px;
 }
 
+#notifikasi {
+    margin-left: 10px;
+}
+
+.notif-content {
+    display: flex;
+    margin-left: 10px;
+}
+
+.notif-time {
+    margin-left: 700px;
+}
+
 /* Media queries */
 @media (max-width: 768px) {
     .menu {
@@ -229,5 +242,9 @@ nav {
 
     .edit4 {
         margin-right: 180px;
+    }
+
+    .notif-time {
+        margin-left: 100px;
     }
 }
