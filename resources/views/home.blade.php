@@ -30,24 +30,24 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link mr-4" href="#">HOME</a>
+                        <a class="nav-link mr-4" href="/">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mr-4" href="#">RECEIPT</a>
+                        <a class="nav-link mr-4" href="#">RESEP</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mr-4" href="#">FAVOURITE</a>
+                        <a class="nav-link mr-4" href="#">FAVORIT</a>
                     </li>
 
                     <li>
                         <button class="upload-resep">
-                            Upload Receipt
+                            Upload Resep
                         </button>
                     </li>
 
                     <li>
                         <button class="profil">
-                            <a href="{{ route('profiles.index') }}">Profile</a>
+                            <a href="{{ route('profiles.index') }}">Profil</a>
                         </button>
                     </li>
                 </ul>
@@ -80,7 +80,7 @@
     <div class="container">
         <!-- <a href="#" class="btn btn-success mt-3">UPLOAD RECEIPT</a> -->
 
-        <h3 class="RT">LATEST RECEIPT</h3>
+        <h3 class="RT">RESEP TERBARU</h3>
         <div class="row mt-3">
             @foreach ($n_recipes as $recipe)
                 <div class="col-md-3">
@@ -97,7 +97,7 @@
         </div>
         
 
-        <h3 class="PR">POPULAR RECEIPT</h3>
+        <h3 class="PR">RESEP POPULER</h3>
 
         <div class="row mt-3">
             @foreach ($f_recipes as $recipe)
