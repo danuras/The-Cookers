@@ -82,81 +82,36 @@
 
         <h3 class="RT">LATEST RECEIPT</h3>
         <div class="row mt-3">
-            <div class="col-md-3">
-                <div class="card border">
-                    <img src="{{ asset('assets/bakso.jpeg') }}" class="card-img-top" alt="..." />
-                    <div class="card-body">
-                        <button class="button">Meatballs</button>
+            @foreach ($n_recipes as $recipe)
+                <div class="col-md-3">
+                    <a href="/recipes/search-recipe/page/newest" class='card'>
+                    <div class="card border">
+                        <img src="{{ asset($recipe->image_url) }}" class="card-img-top" alt="..." />
+                        <div class="card-body">
+                            <button class="button">{{$recipe->name}}</button>
+                        </div>
                     </div>
+                    </a>
                 </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card border">
-                    <img src="{{ asset('assets/mieayam.jpg') }}" class="card-img-top" alt="..." />
-                    <div class="card-body">
-                        <button class="button">Noodle</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card border">
-                    <img src="{{ asset('assets/nasgor.jpg') }}" class="card-img-top" alt="..." />
-                    <div class="card-body">
-                        <button class="button">Fried Rice</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card border">
-                    <img src="{{ asset('assets/mieayambakso.jpg') }}" class="card-img-top" alt="..." />
-                    <div class="card-body">
-                        <button class="button">Noodle with Meatball</button>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
+        
 
         <h3 class="PR">POPULAR RECEIPT</h3>
 
         <div class="row mt-3">
-            <div class="col-md-3">
-                <div class="card border">
-                    <img src="{{ asset('assets/lele.jpg') }}" class="card-img-top" alt="..." />
-                    <div class="card-body">
-                        <button class="button">Grilled "Lele"</button>
+            @foreach ($f_recipes as $recipe)
+                <div class="col-md-3">
+                    <a href="/recipes/search-recipe/page/popular" class='card'>
+                    <div class="card border">
+                        <img src="{{ asset($recipe->image_url) }}" class="card-img-top" alt="..." />
+                        <div class="card-body">
+                            <button class="button">{{$recipe->name}}</button>
+                        </div>
                     </div>
-                </div>
+                    </a>
             </div>
-
-            <div class="col-md-3">
-                <div class="card border">
-                    <img src="{{ asset('assets/tehobeng.jpg') }}" class="card-img-top" alt="..." />
-                    <div class="card-body">
-                        <button class="button">Ice Tea</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card border">
-                    <img src="{{ asset('assets/juspukat.jpg') }}" class="card-img-top" alt="..." />
-                    <div class="card-body">
-                        <button class="button">Avocado Juice</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card border">
-                    <img src="{{ asset('assets/esjeruk.jpg') }}" class="card-img-top" alt="..." />
-                    <div class="card-body">
-                        <button class="button">Orange Juice</button>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
         <br>
         <br>

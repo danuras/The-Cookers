@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Recipe;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -33,12 +34,9 @@ class DashboardIndexTest extends TestCase
 
         // Memastikan data 'f_recipes' dan 'n_recipes' tersedia di tampilan
         $response->assertViewHas(['f_recipes', 'n_recipes']);
-
-        // Memastikan data 'f_recipes' berisi instance dari LengthAwarePaginator
-        $this->assertInstanceOf(\Illuminate\Pagination\LengthAwarePaginator::class, $response->viewData('f_recipes'));
-
-        // Memastikan data 'n_recipes' berisi instance dari LengthAwarePaginator
-        $this->assertInstanceOf(\Illuminate\Pagination\LengthAwarePaginator::class, $response->viewData('n_recipes'));
+        // Memastikan jumlah resep yang dikirim ke tampilan sesuai dengan batas yang ditentukan
+        $response->assertViewHas('f_recipes', Recipe::withCount('favorites')->orderByDesc('favorites_count')->limit(4)->get());
+        $response->assertViewHas('n_recipes', Recipe::orderByDesc('created_at')->limit(4)->get());
     }
     /**
      * @test
