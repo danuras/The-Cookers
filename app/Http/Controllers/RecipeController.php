@@ -93,7 +93,7 @@ class RecipeController extends Controller
         }
         $recipe = new Recipe;
         $recipe->name = $request->name;
-        $recipe->description =  $request->description;
+        $recipe->description = $request->description;
         $recipe->portion = $request->portion;
         $recipe->cooking_time = $request->cooking_time;
         $recipe->video_url = $request->video_url;
@@ -106,7 +106,8 @@ class RecipeController extends Controller
     /**
      * Menampilkan halaman untuk mengupload bahan-bahan dan langkah-langkah
      */
-    public function showUploadIngredientsAndSteps(){
+    public function showUploadIngredientsAndSteps()
+    {
         $recipe_id = Session::get('recipe_id_r');
         $recipe = Recipe::find($recipe_id);
         $data['steps'] = $recipe->steps();
@@ -142,7 +143,8 @@ class RecipeController extends Controller
     /**
      * Menampilkan halaman ketika upload bahan-bahan dan langkah-langkah selesai
      */
-    public function showFinishUploadRecipe(){
+    public function showFinishUploadRecipe()
+    {
         Session::forget('image_url_r');
         Session::forget('recipe_id_r');
         return view('recipes.upload_recipe.finish');
@@ -152,9 +154,10 @@ class RecipeController extends Controller
     /**
      * Menghapus resep
      */
-    public function destroy(Recipe $recipe){
-        
-        if (! Gate::allows('delete-recipe', $recipe)) {
+    public function destroy(Recipe $recipe)
+    {
+
+        if (!Gate::allows('delete-recipe', $recipe)) {
             abort(403);
         }
 
@@ -165,17 +168,18 @@ class RecipeController extends Controller
     /**
      * Menampillkan halaman cari resep
      */
-    public function showSearchRecipe($category){
+    public function showSearchRecipe($category)
+    {
         $recipes = null;
-        if($category == 'popular'){
+        if ($category == 'popular') {
             $recipes = Recipe::select('id', 'image_url', 'name')
-            ->withCount('favorites')
-            ->orderByDesc('favorites_count')
-            ->paginate(25, ['*'], 'recipes');
-        } else if($category == 'newest') {
+                ->withCount('favorites')
+                ->orderByDesc('favorites_count')
+                ->paginate(25, ['*'], 'recipes');
+        } else if ($category == 'newest') {
             $recipes = Recipe::select('id', 'image_url', 'name')
-            ->orderByDesc('created_at')
-            ->paginate(25, ['*'], 'recipes');
+                ->orderByDesc('created_at')
+                ->paginate(25, ['*'], 'recipes');
         }
         $data['recipes'] = $recipes;
         return view('recipes.search_recipe', $data);
@@ -184,35 +188,54 @@ class RecipeController extends Controller
     /**
      * Mencari resep dengan informasi input tidak detail berdasarkan nama dan bahan resep
      */
-    public function searchRecipeNotDetail($search){
-        $recipes = Recipe::select('id', 'image_url','name')
-        ->where([
-            ['name', 'like', '%'.$search.'%'],
-        ])->orWhereExists(function ($query) use ($search) {
-            $query->select(DB::raw(1))
-                  ->from('ingredients')
-                  ->whereColumn('recipe_id', 'recipes.id')
-                  ->where('value', 'like', '%'.$search.'%');
-        })
-        ->paginate(25, ['*'], 'recipes');
+    public function searchRecipeNotDetail($search)
+    {
+        $recipes = Recipe::select('id', 'image_url', 'name')
+            ->where([
+                ['name', 'like', '%' . $search . '%'],
+            ])->orWhereExists(function ($query) use ($search) {
+                $query->select(DB::raw(1))
+                    ->from('ingredients')
+                    ->whereColumn('recipe_id', 'recipes.id')
+                    ->where('value', 'like', '%' . $search . '%');
+            })
+            ->paginate(25, ['*'], 'recipes');
         $data['recipes'] = $recipes;
         return view('recipes.search_recipe', $data);
     }
     /**
      * Mencari resep dengan informasi input tidak detail berdasarkan nama dan bahan resep
      */
-    public function searchRecipeDetail($name, $ingredient){
-        $recipes = Recipe::select('id', 'image_url','name')
-        ->where([
-            ['name', 'like', '%'.$name.'%'],
-        ])->orWhereExists(function ($query) use ($ingredient) {
-            $query->select(DB::raw(1))
-                  ->from('ingredients')
-                  ->whereColumn('recipe_id', 'recipes.id')
-                  ->where('value', 'like', '%'.$ingredient.'%');
-        })
-        ->paginate(25, ['*'], 'recipes');
+    public function searchRecipeDetail($name, $ingredient)
+    {
+        $recipes = Recipe::select('id', 'image_url', 'name')
+            ->where([
+                ['name', 'like', '%' . $name . '%'],
+            ])->orWhereExists(function ($query) use ($ingredient) {
+                $query->select(DB::raw(1))
+                    ->from('ingredients')
+                    ->whereColumn('recipe_id', 'recipes.id')
+                    ->where('value', 'like', '%' . $ingredient . '%');
+            })
+            ->paginate(25, ['*'], 'recipes');
         $data['recipes'] = $recipes;
         return view('recipes.search_recipe', $data);
+    }
+
+    /**
+     * Menampilkan resep yang telah dibuat oleh user
+     */
+
+    public function showUserRecipe()
+    {
+        $recipes = Recipe::select('id', 'image_url', 'name')
+            ->where([
+                ['user_id', Auth::user()->id],
+            ])
+            ->paginate(25, ['*'], 'recipes');
+
+
+        $data['recipes'] = $recipes;
+        return view('recipes.user_recipe', $data);
     }
 }

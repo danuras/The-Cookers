@@ -52,6 +52,7 @@ Route::middleware('auth')/* ->prefix('{locale}') */->group(function () {
     Route::prefix('recipes')->group(function (){
         Route::get('{recipe}/detail', [RecipeController::class, 'showDetail']);
         Route::get('upload-image', [RecipeController::class, 'showUploadImage'])->name('recipes.upload-image');
+        Route::get('user-recipe', [RecipeController::class, 'showUserRecipe'])->name('recipes.user-recipe');
         Route::post('upload-image', [RecipeController::class, 'uploadImage']);
         Route::get('upload-recipe-atribute', [RecipeController::class, 'showUploadRecipeAtribute'])->name('recipes.upload-recipe-atribute');
         Route::post('upload-recipe-atribute', [RecipeController::class, 'uploadRecipeAtribute']);
