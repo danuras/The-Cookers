@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Edit Resep Upload</title>
+        <link rel="stylesheet" href="editresep-upload.css" />
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <div class="logo">
+                    <img
+                        class="logo-img"
+                        src="C:\Users\Asus\Downloads\The-Cookers\resources\views\home\home\img\logo.png"
+                        alt=""
+                    />
+                </div>
+                <nav>
+                    <input type="checkbox" id="menu-toggle" />
+                    <label for="menu-toggle" class="menu-icon">&#9776;</label>
+                    <ul class="menu">
+                        <li><a href="#">HOME</a></li>
+                        <li><a href="#">RECEIPT</a></li>
+                        <li>
+                            <button class="btn">UPLOAD RECEIPT</button>
+                        </li>
+                        <li>
+                            <button class="btn">PROFILE</button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <br />
+
+        <div class="hero">
+            <h3>EDIT RESEP KAMU</h3>
+            <div class="box">
+                <div class="img-upload">
+                    <img
+                        class="image"
+                        src="C:\Users\Asus\Downloads\The-Cookers\public\assets\upload.png"
+                        alt=""
+                    />
+                </div>
+
+                <br />
+
+                <div>
+                    <button class="upload">Upload Image</button>
+                </div>
+            </div>
+
+            <br />
+
+            <div>
+                <button id="prev" class="button-switch">Previous</button>
+                <button
+                    id="next"
+                    class="button-switch"
+                    onclick="changePage('next')"
+                >
+                    Next
+                </button>
+            </div>
+        </div>
+
+        <script src="editresep-upload.js"></script>
+    </body>
+</html>

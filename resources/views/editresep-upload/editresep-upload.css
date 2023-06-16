@@ -1,0 +1,158 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.hero {
+    align-items: center;
+    background-image: url("bg-cookers.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #ffcf9c;
+}
+
+.logo-img {
+    width: 50px;
+    height: 50px;
+
+    /* font-weight: bold;
+    text-decoration: none;
+    font-size: 20px; */
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.menu li {
+    margin-left: 15px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+}
+
+.menu a:hover {
+    color: #b96d40;
+}
+
+.btn {
+    background-color: #ca054d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    height: 25px;
+}
+
+.btn:hover {
+    opacity: 80%;
+}
+
+h3 {
+    text-align: center;
+}
+
+.box {
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffcf9c;
+    border: 1px solid #ffcf9c;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.image {
+    width: 230px;
+    height: 180px;
+}
+
+.upload {
+    background-color: #ca054d;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    width: 120px;
+    height: 40px;
+}
+
+.upload:hover {
+    opacity: 80%;
+}
+
+.button-switch {
+    background-color: #ca054d;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    width: 120px;
+    height: 40px;
+    text-align: center;
+}
+
+#prev {
+    margin-left: 980px;
+}
+
+.button-switch:hover {
+    opacity: 80%;
+}
+
+/* Hamburger button styles */
+.menu-icon {
+    cursor: pointer;
+    display: none;
+    font-size: 20px;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+    .menu {
+        display: none;
+        flex-direction: column;
+    }
+
+    .menu li {
+        margin: 10px 0;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    #menu-toggle:checked ~ .menu {
+        display: flex;
+    }
+
+    .box {
+        width: 90%;
+    }
+
+    #prev {
+        margin-left: 150px;
+    }
+}
