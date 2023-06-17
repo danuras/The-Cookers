@@ -20,7 +20,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <img src='{{ asset('assets/logo.png') }}' alt="" />
+            <img src="{{ asset('assets/logo.png') }}" alt="" />
             <!-- <a class="navbar-brand text-white" href="index.html"><strong>Bakso</strong> Solo Baru</a> -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +41,7 @@
 
                     <li>
                         <button class="upload-resep">
-                            Upload Resep
+                            <a href="{{ route('recipes.upload-image') }}">Upload Resep</a>
                         </button>
                     </li>
 

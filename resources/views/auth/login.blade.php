@@ -61,12 +61,12 @@
                                 <span class="input-group-text" type="button">
                                     <i class="fa-solid fa-eye" id="show-password"></i>
                                 </span>
-                                @error('password')
-                                    <div class="alert alert-danger mt-1 mb-1">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
                             </div>
+                            @error('password')
+                                <div class="alert alert-danger mt-1 mb-1">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <input type="checkbox" id="remember_me" name="remember_me">
@@ -76,7 +76,7 @@
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
                         <div class="text-end">
-                            <button type="submit" id="btn-submit" class="">Submit</button>
+                            <button type="submit" id="btn-submit" class="">Masuk</button>
                         </div>
                     </div>
                 </div>
