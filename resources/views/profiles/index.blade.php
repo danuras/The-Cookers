@@ -58,8 +58,8 @@
                             </li>
                             <li>
                                 <a
-                                    href="{{ route('profiles.index', $profiles->id)}}"
-                                    >my receipt</a
+                                    href="{{ route('recipes.user-recipe')}}"
+                                    >Resep Saya</a
                                 >
                             </li>
                         </ul>
