@@ -67,7 +67,7 @@
                     <h1>Ayo Masak!</h1>
                     <p>Dapatkan Inspirasi Kuliner Terbaru dengan Resep Pilihan Terbaik Kami</p>
                     <button>
-                        <a href="">Masak Sekarang</a>
+                        <a href="{{ asset('register') }}">Masak Sekarang</a>
                     </button>
                 </div>
                 <div class="col-md">
