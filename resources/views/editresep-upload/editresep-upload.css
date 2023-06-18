@@ -182,6 +182,33 @@ h3 {
     border-radius: 4px;
 }
 
+.oke {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ca054d;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.oke:hover {
+    opacity: 80%;
+}
+
+#resultContainer {
+    text-align: left;
+}
+
+h4 {
+    text-align: left;
+}
+
+ol {
+    list-style-type: decimal;
+    text-align: left;
+}
+
 /* Hamburger button styles */
 .menu-icon {
     cursor: pointer;
