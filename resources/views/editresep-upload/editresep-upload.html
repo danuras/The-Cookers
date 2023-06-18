@@ -36,35 +36,92 @@
 
         <br />
 
-        <div class="hero">
-            <h3>EDIT RESEP KAMU</h3>
-            <div class="box">
-                <div class="img-upload">
-                    <img
-                        class="image"
-                        src="C:\Users\Asus\Downloads\The-Cookers\public\assets\upload.png"
-                        alt=""
-                    />
+        <div class="page active" id="page1">
+            <div class="content">
+                <h3>EDIT RESEP KAMU</h3>
+                <div class="box">
+                    <div class="img-upload">
+                        <img
+                            class="image"
+                            src="C:\Users\Asus\Downloads\The-Cookers\public\assets\upload.png"
+                            alt=""
+                        />
+                    </div>
+
+                    <br />
+
+                    <form id="uploadForm" enctype="multipart/form-data">
+                        <input type="file" id="photoInput" accept="image/*" />
+                        <button class="upload" type="submit">
+                            Upload Image
+                        </button>
+                    </form>
                 </div>
 
                 <br />
+                <div class="button-prevnext">
+                    <div class="button-container">
+                        <button onclick="goToPage('page0')">Previous</button>
+                    </div>
 
-                <div>
-                    <button class="upload">Upload Image</button>
+                    <div class="button-container">
+                        <button onclick="goToPage('page2')">Next</button>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <br />
+        <div class="page" id="page2">
+            <div class="content">
+                <h3>EDIT RESEP KAMU</h3>
+                <div class="box">
+                    <div class="gallery" id="photoGallery"></div>
 
-            <div>
-                <button id="prev" class="button-switch">Previous</button>
-                <button
-                    id="next"
-                    class="button-switch"
-                    onclick="changePage('next')"
-                >
-                    Next
-                </button>
+                    <br>
+
+                    <form id="inputForm" onsubmit="event.preventDefault(); displayResult();">
+                        <div class="input-container">
+                          <label for="nameInput">Nama Resep</label>
+                          <input type="text" id="nameInput" placeholder="Masukkan Nama Resep" />
+                        </div>
+                
+                        <div class="input-container">
+                            <label for="paragraphInput">Deskripsi Resep</label>
+                            <textarea id="paragraphInput" placeholder="Masukkan Deskripsi Resep"></textarea>
+                        </div>
+
+                        <div class="input-container">
+                            <label for="numberInput">Waktu Memasak</label>
+                            <input type="number" id="numberInput" placeholder="Masukkan Waktu Memasak" />
+                            <label for="">(Menit)</label>
+                        </div>
+                  
+                        <div class="input-container">
+                            <label for="numberInput">Jumlah Porsi</label>
+                            <input type="number" id="numberInput" placeholder="Masukkan Jumlah Porsi" />
+                        </div>
+
+                        <div class="input-container">
+                            <label for="linkInput">Link Video Youtube</label>
+                            <input type="url" id="linkInput" placeholder="Masukkan Link Youtube" />
+                        </div>
+
+                        <div class="button-container">
+                            <button type="submit">Kirim</button>
+                        </div>
+                </div>
+
+                <div class="button-prevnext">
+                    <div class="button-container">
+                        <button onclick="goToPage('page1')">Previous</button>
+                    </div>
+
+                    <div class="button-container">
+                        <button onclick="goToPage('page3')">Next</button>
+                    </div>
+                </div>
+
+                <br />
             </div>
         </div>
 
