@@ -11,53 +11,53 @@ function changePage(pageName) {
     selectedPage.style.display = "block";
 }
 
-document.getElementById("uploadForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+// document.getElementById("uploadForm").addEventListener("submit", function (e) {
+//     e.preventDefault();
 
-    var fileInput = document.getElementById("photoInput");
-    var files = fileInput.files;
+//     var fileInput = document.getElementById("photoInput");
+//     var files = fileInput.files;
 
-    for (var i = 0; i < files.length; i++) {
-        var file = files[i];
-        var reader = new FileReader();
+//     for (var i = 0; i < files.length; i++) {
+//         var file = files[i];
+//         var reader = new FileReader();
 
-        reader.onload = function (e) {
-            var img = document.createElement("img");
-            img.src = e.target.result;
+//         reader.onload = function (e) {
+//             var img = document.createElement("img");
+//             img.src = e.target.result;
 
-            var gallery = document.getElementById("photoGallery");
-            gallery.appendChild(img);
-        };
+//             var gallery = document.getElementById("photoGallery");
+//             gallery.appendChild(img);
+//         };
 
-        reader.readAsDataURL(file);
-    }
+//         reader.readAsDataURL(file);
+//     }
 
-    fileInput.value = "";
-});
-
-// var uploadForm = document.getElementById("uploadForm");
-// var photoInput = document.getElementById("photoInput");
-// var imageContainer1 = document.getElementById("imageContainer1");
-// var imageContainer2 = document.getElementById("imageContainer2");
-
-// uploadForm.addEventListener("submit", function (event) {
-//     event.preventDefault();
-
-//     var file = photoInput.files[0];
-//     var fileReader = new FileReader();
-
-//     fileReader.onload = function (event) {
-//         var image1 = document.createElement("img");
-//         image1.src = event.target.result;
-//         imageContainer1.appendChild(image1);
-
-//         var image2 = document.createElement("img");
-//         image2.src = event.target.result;
-//         imageContainer2.appendChild(image2);
-//     };
-
-//     fileReader.readAsDataURL(file);
+//     fileInput.value = "";
 // });
+
+var uploadForm = document.getElementById("uploadForm");
+var photoInput = document.getElementById("photoInput");
+var imageContainer1 = document.getElementById("imageContainer1");
+var imageContainer2 = document.getElementById("imageContainer2");
+
+uploadForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    var file = photoInput.files[0];
+    var fileReader = new FileReader();
+
+    fileReader.onload = function (event) {
+        var image1 = document.createElement("img");
+        image1.src = event.target.result;
+        imageContainer1.appendChild(image1);
+
+        var image2 = document.createElement("img");
+        image2.src = event.target.result;
+        imageContainer2.appendChild(image2);
+    };
+
+    fileReader.readAsDataURL(file);
+});
 
 function goToPage(pageId) {
     var pages = document.getElementsByClassName("page");
