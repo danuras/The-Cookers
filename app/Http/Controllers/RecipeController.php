@@ -157,7 +157,7 @@ class RecipeController extends Controller
     public function destroy(Recipe $recipe)
     {
 
-        if (!Gate::allows('delete-recipe', $recipe)) {
+        if (!Gate::allows('admin-recipe', $recipe)) {
             abort(403);
         }
 
@@ -238,4 +238,146 @@ class RecipeController extends Controller
         $data['recipes'] = $recipes;
         return view('recipes.user_recipe', $data);
     }
+
+    /**
+     * Menampilkan halaman edit image (awal pengeditan resep)
+     */
+    public function showEditImage(Recipe $recipe)
+    {
+        if (!Gate::allows('admin-recipe', $recipe)) {
+            abort(403);
+        }
+        Session::put('recipe_id_r', $recipe->id);
+        return view('recipes.edit_recipe.edit_image');
+    }
+
+    /**
+     * fungsi untuk mengupload gambar resep
+     */
+
+    public function editImage(Request $request)
+    {
+        if (!Gate::allows('admin-recipe', Recipe::find(Session::get('recipe_id_r')))) {
+            abort(403);
+        }
+        $image = '';
+
+        Session::flashInput($request->input());
+
+        if ($request->file('image_url')) {
+            $validator = Validator::make($request->all(), [
+                'image_url' => 'image|mimes:jpeg,png,jpg,gif|max:2048|dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000',
+            ]);
+
+            if ($validator->fails()) {
+                return back()->withErrors($validator->errors());
+            }
+            $file = $request->file('image_url');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('images/recipe/image_url/'), $filename);
+            $image = 'images/recipe/image_url/' . $filename;
+            Session::put('image_url_r', $image);
+        }
+        return redirect()->route('recipes.edit-recipe-atribute');
+    }
+
+    /**
+     * menampilkan halaman untuk mengupload atribut resep
+     */
+    public function showEditRecipeAtribute()
+    {
+        if (!Gate::allows('admin-recipe', Recipe::find(Session::get('recipe_id_r')))) {
+            abort(403);
+        }
+        if (Session::has(['image_url_r'])) {
+            return view('recipes.edit_recipe.edit_recipe_atribute')->with([
+                'image_url_r' => Session::get('image_url_r'),
+            ]);
+        } else {
+            return view('recipes.edit_recipe.edit_image');
+        }
+    }
+    /**
+     * Mengupload atribut resep
+     */
+    public function editRecipeAtribute(Request $request)
+    {
+        if (!Gate::allows('admin-recipe', Recipe::find(Session::get('recipe_id_r')))) {
+            abort(403);
+        }
+        Session::flashInput($request->input());
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'description' => 'required|min:30|max:1000',
+            'portion' => 'required|numeric|min:0',
+            'cooking_time' => 'required|numeric|min:0',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator->errors());
+        }
+        $recipe = Recipe::find(Session::get('recipe_id_r'));
+        $recipe->name = $request->name;
+        $recipe->description = $request->description;
+        $recipe->portion = $request->portion;
+        $recipe->cooking_time = $request->cooking_time;
+        $recipe->video_url = $request->video_url;
+        $recipe->image_url = Session::get('image_url_r');
+        $recipe->user_id = Auth::user()->id;
+        $recipe->save();
+        Session::put('has_ea', 'true');
+        return redirect()->route('recipes.edit-recipe-ingredient-and-step');
+    }
+    /**
+     * Menampilkan halaman untuk mengupload bahan-bahan dan langkah-langkah
+     */
+    public function showEditIngredientsAndSteps()
+    {
+        if (!Gate::allows('admin-recipe', Recipe::find(Session::get('recipe_id_r')))) {
+            abort(403);
+        }
+        $recipe_id = Session::get('recipe_id_r');
+        $recipe = Recipe::find($recipe_id);
+        $data['steps'] = $recipe->steps();
+        $data['ingredients'] = $recipe->ingredients();
+        return view('recipes.edit_recipe.edit_recipe_ingredients_and_steps', $data);
+    }
+
+    /**
+     * Menampilkan halaman review_upload_recipe
+     */
+    public function showReviewEditRecipe()
+    {
+        if (!Gate::allows('admin-recipe', Recipe::find(Session::get('recipe_id_r')))) {
+            abort(403);
+        }
+        if (
+            Session::has([
+                'has_ea',
+                'image_url_r'
+            ])
+        ) {
+            $recipe = Recipe::find(Session::get('recipe_id_r'));
+            $data['recipe'] = $recipe;
+            $data['ingredients'] = $recipe->ingredients();
+            $data['steps'] = $recipe->steps();
+            return view('recipes.edit_recipe.review_edit_recipe', $data);
+        } else if (Session::has(['image_url_r'])) {
+            return view('recipes.edit_recipe.edit_recipe_atribute')->with([
+                'image_url_r' => Session::get('image_url_r'),
+            ]);
+        } else {
+            return view('recipes.edit_recipe.edit_image');
+        }
+    }
+    /**
+     * Menampilkan halaman ketika Edit resep selesai
+     */
+    public function showFinishEditRecipe()
+    {
+        Session::forget('image_url_r');
+        Session::forget('recipe_id_r');
+        return view('recipes.edit_recipe.finish');
+    }
+
 }

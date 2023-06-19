@@ -29,6 +29,6 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('create-ingredient', [IngredientPolicy::class, 'create']);
         Gate::define('admin-step', [StepPolicy::class, 'admin']);
         Gate::define('create-step', [StepPolicy::class, 'create']);
-        Gate::define('delete-recipe', [RecipePolicy::class, 'admin']);
+        Gate::define('admin-recipe', [RecipePolicy::class, 'admin']);
     }
 }
