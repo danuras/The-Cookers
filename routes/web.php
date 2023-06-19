@@ -43,13 +43,13 @@ Route::middleware('guest')->group(function () {
     Route::post('save-new-password', [AuthController::class, 'saveNewPassword'])->name('save-new-password');
 });
 
-Route::middleware('auth')/* ->prefix('{locale}') */->group(function () {
+Route::middleware('auth') /* ->prefix('{locale}') */->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::post('send-verification-code', [AuthController::class, 'sendVerificationCode'])->name('send-verification-code');
     Route::post('verify-email', [AuthController::class, 'verifyEmail'])->name('verify-email');
     Route::get('show-verification-code', [AuthController::class, 'showVerificationCode'])->name('show-verification-code');
-    Route::resource('profiles', ProfileController::class)->only(['index', 'edit','update', 'destroy']);
-    Route::prefix('recipes')->group(function (){
+    Route::resource('profiles', ProfileController::class)->only(['index', 'edit', 'update', 'destroy']);
+    Route::prefix('recipes')->group(function () {
         Route::get('{recipe}/detail', [RecipeController::class, 'showDetail']);
         Route::get('upload-image', [RecipeController::class, 'showUploadImage'])->name('recipes.upload-image');
         Route::get('user-recipe', [RecipeController::class, 'showUserRecipe'])->name('recipes.user-recipe');
@@ -59,29 +59,39 @@ Route::middleware('auth')/* ->prefix('{locale}') */->group(function () {
         Route::get('review-upload-recipe', [RecipeController::class, 'showReviewUploadRecipe'])->name('recipes.review-upload-recipe');
         Route::get('upload-recipe-ingredient-and-step', [RecipeController::class, 'showUploadIngredientsAndSteps'])->name('recipes.upload-recipe-ingredient-and-step');
         Route::get('finish-upload-recipe', [RecipeController::class, 'showFinishUploadRecipe'])->name('recipes.finish-upload-recipe');
-        
-        Route::prefix('search-recipe')->group(function (){
+
+        Route::prefix('search-recipe')->group(function () {
             Route::get('/page/{category}', [RecipeController::class, 'showSearchRecipe'])->name('recipes.search-recipe');
             Route::get('/{search}/search-result', [RecipeController::class, 'searchRecipeNotDetail'])->name('recipes.result-recipe');
             Route::get('/{name}/{ingredient}/search-result-detail', [RecipeController::class, 'searchRecipeDetail'])->name('recipes.detail-result-recipe');
         });
-        
+
+        Route::prefix('edit-recipe')->group(function () {
+            Route::get('edit-image/{recipe}', [RecipeController::class, 'showEditImage'])->name('recipes.edit-image');
+            Route::post('edit-image', [RecipeController::class, 'editImage']);
+            Route::get('edit-recipe-atribute', [RecipeController::class, 'showEditRecipeAtribute'])->name('recipes.edit-recipe-atribute');
+            Route::post('edit-recipe-atribute', [RecipeController::class, 'editRecipeAtribute']);
+            Route::get('review-edit-recipe', [RecipeController::class, 'showReviewEditRecipe'])->name('recipes.review-edit-recipe');
+            Route::get('edit-recipe-ingredient-and-step', [RecipeController::class, 'showEditIngredientsAndSteps'])->name('recipes.edit-recipe-ingredient-and-step');
+            Route::get('finish-edit-recipe', [RecipeController::class, 'showFinishEditRecipe'])->name('recipes.finish-edit-recipe');
+        });
+
         Route::delete('{recipe}', [RecipeController::class, 'destroy']);
         /*Route::put('{recipe}/edit', [RecipeController::class, 'update']);
         Route::get('{recipe}/edit', [RecipeController::class, 'showEdit']);
         Route::post('create', [RecipeController::class, 'create']); */
     });
-    Route::prefix('steps')->group(function (){
+    Route::prefix('steps')->group(function () {
         Route::post('create', [StepController::class, 'create']);
         Route::put('update/{id}', [StepController::class, 'update']);
         Route::delete('delete/{step}', [StepController::class, 'delete']);
     });
-    
-    Route::prefix('ingredients')->group(function (){
+
+    Route::prefix('ingredients')->group(function () {
         Route::post('create', [IngredientController::class, 'create']);
         Route::put('update/{id}', [IngredientController::class, 'update']);
         Route::delete('delete/{ingredient}', [IngredientController::class, 'delete']);
     });
 
-    
+
 });

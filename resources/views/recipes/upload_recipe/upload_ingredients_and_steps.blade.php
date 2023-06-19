@@ -1,1 +1,0 @@
-<h1>Halaman ketika upload bahan-bahan dan langkah-langkah</h1>
