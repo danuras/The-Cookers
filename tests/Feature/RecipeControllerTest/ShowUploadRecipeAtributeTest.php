@@ -18,7 +18,7 @@ public function test_show_upload_recipe_atribute_with_image_url_r()
 
     // Menjalankan HTTP POST request ke route 'login' untuk mengotentikasi pengguna
     $this->post(route('login'), [
-        'email' => $user->email,
+        'login' => $user->email,
         'password' => 'password', // Ganti dengan password pengguna yang valid
     ]);
     // Memasukkan nilai 'image_url_r' ke dalam sesi
@@ -43,7 +43,7 @@ public function test_show_upload_recipe_atribute_without_image_url_r()
 
     // Menjalankan HTTP POST request ke route 'login' untuk mengotentikasi pengguna
     $this->post(route('login'), [
-        'email' => $user->email,
+        'login' => $user->email,
         'password' => 'password', // Ganti dengan password pengguna yang valid
     ]);
     // Menghapus nilai 'image_url_r' dari sesi

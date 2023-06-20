@@ -18,7 +18,7 @@ class ShowReviewUploadTest extends TestCase
 
          // Menjalankan HTTP POST request ke route 'login' untuk mengotentikasi pengguna
          $this->post(route('login'), [
-             'email' => $user->email,
+             'login' => $user->email,
              'password' => 'password', // Ganti dengan password pengguna yang valid
          ]);
          
@@ -47,7 +47,7 @@ class ShowReviewUploadTest extends TestCase
 
          // Menjalankan HTTP POST request ke route 'login' untuk mengotentikasi pengguna
          $this->post(route('login'), [
-             'email' => $user->email,
+             'login' => $user->email,
              'password' => 'password', // Ganti dengan password pengguna yang valid
          ]);
         // Mengakses rute review-upload-recipe tanpa adanya data dalam sesi
@@ -64,7 +64,7 @@ class ShowReviewUploadTest extends TestCase
 
          // Menjalankan HTTP POST request ke route 'login' untuk mengotentikasi pengguna
          $this->post(route('login'), [
-             'email' => $user->email,
+             'login' => $user->email,
              'password' => 'password', // Ganti dengan password pengguna yang valid
          ]);
         // Menyiapkan data hanya untuk image_url_r dalam sesi

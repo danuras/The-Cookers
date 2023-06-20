@@ -18,7 +18,7 @@ class ShowEditIngredientsAndStepsTest extends TestCase
 
          // Menjalankan HTTP POST request ke route 'login' untuk mengotentikasi pengguna
          $this->post(route('login'), [
-             'email' => $user->email,
+             'login' => $user->email,
              'password' => 'password', // Ganti dengan password pengguna yang valid
          ]);
         // Membuat dummy recipe untuk diuji
@@ -54,7 +54,7 @@ class ShowEditIngredientsAndStepsTest extends TestCase
 
          // Menjalankan HTTP POST request ke route 'login' untuk mengotentikasi pengguna
          $this->post(route('login'), [
-             'email' => $user->email,
+             'login' => $user->email,
              'password' => 'password', // Ganti dengan password pengguna yang valid
          ]);
         // Membuat dummy recipe untuk diuji
