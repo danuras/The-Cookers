@@ -23,7 +23,7 @@ class VerifyEmailTest extends TestCase
         ]);
 
         $this->post(route('login'), [
-            'email' => $user->email,
+            'login' => $user->email,
             'password' => 'password', // Ganti dengan password pengguna yang valid
         ]);
 
@@ -44,7 +44,7 @@ class VerifyEmailTest extends TestCase
         ]);
 
         $this->post(route('login'), [
-            'email' => $user->email,
+            'login' => $user->email,
             'password' => 'password', // Ganti dengan password pengguna yang valid
         ]);
         $response = $this->actingAs($user)
@@ -65,7 +65,7 @@ class VerifyEmailTest extends TestCase
         ]);
 
         $this->post(route('login'), [
-            'email' => $user->email,
+            'login' => $user->email,
             'password' => 'password', // Ganti dengan password pengguna yang valid
         ]);
         $response = $this->actingAs($user)
@@ -85,7 +85,7 @@ class VerifyEmailTest extends TestCase
         ]);
 
         $this->post(route('login'), [
-            'email' => $user->email,
+            'login' => $user->email,
             'password' => 'password', // Ganti dengan password pengguna yang valid
         ]);
         $response = $this->actingAs($user)

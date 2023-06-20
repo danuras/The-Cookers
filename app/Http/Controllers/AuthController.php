@@ -142,20 +142,28 @@ class AuthController extends Controller
     {
 
         Session::flashInput($request->input());
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
+        
+        $validator = Validator::make($request->all(), [
+            'login' => 'required|email',
+            'password' => 'required|string',
         ]);
+        
+        $loginType = $validator->fails()
+            ? 'username'
+            : 'email';
         $remember = $request->has('remember_me');
 
-        if (Auth::attempt($credentials, $remember)) {
+        if (Auth::attempt([
+            $loginType => $request->login,
+            'password' => $request->password,
+        ], $remember)) {
             $request->session()->regenerate();
 
             return redirect()->intended('/');
         }
 
         return back()->withErrors([
-            'logine' => 'Kombinasi email dan password salah',
+            'logine' => 'Kombinasi '.$loginType.' dan password salah',
         ]);
     }
     /**

@@ -21,7 +21,27 @@ class LoginTest extends TestCase
         
         // Authentikasi user
         $response=$this->post(route('login'), [
-            'email' => $user->email,
+            'login' => $user->email,
+            'password' => 'password', // Ganti dengan password pengguna yang valid
+        ]);
+
+        // Memastikan user di arahkan ke '/' dan status kode 302
+        $response->assertStatus(302);
+        $response->assertRedirect('/');
+
+        // Memastikan user di autentikasi
+        $this->assertTrue(Auth::check());
+
+    }
+    /** @test */
+    public function it_does_login_succesfully_with_username()
+    {
+        // Membuat pengguna (user) baru
+        $user = User::factory()->create();
+        
+        // Authentikasi user
+        $response=$this->post(route('login'), [
+            'login' => $user->username,
             'password' => 'password', // Ganti dengan password pengguna yang valid
         ]);
 
@@ -41,7 +61,7 @@ class LoginTest extends TestCase
         
         // Authentikasi user
         $response=$this->post(route('login'), [
-            'email' => $user->email,
+            'login' => $user->email,
             'password' => 'wrongPassword', // Ganti dengan password pengguna yang valid
         ]);
 

@@ -43,10 +43,10 @@
                 <div class="row justify-content-center">
                     <div class="col-md-4">
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="text" name='email' class="form-control" id="email"
-                                aria-describedby="email" value='{{ old('email') }}' />
-                            @error('email')
+                            <label for="login" class="form-label">Email atau Username</label>
+                            <input type="text" name='login' class="form-control" id="login"
+                                aria-describedby="login" value='{{ old("login") }}' />
+                            @error('login')
                                 <div class="alert alert-danger mt-1 mb-1">
                                     {{ $message }}
                                 </div>

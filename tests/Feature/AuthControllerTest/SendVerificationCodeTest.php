@@ -15,7 +15,7 @@ class SendVerificationCodeTest extends TestCase
     {
         $user = User::factory()->create(['email_verified_at' => Carbon::now()]);
         $this->post(route('login'), [
-            'email' => $user->email,
+            'login' => $user->email,
             'password' => 'password', // Ganti dengan password pengguna yang valid
         ]);
 
@@ -32,7 +32,7 @@ class SendVerificationCodeTest extends TestCase
         ]);
 
         $this->post(route('login'), [
-            'email' => $user->email,
+            'login' => $user->email,
             'password' => 'password', // Ganti dengan password pengguna yang valid
         ]);
         $response = $this->actingAs($user)->post('/send-verification-code');

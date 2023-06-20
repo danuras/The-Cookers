@@ -23,7 +23,7 @@ class ShowDetailRecipeTest extends TestCase
 
         // Menjalankan HTTP POST request ke route 'login' untuk mengotentikasi pengguna
         $this->post(route('login'), [
-            'email' => $user->email,
+            'login' => $user->email,
             'password' => 'password', // Ganti dengan password pengguna yang valid
         ]);
         // Membuat sebuah resep

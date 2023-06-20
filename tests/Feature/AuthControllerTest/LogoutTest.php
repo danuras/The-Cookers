@@ -19,7 +19,7 @@ class LogoutTest extends TestCase
         
         // Authentikasi user
         $this->post(route('login'), [
-            'email' => $user->email,
+            'login' => $user->email,
             'password' => 'password', // Ganti dengan password pengguna yang valid
         ]);
         // Logout
