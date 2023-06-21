@@ -28,7 +28,7 @@ class ShowReviewUploadTest extends TestCase
         Session::put('image_url_r','recipe.jpg');
 
         // Mengakses rute review-upload-recipe
-        $response = $this->get('recipes/review-upload-recipe');
+        $response = $this->get('recipes/upload-recipe/review-upload-recipe');
 
         // Memastikan respons berhasil dengan status 200
         $response->assertStatus(200);
@@ -51,7 +51,7 @@ class ShowReviewUploadTest extends TestCase
              'password' => 'password', // Ganti dengan password pengguna yang valid
          ]);
         // Mengakses rute review-upload-recipe tanpa adanya data dalam sesi
-        $response = $this->get('recipes/review-upload-recipe');
+        $response = $this->get('recipes/upload-recipe/review-upload-recipe');
 
         // Memastikan respons ke halaman upload_image jika tidak ada data dalam sesi
         $response->assertViewIs('recipes.upload_recipe.upload_image');
@@ -74,7 +74,7 @@ class ShowReviewUploadTest extends TestCase
         Session::put($sessionData);
 
         // Mengakses rute review-upload-recipe
-        $response = $this->get('recipes/review-upload-recipe');
+        $response = $this->get('recipes/upload-recipe/review-upload-recipe');
 
         // Memastikan respons berhasil dengan status 200
         $response->assertStatus(200);

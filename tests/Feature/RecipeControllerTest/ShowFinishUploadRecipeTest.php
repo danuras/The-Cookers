@@ -21,7 +21,7 @@ class ShowFinishUploadRecipeTest extends TestCase
             'password' => 'password', // Ganti dengan password pengguna yang valid
         ]);
         // Mengirimkan permintaan GET ke rute yang sesuai
-        $response = $this->get('recipes/finish-upload-recipe');
+        $response = $this->get('recipes/upload-recipe/finish-upload-recipe');
 
         // Memastikan bahwa respons memiliki status 200 (OK)
         $response->assertStatus(200);

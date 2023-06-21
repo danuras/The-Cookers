@@ -24,7 +24,6 @@ Route::get('/', [DashboardController::class, 'index']);
 Route::post('change-locale', [LocaleController::class, 'changeLocale'])->name('change-locale');
 
 Route::middleware('guest')->group(function () {
-
     Route::get('register', [AuthController::class, 'showRegistrationView'])->name('register');
     Route::post('register', [AuthController::class, 'register']);
 
@@ -48,20 +47,25 @@ Route::middleware('auth') /* ->prefix('{locale}') */->group(function () {
     Route::post('send-verification-code', [AuthController::class, 'sendVerificationCode'])->name('send-verification-code');
     Route::post('verify-email', [AuthController::class, 'verifyEmail'])->name('verify-email');
     Route::get('show-verification-code', [AuthController::class, 'showVerificationCode'])->name('show-verification-code');
+    
     Route::resource('profiles', ProfileController::class)->only(['index', 'edit', 'update', 'destroy']);
+    
     Route::prefix('recipes')->group(function () {
         Route::get('{recipe}/detail', [RecipeController::class, 'showDetail']);
-        Route::get('upload-image', [RecipeController::class, 'showUploadImage'])->name('recipes.upload-image');
         Route::get('user-recipe', [RecipeController::class, 'showUserRecipe'])->name('recipes.user-recipe');
-        Route::post('upload-image', [RecipeController::class, 'uploadImage']);
-        Route::get('upload-recipe-atribute', [RecipeController::class, 'showUploadRecipeAtribute'])->name('recipes.upload-recipe-atribute');
-        Route::post('upload-recipe-atribute', [RecipeController::class, 'uploadRecipeAtribute']);
-        Route::get('review-upload-recipe', [RecipeController::class, 'showReviewUploadRecipe'])->name('recipes.review-upload-recipe');
-        Route::get('upload-recipe-ingredient-and-step', [RecipeController::class, 'showUploadIngredientsAndSteps'])->name('recipes.upload-recipe-ingredient-and-step');
-        Route::get('finish-upload-recipe', [RecipeController::class, 'showFinishUploadRecipe'])->name('recipes.finish-upload-recipe');
+        
+        Route::prefix('upload-recipe')->group(function () {
+            Route::get('upload-image', [RecipeController::class, 'showUploadImage'])->name('recipes.upload-image');
+            Route::post('upload-image', [RecipeController::class, 'uploadImage']);
+            Route::get('upload-recipe-atribute', [RecipeController::class, 'showUploadRecipeAtribute'])->name('recipes.upload-recipe-atribute');
+            Route::post('upload-recipe-atribute', [RecipeController::class, 'uploadRecipeAtribute']);
+            Route::get('review-upload-recipe', [RecipeController::class, 'showReviewUploadRecipe'])->name('recipes.review-upload-recipe');
+            Route::get('upload-recipe-ingredient-and-step', [RecipeController::class, 'showUploadIngredientsAndSteps'])->name('recipes.upload-recipe-ingredient-and-step');
+            Route::get('finish-upload-recipe', [RecipeController::class, 'showFinishUploadRecipe'])->name('recipes.finish-upload-recipe');
+        });
 
         Route::prefix('search-recipe')->group(function () {
-            Route::get('/page/{category}', [RecipeController::class, 'showSearchRecipe'])->name('recipes.search-recipe');
+            Route::get('/', [RecipeController::class, 'showSearchRecipe'])->name('recipes.search-recipe');
             Route::get('/{search}/search-result', [RecipeController::class, 'searchRecipeNotDetail'])->name('recipes.result-recipe');
             Route::get('/{name}/{ingredient}/search-result-detail', [RecipeController::class, 'searchRecipeDetail'])->name('recipes.detail-result-recipe');
         });
@@ -77,9 +81,6 @@ Route::middleware('auth') /* ->prefix('{locale}') */->group(function () {
         });
 
         Route::delete('{recipe}', [RecipeController::class, 'destroy']);
-        /*Route::put('{recipe}/edit', [RecipeController::class, 'update']);
-        Route::get('{recipe}/edit', [RecipeController::class, 'showEdit']);
-        Route::post('create', [RecipeController::class, 'create']); */
     });
     Route::prefix('steps')->group(function () {
         Route::post('create', [StepController::class, 'create']);
@@ -92,6 +93,4 @@ Route::middleware('auth') /* ->prefix('{locale}') */->group(function () {
         Route::put('update/{id}', [IngredientController::class, 'update']);
         Route::delete('delete/{ingredient}', [IngredientController::class, 'delete']);
     });
-
-
 });

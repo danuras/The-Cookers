@@ -24,7 +24,7 @@ class ShowUploadImageTest extends TestCase
             'password' => 'password', // Ganti dengan password pengguna yang valid
         ]);
         // Mengirimkan permintaan GET ke URL '/upload-image'
-        $response = $this->get('recipes/upload-image');
+        $response = $this->get('recipes/upload-recipe/upload-image');
 
         // Memastikan bahwa respons memiliki status kode 200
         $response->assertStatus(200);

@@ -25,7 +25,7 @@ public function test_show_upload_recipe_atribute_with_image_url_r()
     Session::put('image_url_r', 'path/to/image.jpg');
     
     // Mengakses rute /upload-recipe-atribute
-    $response = $this->get('recipes/upload-recipe-atribute');
+    $response = $this->get('recipes/upload-recipe/upload-recipe-atribute');
     
     // Memastikan respons memiliki status 200 (OK)
     $response->assertStatus(200)
@@ -50,7 +50,7 @@ public function test_show_upload_recipe_atribute_without_image_url_r()
     Session::forget('image_url_r');
     
     // Mengakses rute /upload-recipe-atribute
-    $response = $this->get('recipes/upload-recipe-atribute');
+    $response = $this->get('recipes/upload-recipe/upload-recipe-atribute');
     
     // Memastikan respons memiliki status 200 (OK)
     $response->assertStatus(200)

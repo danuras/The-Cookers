@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class ShowSearchRecipeTest extends TestCase
 {
-    public function testShowSearchRecipePopular()
+    public function testShowSearchRecipe()
     {
         // Membuat user baru 
         $user = User::factory()->create();
@@ -23,8 +23,8 @@ class ShowSearchRecipeTest extends TestCase
         // Membuat data dummy untuk pengujian
         Recipe::factory()->count(25)->create();
 
-        // Memanggil metode dengan parameter 'popular'
-        $response = $this->get('/recipes/search-recipe/page/popular');
+        // Memanggil route
+        $response = $this->get('/recipes/search-recipe/');
 
         // Memastikan bahwa respons statusnya adalah 200 (OK)
         $response->assertStatus(200);
@@ -39,39 +39,6 @@ class ShowSearchRecipeTest extends TestCase
         $recipes = $response->viewData('recipes');
         $this->assertInstanceOf(\Illuminate\Pagination\LengthAwarePaginator::class, $recipes);
 
-
-        // Memastikan bahwa jumlah data 'recipes' yang ditampilkan adalah 25
-        $this->assertCount(25, $recipes->items());
-    }
-
-    public function testShowSearchRecipeNewest()
-    {
-        // Membuat user baru 
-        $user = User::factory()->create();
-
-        // Menjalankan HTTP POST request ke route 'login' untuk mengotentikasi pengguna
-        $this->post(route('login'), [
-            'login' => $user->email,
-            'password' => 'password', // Ganti dengan password pengguna yang valid
-        ]);
-        // Membuat data dummy untuk pengujian
-        Recipe::factory()->count(25)->create();
-
-        // Memanggil metode dengan parameter 'newest'
-        $response = $this->get('/recipes/search-recipe/page/newest');
-
-        // Memastikan bahwa respons statusnya adalah 200 (OK)
-        $response->assertStatus(200);
-
-        // Memastikan bahwa view yang digunakan adalah 'recipes.search_recipe'
-        $response->assertViewIs('recipes.search_recipe');
-
-        // Memastikan bahwa data 'recipes' dikirim ke view
-        $response->assertViewHas('recipes');
-
-        // Memastikan bahwa data 'recipes' berisi instance dari Paginator
-        $recipes = $response->viewData('recipes');
-        $this->assertInstanceOf(\Illuminate\Pagination\LengthAwarePaginator::class, $recipes);
 
         // Memastikan bahwa jumlah data 'recipes' yang ditampilkan adalah 25
         $this->assertCount(25, $recipes->items());
