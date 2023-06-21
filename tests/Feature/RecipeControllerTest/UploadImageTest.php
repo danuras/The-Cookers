@@ -29,7 +29,7 @@ class UploadImageTest extends TestCase
         $file = UploadedFile::fake()->image('test_image.jpg', 101, 101);
 
         // Mengirimkan permintaan POST dengan file gambar
-        $response = $this->post('recipes/upload-image', ['image_url' => $file]);
+        $response = $this->post('recipes/upload-recipe/upload-image', ['image_url' => $file]);
         $response->assertStatus(302);
 
         // Memastikan bahwa respons mengalihkan pengguna ke rute yang diharapkan
@@ -57,7 +57,7 @@ class UploadImageTest extends TestCase
         $file = UploadedFile::fake()->create('test_file.txt');
 
         // Mengirimkan permintaan POST dengan file gambar yang tidak valid
-        $response = $this->post('recipes/upload-image', ['image_url' => $file]);
+        $response = $this->post('recipes/upload-recipe/upload-image', ['image_url' => $file]);
 
         // Memastikan bahwa respons mengalihkan pengguna kembali ke halaman sebelumnya
         $response->assertRedirect();

@@ -27,7 +27,7 @@ class UploadRecipeAtributeTest extends TestCase
         Session::put('image_url_r', 'recipe_image.jpg');
 
         // Mengirimkan permintaan POST dengan data yang valid
-        $response = $this->post('/recipes/upload-recipe-atribute', [
+        $response = $this->post('/recipes/upload-recipe/upload-recipe-atribute', [
             'name' => 'Recipe Name',
             'description' => 'Recipe description with more than 30 characters.',
             'portion' => 2,
@@ -66,7 +66,7 @@ class UploadRecipeAtributeTest extends TestCase
         Session::put('image_url_r', 'recipe_image.jpg');
 
         // Mengirimkan permintaan POST dengan data yang valid
-        $response = $this->post('/recipes/upload-recipe-atribute', [
+        $response = $this->post('/recipes/upload-recipe/upload-recipe-atribute', [
             'name' => '',
             'description' => 'Recipe Description',
             'portion' => -2,

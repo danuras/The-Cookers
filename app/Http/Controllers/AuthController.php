@@ -25,10 +25,8 @@ class AuthController extends Controller
      *
      *
      */
-
     public function showRegistrationView()
     {
-
         return view('auth.register');
     }
     /**
@@ -129,7 +127,6 @@ class AuthController extends Controller
      */
     public function showLoginView()
     {
-
         return view('auth.login');
     }
 
@@ -140,7 +137,6 @@ class AuthController extends Controller
      */
     public function login(Request $request): RedirectResponse
     {
-
         Session::flashInput($request->input());
         
         $validator = Validator::make($request->all(), [
@@ -173,7 +169,6 @@ class AuthController extends Controller
      */
     public function logout(Request $request): RedirectResponse
     {
-
         Auth::logout();
 
         $request->session()->invalidate();
@@ -189,7 +184,6 @@ class AuthController extends Controller
      */
     public function sendVerificationCode(Request $request): RedirectResponse
     {
-
         if (Auth::user()->hasVerifiedEmail()) {
             return redirect()->intended('/');
         }
@@ -213,10 +207,8 @@ class AuthController extends Controller
      *
      *
      */
-
     public function showEnterEmailView()
     {
-
         return view('auth.reset_password.enterEmail');
     }
     /**
@@ -226,7 +218,6 @@ class AuthController extends Controller
      */
     public function enterEmail(Request $request): RedirectResponse
     {
-
         Session::flashInput($request->input());
         $email = $request->email;
         $user = User::where('email', $email)->first();
@@ -244,7 +235,6 @@ class AuthController extends Controller
         ]);
     }
 
-
     /**
      * Menampilkan halaman enterVerificationCode yang digunakan untuk memasukan kode verifikasi untuk mereset password
      *
@@ -252,7 +242,6 @@ class AuthController extends Controller
      */
     public function showVerificationCodeResetPassword()
     {
-
         if (Session::get('erp')) {
             return view('auth.reset_password.enterVerificationCode');
         } else {
@@ -267,7 +256,6 @@ class AuthController extends Controller
      */
     public function sendVerificationCodeResetPassword(Request $request): RedirectResponse
     {
-
         Session::flashInput($request->input());
         $email = $request->email;
         $user = User::where('email', $email)->first();
@@ -294,7 +282,6 @@ class AuthController extends Controller
      */
     public function saveNewPassword(Request $request)
     {
-
         Session::flashInput($request->input());
         $email = Session::get('erp');
         $request->validate([
@@ -337,7 +324,6 @@ class AuthController extends Controller
      */
     public function verifyCode(Request $request)
     {
-
         Session::flashInput($request->input());
         $request->validate([
             'verification_code' => 'required',
@@ -367,7 +353,6 @@ class AuthController extends Controller
      */
     public function showEnterNewPassword()
     {
-
         if (Session::get('erp') && Session::get('token_code')) {
             return view('auth.reset_password.enterNewPassword');
         } else if (Session::get('erp')) {
@@ -386,7 +371,6 @@ class AuthController extends Controller
      */
     public function verifyEmail(Request $request): RedirectResponse
     {
-
         Session::flashInput($request->input());
 
         if (Auth::user()->hasVerifiedEmail()) {
@@ -420,8 +404,6 @@ class AuthController extends Controller
      */
     public function showVerificationCode()
     {
-
-
         if (Auth::user()->hasVerifiedEmail()) {
             return redirect()->intended('/');
         }

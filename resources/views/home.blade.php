@@ -33,7 +33,7 @@
                         <a class="nav-link mr-4" href="/">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mr-4" href="#">RESEP</a>
+                        <a class="nav-link mr-4" href="/recipes/search-recipe/">RESEP</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link mr-4" href="#">FAVORIT</a>
@@ -84,14 +84,14 @@
         <div class="row mt-3">
             @foreach ($n_recipes as $recipe)
                 <div class="col-md-3">
-                    <a href="/recipes/search-recipe/page/newest" class='card'>
                     <div class="card border">
                         <img src="{{ asset($recipe->image_url) }}" class="card-img-top" alt="..." />
-                        <div class="card-body">
-                            <button class="button">{{$recipe->name}}</button>
-                        </div>
+                        <a href="/recipes/{{$recipe->id}}/detail">
+                            <div class="card-body">
+                                <button class="button">{{$recipe->name}}</button>
+                            </div>
+                        </a>
                     </div>
-                    </a>
                 </div>
             @endforeach
         </div>
@@ -102,14 +102,14 @@
         <div class="row mt-3">
             @foreach ($f_recipes as $recipe)
                 <div class="col-md-3">
-                    <a href="/recipes/search-recipe/page/popular" class='card'>
                     <div class="card border">
                         <img src="{{ asset($recipe->image_url) }}" class="card-img-top" alt="..." />
-                        <div class="card-body">
-                            <button class="button">{{$recipe->name}}</button>
-                        </div>
+                        <a href="/recipes/{{$recipe->id}}/detail">
+                            <div class="card-body">
+                                <button class="button">{{$recipe->name}}</button>
+                            </div>
+                        </a>
                     </div>
-                    </a>
             </div>
             @endforeach
         </div>
