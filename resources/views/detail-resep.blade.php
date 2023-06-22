@@ -49,17 +49,17 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link mr-4" href="#">HOME</a>
+                            <a class="nav-link mr-4" href="/">HOME</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mr-4" href="#">RECEIPT</a>
+                            <a class="nav-link mr-4" href="/recipes/search-recipe/">RESEP</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mr-4" href="#">FAVOURITE</a>
+                            <a class="nav-link mr-4" href="#">FAVORIT</a>
                         </li>
 
                         <li>
-                            <button class="upload-resep">Upload Receipt</button>
+                            <button class="upload-resep">Upload Resep</button>
                         </li>
 
                         <li>

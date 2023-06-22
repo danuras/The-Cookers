@@ -27,33 +27,27 @@
                     <span></span>
                     </div>
                     <h2>{{$profiles->name}}</h2>
+                    <p>{{$profiles->username}}</p>
                     <!-- <p>UX/UI Designer</p> -->
                     <p>{{$profiles->email}}</p>
 
                     <ul class="about">
-                        <li><span>25</span>Saved</li>
-                        <li><span>3</span>Receipt</li>
+                        <li><span>25</span>Disimpan</li>
+                        <li><span>3</span>Resep</li>
                     </ul>
 
                     <div class="content">
                         <p>{{$profiles->info}}</p>
-
-                        <ul>
-                            <li><i class="fab fa-twitter"></i></li>
-                            <i class="fab fa-pinterest"></i>
-                            <i class="fab fa-facebook"></i>
-                            <i class="fab fa-instagram"></i>
-                        </ul>
                     </div>
                 </div>
                 <div class="right__col">
                     <nav>
                         <ul>
-                            <li><a href="/">home</a></li>
+                            <li><a href="/">Home</a></li>
                             <li>
                                 <a
                                     href="{{ route('profiles.index',$profiles->id)}}"
-                                    >favorite</a
+                                    >favorit</a
                                 >
                             </li>
                             <li>
@@ -65,7 +59,7 @@
                         </ul>
                         <button>
                             <a href="{{ route('profiles.edit',$profiles->id) }}">
-                                Account Setting
+                                Pengaturan akun
                             </a>
                         </button>
                     </nav>

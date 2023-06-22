@@ -29,7 +29,7 @@
                     <a class="nav-link mr-4" href="/">HOME</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mr-4" href="#">RESEP</a>
+                    <a class="nav-link mr-4" href="/recipes/search-recipe/">RESEP</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link mr-4" href="#">FAVORIT</a>
@@ -64,28 +64,27 @@
         <div class="row">
             <div class="col-md">
                 <table class="table">
-                    <tbody>
+                    <tbody>    
+                    @foreach ($recipes as $recipe)
                         <tr>
-                            <td>namaResep1</td>
+                            <td>{{$recipe->name}}</td>
                             <td>
-                                <a href="#" class="btn btn-primary">Edit</a>
-                                <a href="#" class="btn btn-danger">Hapus</a>
+                                
+                                <div  class = 'row justify-content-center'>
+                                    <div class = 'col'>
+                                    <a href="/recipes/edit-recipe/edit-image/{{$recipe->id}}" class="btn btn-primary">Edit</a>
+                                    </div>
+                                    <div class = 'col'>
+                                    <form action = '{{route("recipes.delete", $recipe->id)}}' method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type='submit' class="btn btn-danger">Hapus</button>
+                                    </form>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>namaResep2</td>
-                            <td>
-                                <a href="#" class="btn btn-primary">Edit</a>
-                                <a href="#" class="btn btn-danger">Hapus</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>namaResep3</td>
-                            <td>
-                                <a href="#" class="btn btn-primary">Edit</a>
-                                <a href="#" class="btn btn-danger">Hapus</a>
-                            </td>
-                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
 

@@ -154,7 +154,6 @@ class RecipeController extends Controller
      */
     public function destroy(Recipe $recipe)
     {
-
         if (!Gate::allows('admin-recipe', $recipe)) {
             abort(403);
         }
