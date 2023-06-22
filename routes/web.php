@@ -24,11 +24,11 @@ Route::get('/', [DashboardController::class, 'index']);
 Route::post('change-locale', [LocaleController::class, 'changeLocale'])->name('change-locale');
 
 Route::middleware('guest')->group(function () {
-    Route::get('register', [AuthController::class, 'showRegistrationView'])->name('register');
-    Route::post('register', [AuthController::class, 'register']);
+    Route::get('register', [AuthController::class, 'showRegistrationView'])->name('register'); //clear
+    Route::post('register', [AuthController::class, 'register']); //clear
 
-    Route::get('login', [AuthController::class, 'showLoginView'])->name('login');
-    Route::post('login', [AuthController::class, 'login']);
+    Route::get('login', [AuthController::class, 'showLoginView'])->name('login'); //clear
+    Route::post('login', [AuthController::class, 'login']); //clear
 
 
     Route::get('reset-password', [AuthController::class, 'showEnterEmailView'])->name('reset-password');
@@ -44,7 +44,7 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth') /* ->prefix('{locale}') */->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-    Route::post('send-verification-code', [AuthController::class, 'sendVerificationCode'])->name('send-verification-code');
+    Route::post('send-verification-code', [AuthController::class, 'sendVerificationCode'])->name('send-verification-code'); 
     Route::post('verify-email', [AuthController::class, 'verifyEmail'])->name('verify-email');
     Route::get('show-verification-code', [AuthController::class, 'showVerificationCode'])->name('show-verification-code');
     
@@ -80,7 +80,7 @@ Route::middleware('auth') /* ->prefix('{locale}') */->group(function () {
             Route::get('finish-edit-recipe', [RecipeController::class, 'showFinishEditRecipe'])->name('recipes.finish-edit-recipe');
         });
 
-        Route::delete('{recipe}', [RecipeController::class, 'destroy']);
+        Route::delete('{recipe}', [RecipeController::class, 'destroy'])->name('recipes.delete');
     });
     Route::prefix('steps')->group(function () {
         Route::post('create', [StepController::class, 'create']);

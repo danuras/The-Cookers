@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-         \App\Models\User::factory()->create([
+         $mc = \App\Models\User::factory()->create([
              'name' => 'Test User',
              'username' => 'bogeng',
              'email' => 'a@a',
@@ -48,6 +48,11 @@ class DatabaseSeeder extends Seeder
             'dami/salmon.jpg',
             'dami/spageti.jpg',
             'dami/tumis-tahu.jpg',
+        ]);
+        
+        Recipe::factory()->count(10)->create([
+            'image_url' => $array_image->random(),
+            'user_id' => $mc->id,
         ]);
         $i = 0;
         $j = 0;

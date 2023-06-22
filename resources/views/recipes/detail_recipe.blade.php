@@ -43,21 +43,25 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link mr-4" href="#">HOME</a>
+                            <a class="nav-link mr-4" href="/">HOME</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mr-4" href="#">RECEIPT</a>
+                            <a class="nav-link mr-4" href="/recipes/search-recipe/">RESEP</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mr-4" href="#">FAVOURITE</a>
+                            <a class="nav-link mr-4" href="#">FAVORIT</a>
                         </li>
 
                         <li>
-                            <button class="upload-resep">Upload Receipt</button>
+                            <button class="upload-resep">
+                                <a href="{{ route('recipes.upload-image') }}">Upload Resep</a>
+                            </button>
                         </li>
 
                         <li>
-                            <button class="profil">Profile</button>
+                            <button class="profil">
+                                <a href="{{ route('profiles.index') }}">Profil</a>
+                            </button>
                         </li>
 
                         <!-- <li class="nav-item">
@@ -112,7 +116,7 @@
 
                 <p class="rating">{{$avg_ratting}}/5</p>
 
-                <button class="btn-rate">Rate</button>
+                <button class="btn-rate">Nilai</button>
 
                 <img
                     class="bookmark"
@@ -120,12 +124,12 @@
                     alt=""
                 />
 
-                <p class="fav">Favourite</p>
+                <p class="fav">Favorit</p>
                 <ul class="share">
                     <i class="fa fa-share"></i>
                 </ul>
 
-                <p class="p-share">Share</p>
+                <p class="p-share">Bagikan</p>
             </div>
 
             <hr />
@@ -135,7 +139,7 @@
                 src="{{asset ('assets/youtube.png')}}"
                 alt=""
             />
-            <h5 class="tutorial">Watch Video Tutorial</h5>
+            <h5 class="tutorial">Lihat video tutorial</h5>
 
             <hr />
 
