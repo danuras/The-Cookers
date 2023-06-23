@@ -19,7 +19,7 @@
 <body class="bg">
     <section class="py-5 my-5">
         <div class="container">
-            <h1 class="mb-5">Pengaturan Akun</h1>
+            <h1 class="mb-2">Pengaturan Akun</h1>
             <div class="bg-white shadow rounded-lg d-block d-sm-flex" id="section-tengah">
                 <div class="profile-tab-nav border-right" id="section-kiri">
                     <div class="p-4">
@@ -137,7 +137,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Gender</label>
+                                        <label>Jenis Kelamin</label>
                                         <select class="form-control" name='gender'>
                                             @if ($profile->gender == '1')
                                                 <option value="1" selected>Laki-laki</option>
@@ -157,15 +157,15 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Info</label> {{-- harusnya ada max character --}}
+                                        <label>Info</label>
                                         <input type="text" class="form-control" value="{{ $profile->info }}"
-                                            name='info' />
+                                            name='info' maxlength="100" />
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Bio</label> {{-- harusnya ada max character --}}
-                                        <textarea class="form-control" name='bio' rows="4">
+                                        <label>Bio</label>
+                                        <textarea class="form-control" name='bio' rows="4" maxlength="500">
                                                 {{ $profile->bio }}
                                             </textarea>
                                     </div>

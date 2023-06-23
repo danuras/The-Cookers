@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>Masukan Password Baru</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
+        <link rel="stylesheet" href="{{ asset('css/style-auth.css') }}">
     </head>
     <body>
         <div class="container mt-2">
@@ -43,7 +44,7 @@
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
                     </div>
-                    <button type="submit" class="btn btn-primary ml-3">Submit</button>
+                    <button type="submit" class="ml-3" id="btn-submit">Submit</button>
                 </div>  
             </form>
     </body>
