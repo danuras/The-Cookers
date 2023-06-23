@@ -73,4 +73,22 @@ class LoginTest extends TestCase
         // Memastikan user tidak di autentikasi
         $this->assertFalse(Auth::check());
     }
+    /** @test */
+    public function user_cannot_login_with_invalid_input()
+    {
+        // Membuat pengguna (user) baru
+        $user = User::factory()->create();
+        
+        // Authentikasi user
+        $response=$this->post(route('login'), [
+             // Ganti dengan password pengguna yang valid
+        ]);
+
+        // Memastikan user tetap berada di login page dan ada pesan errornya
+        $response->assertStatus(302);
+        $response->assertSessionHasErrors(['login', 'password']);
+
+        // Memastikan user tidak di autentikasi
+        $this->assertFalse(Auth::check());
+    }
 }

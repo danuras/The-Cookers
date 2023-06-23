@@ -48,7 +48,7 @@
                                 aria-describedby="login" value='{{ old("login") }}' />
                             @error('login')
                                 <div class="alert alert-danger mt-1 mb-1">
-                                    {{ $message }}
+                                    Email atau username wajib diisi
                                 </div>
                             @enderror
                         </div>
