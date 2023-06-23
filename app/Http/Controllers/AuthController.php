@@ -140,8 +140,14 @@ class AuthController extends Controller
         Session::flashInput($request->input());
         
         $validator = Validator::make($request->all(), [
-            'login' => 'required|email',
+            'login' => 'required',
             'password' => 'required|string',
+        ]);
+        if($validator->fails()){
+            return back()->withErrors($validator->errors());
+        }
+        $validator = Validator::make($request->all(), [
+            'login' => 'email',
         ]);
         
         $loginType = $validator->fails()
