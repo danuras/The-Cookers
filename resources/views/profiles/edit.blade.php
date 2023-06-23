@@ -24,17 +24,16 @@
                 <div class="profile-tab-nav border-right" id="section-kiri">
                     <div class="p-4">
                         <div class="img-circle text-center mb-3">
-                            @if (session('photo_profile_c'))
+                            @if ($profile->photo_profile)
+                                <img class="shadow" id="profile-pic"
+                                    src="{{ asset($profile->photo_profile) }}"
+                                    alt="Profile" width="200" height="200">
+                            @elseif (session('photo_profile_c'))
                                 <img class="shadow" id="profile-pic"
                                     src="data:image/png;base64,{{ session('photo_profile_c') }}" alt="Profile"
                                     width="200" height="200">
-
                                 <input type="hidden" id='last_pp' name="last_pp"
                                     value="{{ session('photo_profile_c') }}" class="form-control">
-                            @elseif ($profile->photo_profile)
-                                <img class="shadow" id="profile-pic"
-                                    src="data:image/png;base64,{{ base64_encode($profile->photo_profile) }}"
-                                    alt="Profile" width="200" height="200">
                             @else
                                 <img class="shadow" id="profile-pic" src="{{ asset('assets/default/profile.png') }}"
                                     alt="Profile" width="200" height="200">
