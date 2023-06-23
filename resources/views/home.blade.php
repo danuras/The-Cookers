@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style-home.css') }}" />
     <link rel="stylesheet" type="text/css" href="fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="sweetalert2.min.css">
 
     <title>HOME</title>
 </head>
@@ -38,16 +39,19 @@
                     <li class="nav-item">
                         <a class="nav-link mr-4" href="#">FAVORIT</a>
                     </li>
-
                     <li>
                         <button class="upload-resep">
                             <a href="{{ route('recipes.upload-image') }}">Upload Resep</a>
                         </button>
                     </li>
-
                     <li>
                         <button class="profil">
                             <a href="{{ route('profiles.index') }}">Profil</a>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="profil">
+                            <a href="#" onclick="logoutConfirmation()">Keluar</a>
                         </button>
                     </li>
                 </ul>
@@ -86,16 +90,16 @@
                 <div class="col-md-3">
                     <div class="card border">
                         <img src="{{ asset($recipe->image_url) }}" class="card-img-top" alt="..." />
-                        <a href="/recipes/{{$recipe->id}}/detail">
+                        <a href="/recipes/{{ $recipe->id }}/detail">
                             <div class="card-body">
-                                <button class="button">{{$recipe->name}}</button>
+                                <button class="button">{{ $recipe->name }}</button>
                             </div>
                         </a>
                     </div>
                 </div>
             @endforeach
         </div>
-        
+
 
         <h3 class="PR">RESEP POPULER</h3>
 
@@ -104,13 +108,13 @@
                 <div class="col-md-3">
                     <div class="card border">
                         <img src="{{ asset($recipe->image_url) }}" class="card-img-top" alt="..." />
-                        <a href="/recipes/{{$recipe->id}}/detail">
+                        <a href="/recipes/{{ $recipe->id }}/detail">
                             <div class="card-body">
-                                <button class="button">{{$recipe->name}}</button>
+                                <button class="button">{{ $recipe->name }}</button>
                             </div>
                         </a>
                     </div>
-            </div>
+                </div>
             @endforeach
         </div>
         <br>
@@ -130,6 +134,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
     </script>
+    <script src="{{ asset('js/script-dashboard.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.js"></script>
 </body>
