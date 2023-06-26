@@ -6,6 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
+    <link rel="icon" type="image/png" href="{{ asset('assets/cookers.png') }}">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
@@ -36,9 +37,6 @@
                     <li class="nav-item">
                         <a class="nav-link mr-4" href="/recipes/search-recipe/">RESEP</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link mr-4" href="#">FAVORIT</a>
-                    </li>
                     <li>
                         <button class="upload-resep">
                             <a href="{{ route('recipes.upload-image') }}">Upload Resep</a>
@@ -62,20 +60,6 @@
                     <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
                 </ul>
             </div>
-
-            <!-- <li class="nav-item">
-                            <a class="nav-link mr-4" href="#">MY RECEIPT</a>
-                        </li> -->
-
-            <!-- <form>
-                            <input
-                                type="text"
-                                id="kolom-pencarian"
-                                class="pencarian"
-                                placeholder="Search"
-                            />
-                            <i class="fa-thin fa-magnifying-glass"></i>
-                        </form> -->
         </div>
     </nav>
     <!-- Akhir Navbar -->

@@ -10,7 +10,6 @@ body {
     box-sizing: border-box;
     min-height: 100vh;
     font-family: "Poppins", sans-serif;
-    background-color: #ffcf9c;
 }
 
 ul {
@@ -26,9 +25,7 @@ a {
 }
 
 .header__wrapper header {
-    width: 100%;
-    background: url("../img/bg_profil.jpg") no-repeat 50% 20% / cover;
-    min-height: calc(100px + 15vw);
+    padding-top: 8rem;
 }
 
 .header__wrapper .cols__container .left__col {
@@ -119,11 +116,11 @@ a {
 .header__wrapper .cols__container .content ul i {
     font-size: 1.3rem;
 }
-.header__wrapper .cols__container .right__col nav {
+.header__wrapper .cols__container .right__col #sub-nav {
     display: flex;
     align-items: center;
     padding: 30px 0;
-    justify-content: space-between;
+    justify-content: end;
     flex-direction: column;
 }
 
@@ -131,26 +128,26 @@ a {
     cursor: pointer;
 }
 
-.header__wrapper .cols__container .right__col nav ul {
+.header__wrapper .cols__container .right__col #sub-nav ul {
     display: flex;
     gap: 20px;
     flex-direction: column;
 }
-.header__wrapper .cols__container .right__col nav ul li a {
+.header__wrapper .cols__container .right__col #sub-nav ul li a {
     text-transform: uppercase;
     color: #3b1c32;
 }
 
-.header__wrapper .cols__container .right__col nav ul li a:hover {
+.header__wrapper .cols__container .right__col #sub-nav ul li a:hover {
     color: #b96d40;
 }
 
-/* .header__wrapper .cols__container .right__col nav ul li:nth-child(1) a {
+/* .header__wrapper .cols__container .right__col #sub-nav ul li:nth-child(1) a {
     color: #1d1d1d;
     font-weight: 600;
 } */
 
-.header__wrapper .cols__container .right__col nav button {
+.header__wrapper .cols__container .right__col #sub-nav button {
     background: #b96d40;
     color: #ffcf9c;
     border: none;
@@ -159,7 +156,7 @@ a {
     cursor: pointer;
     margin-top: 20px;
 }
-.header__wrapper .cols__container .right__col nav button:hover {
+.header__wrapper .cols__container .right__col #sub-nav button:hover {
     opacity: 0.8;
     color: #3b1c32;
 }
@@ -280,7 +277,7 @@ a {
         padding: 25px 0px;
     }
 
-    .header__wrapper .cols__container .right__col nav ul {
+    .header__wrapper .cols__container .right__col #sub-nav ul {
         flex-direction: row;
         gap: 30px;
     }
@@ -296,10 +293,19 @@ a {
         margin: 0;
         margin-right: auto;
     }
-    .header__wrapper .cols__container .right__col nav {
+    .header__wrapper .cols__container .right__col #sub-nav {
         flex-direction: row;
     }
-    .header__wrapper .cols__container .right__col nav button {
+    .header__wrapper .cols__container .right__col #sub-nav button {
         margin-top: 0;
     }
+}
+
+#sub-nav button a {
+    text-decoration: none;
+    color: white;
+}
+
+#sub-nav button {
+    margin-right: 10px;
 }
