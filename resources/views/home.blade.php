@@ -24,9 +24,9 @@
         <div class="container">
             <div class="logo">
                 <img
-                    class="logo-img"
-                    src="C:\Users\Asus\Downloads\The-Cookers\resources\views\home\home\img\logo.png"
-                    alt=""
+                class="logo-img"
+                src="{{asset('assets/logo.png')}}"
+                alt=""
                 />
             </div>
             <nav>
