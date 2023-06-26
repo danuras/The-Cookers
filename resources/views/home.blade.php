@@ -20,52 +20,36 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
+    <header>
         <div class="container">
-            <img src="{{ asset('assets/logo.png') }}" alt="" />
-            <!-- <a class="navbar-brand text-white" href="index.html"><strong>Bakso</strong> Solo Baru</a> -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link mr-4" href="/">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link mr-4" href="/recipes/search-recipe/">RESEP</a>
-                    </li>
-                    <li>
-                        <button class="upload-resep">
-                            <a href="{{ route('recipes.upload-image') }}">Upload Resep</a>
-                        </button>
-                    </li>
-                    <li>
-                        <button class="profil">
-                            <a href="{{ route('profiles.index') }}">Profil</a>
-                        </button>
-                    </li>
-                    <li>
-                        <button class="profil">
-                            <a href="#" onclick="logoutConfirmation()">Keluar</a>
-                        </button>
-                    </li>
-                </ul>
+            <div class="logo">
+                <img
+                    class="logo-img"
+                    src="C:\Users\Asus\Downloads\The-Cookers\resources\views\home\home\img\logo.png"
+                    alt=""
+                />
             </div>
-
-            <div class="hamburger">
-                <ul>
-                    <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+            <nav>
+                <input type="checkbox" id="menu-toggle" />
+                <label for="menu-toggle" class="menu-icon">&#9776;</label>
+                <ul class="menu">
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">RECEIPT</a></li>
+                    <li>
+                        <button class="btn">UPLOAD RECEIPT</button>
+                    </li>
+                    <li>
+                        <button class="btn">PROFILE</button>
+                    </li>
+                    <li><button class="btn">KELUAR</button></li>
                 </ul>
-            </div>
+            </nav>
         </div>
-    </nav>
+    </header>
     <!-- Akhir Navbar -->
 
     <!-- Menu -->
-    <div class="container">
+    <div class="content">
         <!-- <a href="#" class="btn btn-success mt-3">UPLOAD RECEIPT</a> -->
 
         <h3 class="RT">RESEP TERBARU</h3>
