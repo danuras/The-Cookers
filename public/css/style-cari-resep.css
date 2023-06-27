@@ -1,0 +1,41 @@
+:root {
+    --rose-red: #ca054d;
+    --dark-purple: #3b1c32;
+    --celadon: #a4d4b4;
+    --sunset: #ffcf9c;
+    --brown-sugar: #b96d40;
+}
+
+* {
+    font-family: "Poppins", sans-serif;
+}
+
+#btn-cari-biasa {
+    background-color: var(--rose-red);
+    color: white;
+    border-radius: 5px;
+    border-width: 0;
+    width: 100px;
+}
+
+#btn-cari-biasa:hover {
+    background-color: red;
+}
+
+#btn-cari-spesifik {
+    background-color: var(--rose-red);
+    color: white;
+    border-radius: 5px;
+    border-width: 0;
+    width: 80px;
+    height: 40px;
+}
+
+#btn-cari-spesifik:hover {
+    background-color: red;
+}
+
+#kotak-cari-spesifik {
+    background-color: var(--sunset);
+    border-radius: 20px;
+}
