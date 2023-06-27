@@ -85,6 +85,9 @@
         e.preventDefault(); // Mencegah submit form
         var searchValue = document.getElementById("searchInput").value;
         var formAction = "{{ route('recipes.result-recipe', ['search' => ':search']) }}";
+        if(searchValue == ""){
+            searchValue = " ";
+        }
         formAction = formAction.replace(':search', encodeURIComponent(searchValue));
         document.getElementById("form-search-biasa").action = formAction;
         document.getElementById("form-search-biasa").submit(); // Submit form setelah URL diubah
@@ -92,7 +95,15 @@
     document.getElementById("form-search-detail").addEventListener("submit", function(e) {
         e.preventDefault(); // Mencegah submit form
         var nameRecipe = document.getElementById("nama-resep").value;
+        
+        if(nameRecipe == ""){
+            nameRecipe = " ";
+        }
+        
         var ingredientRecipe = document.getElementById("bahan-resep").value;
+        if(ingredientRecipe == ""){
+            ingredientRecipe = " ";
+        }
         var formAction = "{{ route('recipes.detail-result-recipe', ['name' => ':name', 'ingredient' => ':ingredient']) }}";
         formAction = formAction.replace(':name', encodeURIComponent(nameRecipe));
         formAction = formAction.replace(':ingredient', encodeURIComponent(ingredientRecipe));
