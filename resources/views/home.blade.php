@@ -34,7 +34,7 @@
                 <label for="menu-toggle" class="menu-icon">&#9776;</label>
                 <ul class="menu">
                     <li><a href="#">HOME</a></li>
-                    <li><a href="#">RECEIPT</a></li>
+                    <li><a href="{{ route('recipes.search-recipe') }}">RECEIPT</a></li>
                     <li>
                         <button class="btn">UPLOAD RECEIPT</button>
                     </li>
