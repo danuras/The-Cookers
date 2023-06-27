@@ -23,7 +23,8 @@
             <div class="col-md-4">
                 <div class="container sticky-md-top pt-5 pb-5" id="kotak-cari-spesifik">
                     <div class="row">
-                        <form>
+                        <form method = "GET" id = "form-search-detail">
+                            @method("GET")
                             <p>Cari resep yang lebih spesifik?</p>
                             <div class="mb-3">
                                 <label for="nama-resep" class="form-label">Nama Resep</label>
@@ -45,9 +46,10 @@
                     <div class="col-md">
                         <nav class="navbar navbar-light">
                             <div class="container-fluid">
-                                <form class="d-flex ms-auto">
+                                <form id = 'form-search-biasa' class="d-flex ms-auto" method = "GET">
+                                    @method('GET')
                                     <input class="form-control me-2" type="search" placeholder="Cari Resep"
-                                        aria-label="Search">
+                                        aria-label="Search" id = "searchInput">
                                     <button class="" id="btn-cari-biasa" type="submit">Cari</button>
                                 </form>
                             </div>
@@ -76,6 +78,27 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    
+    <script>
+    document.getElementById("form-search-biasa").addEventListener("submit", function(e) {
+        e.preventDefault(); // Mencegah submit form
+        var searchValue = document.getElementById("searchInput").value;
+        var formAction = "{{ route('recipes.result-recipe', ['search' => ':search']) }}";
+        formAction = formAction.replace(':search', encodeURIComponent(searchValue));
+        document.getElementById("form-search-biasa").action = formAction;
+        document.getElementById("form-search-biasa").submit(); // Submit form setelah URL diubah
+    });
+    document.getElementById("form-search-detail").addEventListener("submit", function(e) {
+        e.preventDefault(); // Mencegah submit form
+        var nameRecipe = document.getElementById("nama-resep").value;
+        var ingredientRecipe = document.getElementById("bahan-resep").value;
+        var formAction = "{{ route('recipes.detail-result-recipe', ['name' => ':name', 'ingredient' => ':ingredient']) }}";
+        formAction = formAction.replace(':name', encodeURIComponent(nameRecipe));
+        formAction = formAction.replace(':ingredient', encodeURIComponent(ingredientRecipe));
+        document.getElementById("form-search-detail").action = formAction;
+        document.getElementById("form-search-detail").submit(); // Submit form setelah URL diubah
+    });
     </script>
 </body>
 
