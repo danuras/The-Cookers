@@ -54,13 +54,12 @@ Route::middleware('auth') /* ->prefix('{locale}') */->group(function () {
         Route::get('{recipe}/detail', [RecipeController::class, 'showDetail']);
         Route::get('user-recipe', [RecipeController::class, 'showUserRecipe'])->name('recipes.user-recipe');
         
-        Route::prefix('upload-recipe')->group(function () {
+        Route::middleware('verified')->prefix('upload-recipe')->group(function () {
             Route::get('upload-image', [RecipeController::class, 'showUploadImage'])->name('recipes.upload-image');
-            Route::post('upload-image', [RecipeController::class, 'uploadImage']);
+            Route::post('upload-image', [RecipeController::class, 'uploadImage'])->name('save.recipes.upload-image');
             Route::get('upload-recipe-atribute', [RecipeController::class, 'showUploadRecipeAtribute'])->name('recipes.upload-recipe-atribute');
-            Route::post('upload-recipe-atribute', [RecipeController::class, 'uploadRecipeAtribute']);
+            Route::post('upload-recipe-atribute', [RecipeController::class, 'uploadRecipeAtribute'])->name('save.recipes.upload-recipe-atribute');
             Route::get('review-upload-recipe', [RecipeController::class, 'showReviewUploadRecipe'])->name('recipes.review-upload-recipe');
-            Route::get('upload-recipe-ingredient-and-step', [RecipeController::class, 'showUploadIngredientsAndSteps'])->name('recipes.upload-recipe-ingredient-and-step');
             Route::get('finish-upload-recipe', [RecipeController::class, 'showFinishUploadRecipe'])->name('recipes.finish-upload-recipe');
         });
 
@@ -70,27 +69,15 @@ Route::middleware('auth') /* ->prefix('{locale}') */->group(function () {
             Route::get('/{name}/{ingredient}/search-result-detail', [RecipeController::class, 'searchRecipeDetail'])->name('recipes.detail-result-recipe');
         });
 
-        Route::prefix('edit-recipe')->group(function () {
+        Route::middleware('verified')->prefix('edit-recipe')->group(function () {
             Route::get('edit-image/{recipe}', [RecipeController::class, 'showEditImage'])->name('recipes.edit-image');
-            Route::post('edit-image', [RecipeController::class, 'editImage']);
+            Route::post('edit-image', [RecipeController::class, 'editImage'])->name('save.recipes.edit-image');
             Route::get('edit-recipe-atribute', [RecipeController::class, 'showEditRecipeAtribute'])->name('recipes.edit-recipe-atribute');
-            Route::post('edit-recipe-atribute', [RecipeController::class, 'editRecipeAtribute']);
+            Route::post('edit-recipe-atribute', [RecipeController::class, 'editRecipeAtribute'])->name('save.recipes.edit-recipe-atribute');
             Route::get('review-edit-recipe', [RecipeController::class, 'showReviewEditRecipe'])->name('recipes.review-edit-recipe');
-            Route::get('edit-recipe-ingredient-and-step', [RecipeController::class, 'showEditIngredientsAndSteps'])->name('recipes.edit-recipe-ingredient-and-step');
             Route::get('finish-edit-recipe', [RecipeController::class, 'showFinishEditRecipe'])->name('recipes.finish-edit-recipe');
         });
 
         Route::delete('{recipe}', [RecipeController::class, 'destroy'])->name('recipes.delete');
-    });
-    Route::prefix('steps')->group(function () {
-        Route::post('create', [StepController::class, 'create']);
-        Route::put('update/{id}', [StepController::class, 'update']);
-        Route::delete('delete/{step}', [StepController::class, 'delete']);
-    });
-
-    Route::prefix('ingredients')->group(function () {
-        Route::post('create', [IngredientController::class, 'create']);
-        Route::put('update/{id}', [IngredientController::class, 'update']);
-        Route::delete('delete/{ingredient}', [IngredientController::class, 'delete']);
     });
 });

@@ -32,25 +32,23 @@ class UploadRecipeAtributeTest extends TestCase
             'description' => 'Recipe description with more than 30 characters.',
             'portion' => 2,
             'cooking_time' => 30,
+            'steps' => 'gulung\ngulung\ngulung',
+            'ingredients' => 'fiesta\nchicken\nnugget',
         ]);
 
         // Memastikan status respons adalah 302 (redirect)
         $response->assertStatus(302);
 
-        // Memastikan bahwa resep telah disimpan ke database
-        $this->assertDatabaseHas('recipes', [
-            'name' => 'Recipe Name',
-            'description' => 'Recipe description with more than 30 characters.',
-            'portion' => 2,
-            'cooking_time' => 30,
-            'user_id' => $user->id,
-        ]);
-
         // Memastikan bahwa session telah disimpan dengan benar
-        $this->assertNotNull(Session::get('recipe_id_r'));
+        $this->assertNotNull(Session::get('r_name'));
+        $this->assertNotNull(Session::get('r_description'));
+        $this->assertNotNull(Session::get('r_portion'));
+        $this->assertNotNull(Session::get('r_cooking_time'));
+        $this->assertNotNull(Session::get('r_steps'));
+        $this->assertNotNull(Session::get('r_ingredients'));
 
         // Memastikan pengalihan ke rute yang tepat
-        $response->assertRedirect(route('recipes.upload-recipe-ingredient-and-step'));
+        $response->assertRedirect(route('recipes.review-upload-recipe'));
     }
     public function test_upload_recipe_atribute_invalid_input()
     {
@@ -68,7 +66,7 @@ class UploadRecipeAtributeTest extends TestCase
         // Mengirimkan permintaan POST dengan data yang valid
         $response = $this->post('/recipes/upload-recipe/upload-recipe-atribute', [
             'name' => '',
-            'description' => 'Recipe Description',
+            'description' => '',
             'portion' => -2,
             'cooking_time' => 'abc',
         ]);

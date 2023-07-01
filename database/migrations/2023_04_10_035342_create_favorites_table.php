@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('recipe_id');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('recipe_id')->references('id')->on('recipes');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('recipe_id')->references('id')->on('recipes')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->index('recipe_id');
             $table->index('user_id');
             $table->unique(['user_id', 'recipe_id']);

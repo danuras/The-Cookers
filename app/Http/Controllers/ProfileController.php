@@ -62,6 +62,7 @@ class ProfileController extends Controller
         }
         $validator = Validator::make($request->all(), [
             'name' => 'required',
+            'no_phone' => 'required',
             'gender' => 'required|max:1',
             'info' => 'max:30',
             'bio' => 'max:500',

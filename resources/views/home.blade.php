@@ -34,14 +34,21 @@
                 <label for="menu-toggle" class="menu-icon">&#9776;</label>
                 <ul class="menu">
                     <li><a href="#">HOME</a></li>
-                    <li><a href="{{ route('recipes.search-recipe') }}">RECEIPT</a></li>
+                    <li><a href="{{ route('recipes.search-recipe') }}">RESEP</a></li>
                     <li>
-                        <button class="btn">UPLOAD RECEIPT</button>
+                        <button class="btn">
+                            <a href="{{ route('recipes.upload-image') }}">UPLOAD RESEP</a>
+                        </button>
                     </li>
                     <li>
-                        <button class="btn">PROFILE</button>
+                        <button class="btn">
+                            <a href="{{ route('profiles.index') }}">Profil</a>
+                        </button>
                     </li>
-                    <li><button class="btn">KELUAR</button></li>
+                    <li><button class="btn">
+                            <a href="#" onclick="logoutConfirmation()">Keluar</a>
+                        </button>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -58,11 +65,11 @@
                 <div class="col-md-3">
                     <div class="card border">
                         <img src="{{ asset($recipe->image_url) }}" class="card-img-top" alt="..." />
-                        <a href="/recipes/{{ $recipe->id }}/detail">
+                        <center><a href="/recipes/{{ $recipe->id }}/detail">
                             <div class="card-body">
                                 <button class="button">{{ $recipe->name }}</button>
                             </div>
-                        </a>
+                        </a></center>
                     </div>
                 </div>
             @endforeach
@@ -76,11 +83,11 @@
                 <div class="col-md-3">
                     <div class="card border">
                         <img src="{{ asset($recipe->image_url) }}" class="card-img-top" alt="..." />
-                        <a href="/recipes/{{ $recipe->id }}/detail">
+                        <center><a href="/recipes/{{ $recipe->id }}/detail">
                             <div class="card-body">
                                 <button class="button">{{ $recipe->name }}</button>
                             </div>
-                        </a>
+                        </a></center>
                     </div>
                 </div>
             @endforeach
