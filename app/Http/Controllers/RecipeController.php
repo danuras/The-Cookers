@@ -85,7 +85,7 @@ class RecipeController extends Controller
         Session::flashInput($request->input());
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'description' => 'required|max:1000',
+            'description' => 'required|max:5000',
             'portion' => 'required|numeric|min:0',
             'cooking_time' => 'required|numeric|min:0',
             'steps' => 'required',
@@ -361,7 +361,7 @@ class RecipeController extends Controller
         Session::flashInput($request->input());
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'description' => 'required|max:1000',
+            'description' => 'required|max:5000',
             'portion' => 'required|numeric|min:0',
             'cooking_time' => 'required|numeric|min:0',
             'steps' => 'required',
