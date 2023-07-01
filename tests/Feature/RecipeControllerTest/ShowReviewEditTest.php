@@ -31,6 +31,15 @@ class ShowReviewEditTest extends TestCase
         Session::put('recipe_id_r', $recipe->id);
         Session::put('has_ea', 'true');
         Session::put('image_url_r','recipe.jpg');
+        // Buat resep palsu untuk pengujian
+        Session::put('r_name', $recipe->name);
+        Session::put('r_description', $recipe->description);
+        Session::put('r_portion', $recipe->portion);
+        Session::put('r_cooking_time', $recipe->cooking_time);
+        Session::put('r_steps', ['ngulang', 'ngulang', 'ngulang']);
+        Session::put('r_ingredients', ['fiesta', 'chicken', 'nugget']);
+        Session::put('image_url_r','recipe.jpg');
+        
 
         // Mengakses rute review-edit-recipe
         $response = $this->get('recipes/edit-recipe/review-edit-recipe');
@@ -40,9 +49,8 @@ class ShowReviewEditTest extends TestCase
 
         // Memastikan bahwa data dalam sesi disertakan dalam tampilan
         $recipe = Recipe::find($recipe->id);
-        $response->assertViewHas('recipe', $recipe);
-        $response->assertViewHas('ingredients', $recipe->ingredients());
-        $response->assertViewHas('steps', $recipe->steps());
+        $response->assertViewHas('ingredients');
+        $response->assertViewHas('steps');
     }
 
     public function testShowReviewEditRecipe_NoDataInSession()

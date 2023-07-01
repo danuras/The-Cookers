@@ -39,17 +39,17 @@
                         <a class="nav-link mr-4" href="/recipes/search-recipe/">RESEP</a>
                     </li>
                     <li>
-                        <button class="upload-resep">
+                        <button class="btn">
                             <a href="{{ route('recipes.upload-image') }}">Upload Resep</a>
                         </button>
                     </li>
                     <li>
-                        <button class="profil">
+                        <button class="btn">
                             <a href="{{ route('profiles.index') }}">Profil</a>
                         </button>
                     </li>
                     <li>
-                        <button class="profil">
+                        <button class="btn">
                             <a href="#" onclick="logoutConfirmation()">Keluar</a>
                         </button>
                     </li>

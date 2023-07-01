@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
 {
@@ -15,6 +16,15 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        
+        Session::forget('image_url_r');
+        Session::forget('r_name');
+        Session::forget('r_description');
+        Session::forget('r_portion');
+        Session::forget('r_cooking_time');
+        Session::forget('r_video_url');
+        Session::forget('r_steps');
+        Session::forget('r_ingredients');
         if (auth()->check()) {
             // Mengambil data resep dengan mengurutkannya berdasarkan jumlah favorit
             // dan memuat jumlah favorit yang terkait dengan setiap resep

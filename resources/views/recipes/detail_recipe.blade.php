@@ -167,7 +167,7 @@
                 {{$steps[$i]->value}}
             </p>
             <center>
-            @foreach (json_decode($steps[$i]->images) as $image)
+            @foreach (json_decode($steps[$i]->images??"[]") as $image)
                 <img id="gambar-preview" src="{{asset($image)}}" alt="Preview Gambar"  width="80" height="80">
             @endforeach
             </center>

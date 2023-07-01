@@ -52,9 +52,9 @@ public function test_show_upload_recipe_atribute_without_image_url_r()
     // Mengakses rute /upload-recipe-atribute
     $response = $this->get('recipes/upload-recipe/upload-recipe-atribute');
     
-    // Memastikan respons memiliki status 200 (OK)
-    $response->assertStatus(200)
+    // Memastikan respons memiliki status 302
+    $response->assertStatus(302)
         // Memastikan respons menggunakan view yang benar
-        ->assertViewIs('recipes.upload_recipe.upload_image');
+        ->assertRedirect(route('recipes.upload-image'));
 }
 }

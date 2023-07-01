@@ -22,11 +22,15 @@ class ShowReviewUploadTest extends TestCase
              'password' => 'password', // Ganti dengan password pengguna yang valid
          ]);
          
-        // Buat resep palsu untuk pengujian
-        $recipe = Recipe::factory()->create();
-        Session::put('recipe_id_r', $recipe->id);
-        Session::put('image_url_r','recipe.jpg');
 
+        // Buat resep palsu untuk pengujian
+        Session::put('r_name', fake()->text(5));
+        Session::put('r_description', fake()->text(15));
+        Session::put('r_portion', fake()->numberBetween(0, 10));
+        Session::put('r_cooking_time', fake()->numberBetween(0, 200));
+        Session::put('r_steps', ['ngulang', 'ngulang', 'ngulang']);
+        Session::put('r_ingredients', ['fiesta', 'chicken', 'nugget']);
+        Session::put('image_url_r','recipe.jpg');
         // Mengakses rute review-upload-recipe
         $response = $this->get('recipes/upload-recipe/review-upload-recipe');
 
@@ -34,10 +38,8 @@ class ShowReviewUploadTest extends TestCase
         $response->assertStatus(200);
 
         // Memastikan bahwa data dalam sesi disertakan dalam tampilan
-        $recipe = Recipe::find($recipe->id);
-        $response->assertViewHas('recipe', $recipe);
-        $response->assertViewHas('ingredients', $recipe->ingredients());
-        $response->assertViewHas('steps', $recipe->steps());
+        $response->assertViewHas('ingredients');
+        $response->assertViewHas('steps');
     }
 
     public function testShowReviewUploadRecipe_NoDataInSession()

@@ -21,7 +21,7 @@ class RecipeFactory extends Factory
         return [
             'name' => fake()->text(50),
             'image_url' => fake()->text(),
-            'video_url' => '',
+            'video_url' => 'https://www.youtube.com/watch?v=pQrchxj2gC8',
             'portion' => fake()->numberBetween(0, 20),
             'cooking_time' => fake()->numberBetween(0, 100),
             'description' => fake()->text(),

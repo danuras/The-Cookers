@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Seeders;
+
 use App\Models\Comment;
 use App\Models\Favorite;
 use App\Models\GroupIngredient;
@@ -24,12 +25,12 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-         $mc = \App\Models\User::factory()->create([
-             'name' => 'Test User',
-             'username' => 'bogeng',
-             'email' => 'a@a',
-             'password'=>Hash::make('password'),
-             'email_verified_at' => Carbon::now(),
+        $mc = \App\Models\User::factory()->create([
+            'name' => 'Test User',
+            'username' => 'bogeng',
+            'email' => 'a@a',
+            'password' => Hash::make('password'),
+            'email_verified_at' => Carbon::now(),
         ]);
 
         $array_image = collect([
@@ -49,11 +50,34 @@ class DatabaseSeeder extends Seeder
             'dami/spageti.jpg',
             'dami/tumis-tahu.jpg',
         ]);
-        
-        Recipe::factory()->count(10)->create([
-            'image_url' => $array_image->random(),
-            'user_id' => $mc->id,
-        ]);
+        for ($i = 0; $i < 10; $i++) {
+            $recipe = Recipe::factory()->create([
+                'image_url' => $array_image->random(),
+                'user_id' => $mc->id,
+            ]);
+            for ($k = 0; $k < mt_rand(1, 5); $k++) {
+                Step::factory()->create([
+                    'images' => json_encode([
+                        $array_image->random(),
+                        $array_image->random(),
+                        $array_image->random(),
+                    ]),
+                    'recipe_id' => $recipe->id,
+
+                ]);
+            }
+
+            for ($k = 0; $k < mt_rand(1, 5); $k++) {
+                Ingredient::factory()->create([
+                    'recipe_id' => $recipe->id,
+                ]);
+            }
+            for ($k = 0; $k < mt_rand(1, 5); $k++) {
+                Ingredient::factory()->create([
+                    'recipe_id' => $recipe->id,
+                ]);
+            }
+        }
         $i = 0;
         $j = 0;
         $k = 0;
@@ -96,7 +120,7 @@ class DatabaseSeeder extends Seeder
         $last_recipe = Recipe::orderBy('id', 'Desc')->first();
         for ($i = 0; $i < $num_of_recipe * (mt_rand(1, 10)); $i++) {
             $user_id = mt_rand($last_user->id - 9, $last_user->id);
-            $recipe_id = mt_rand($last_recipe->id - $num_of_recipe+1, $last_recipe->id, );
+            $recipe_id = mt_rand($last_recipe->id - $num_of_recipe + 1, $last_recipe->id, );
             $check = Favorite::where([['user_id', $user_id], ['recipe_id', $recipe_id],])->get();
             if ($check->isEmpty()) {
                 Favorite::factory()->create([
@@ -109,7 +133,7 @@ class DatabaseSeeder extends Seeder
         }
         for ($i = 0; $i < $num_of_recipe * (mt_rand(1, 5)); $i++) {
             $user_id = mt_rand($last_user->id - 9, $last_user->id);
-            $recipe_id = mt_rand($last_recipe->id - $num_of_recipe+1, $last_recipe->id, );
+            $recipe_id = mt_rand($last_recipe->id - $num_of_recipe + 1, $last_recipe->id, );
             Comment::factory()->create([
                 'images' => json_encode([
                     $array_image->random(),
@@ -122,7 +146,7 @@ class DatabaseSeeder extends Seeder
         }
         for ($i = 0; $i < $num_of_recipe * (mt_rand(1, 5)); $i++) {
             $user_id = mt_rand($last_user->id - 9, $last_user->id);
-            $recipe_id = mt_rand($last_recipe->id - $num_of_recipe+1, $last_recipe->id, );
+            $recipe_id = mt_rand($last_recipe->id - $num_of_recipe + 1, $last_recipe->id, );
             $check = Ratting::where([['user_id', $user_id], ['recipe_id', $recipe_id],])->get();
             if ($check->isEmpty()) {
                 Ratting::factory()->create([

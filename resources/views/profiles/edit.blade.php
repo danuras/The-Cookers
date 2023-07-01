@@ -89,8 +89,7 @@
                             @method('PUT')
 
                             <div class="form-group">
-                                <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file"
-                                    name='photo_profile' class="form-control" hidden />
+                                <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file" name='photo_profile' class="form-control" hidden />
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -128,7 +127,7 @@
                                         <label>Phone number</label>
                                         <input type="text" {{-- harusnya bukan text --}} class="form-control"
                                             value="{{ $profile->no_phone }}" name='no_phone' />
-                                        @error('')
+                                        @error('no_phone')
                                             {{-- validasi no phone belum ada --}}
                                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                         @enderror
