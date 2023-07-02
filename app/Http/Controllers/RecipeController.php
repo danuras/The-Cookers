@@ -426,6 +426,7 @@ class RecipeController extends Controller
             $recipe->portion = Session::get('r_portion');
             $recipe->cooking_time = Session::get('r_cooking_time');
             $recipe->image_url = Session::get('image_url_r');
+            $recipe->video_url = Session::get('r_video_url');
             $recipe->user_id = Auth::user()->id;
             $recipe->save();
             $steps = [];
