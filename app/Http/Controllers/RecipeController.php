@@ -328,6 +328,8 @@ class RecipeController extends Controller
             Session::put('r_portion', $recipe->portion);
             Session::put('r_cooking_time', $recipe->cooking_time);
             Session::put('r_video_url', $recipe->video_url);
+            Session::forget('r_steps');
+            Session::forget('r_ingredients');
             $steps = '';
             $los = $recipe->steps;
             for($i = 0; $i < sizeof($los); $i++){
