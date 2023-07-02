@@ -447,6 +447,8 @@ class RecipeController extends Controller
                     'recipe_id' => $recipe->id,
                 ]);
             }
+            DB::delete('delete from steps where recipe_id = ?', [Session::get('recipe_id_r')]);
+            DB::delete('delete from ingredients where recipe_id = ?', [Session::get('recipe_id_r')]);
             Step::insert($steps);
             Ingredient::insert($ingredients);
             Session::forget('image_url_r');
