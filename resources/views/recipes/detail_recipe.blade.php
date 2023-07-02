@@ -134,11 +134,11 @@
 
             <hr />
 
-            <img
+            <a href="{{$recipe->video_url}}"><img
                 class="youtube"
                 src="{{asset ('assets/youtube.png')}}"
                 alt=""
-            />
+            /></a>
             <h5 class="tutorial">Lihat video tutorial</h5>
 
             <hr />

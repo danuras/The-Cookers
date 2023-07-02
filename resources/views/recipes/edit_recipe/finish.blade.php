@@ -1,3 +1,15 @@
-<h1>Halaman saat selesai edit resep, bahan-bahan, dan langkah-langkah</h1>
 
-<a class="button" type="submit" href="/recipes/user-recipe" style="text-decoration: none;">OK</a>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Sesesai</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style-upload-resep.css') }}">
+    
+</head>
+<body>
+    <div class="container" id="page1">
+        <p>Terimakasih resep anda berhasil di edit</p>
+        <a class="button" href="/recipes/user-recipe" style="text-decoration: none;">Oke</a>
+    </div>
+</body>
+</html>
