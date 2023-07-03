@@ -1,12 +1,3 @@
-// // hamburger menu
-// const hamburger = document.querySelector(".hamburger");
-
-// hamburger.onclick = function () {
-//     const navBar = document.querySelector("nav");
-
-//     navBar.classList.toggle("active");
-// };
-
 function changePage(pageName) {
     // Mengambil semua halaman
     var pages = document.getElementsByClassName("home");
@@ -41,3 +32,16 @@ function logoutConfirmation() {
         }
     });
 }
+
+// menampilkan truncation pada card
+// saat di-hover
+const buttons = document.querySelectorAll(".button");
+buttons.forEach((button) => {
+    button.addEventListener("mouseover", () => {
+        button.setAttribute("title", button.getAttribute("data-fullname"));
+    });
+
+    button.addEventListener("mouseout", () => {
+        button.removeAttribute("title");
+    });
+});
