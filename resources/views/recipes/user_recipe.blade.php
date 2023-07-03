@@ -54,7 +54,13 @@
     {{-- list resep --}}
     <section>
         <div class="container">
-            <div class="row">
+            <div class="row ">
+                {{-- jika tidak ada data --}}
+                <div class="col-md-12 pt-5 text-center">
+                    <h2 class="pt-5">Anda belum pernah mengunggah resep</h2>
+                    <a href="{{ route('recipes.upload-image') }}">Upload resep anda sekarang</a>
+                </div>
+                {{-- jika ada data --}}
                 <div class="col-md">
                     <table class="table">
                         <tbody>
