@@ -5,65 +5,52 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profil</title>
+    <title>The Cookers</title>
 
     <link rel="icon" type="image/png" href="{{ asset('assets/cookers.png') }}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
-    <!-- CSS -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="sweetalert2.min.css">
+
+    <link rel="stylesheet" href="{{ asset('css/style-main-navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style-profil.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style-home.css') }}" />
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
+    {{-- navbar --}}
+    <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container">
-            <a href="/">
-                <img src="{{ asset('assets/logo.png') }}" alt="" />
+            <a class="navbar-brand p-0" href="/">
+                <img src="{{ asset('assets/cookers.png') }}" alt="logo" width="60" height="">
             </a>
-            <!-- <a class="navbar-brand text-white" href="index.html"><strong>Bakso</strong> Solo Baru</a> -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link mr-4" href="/">HOME</a>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item pe-3">
+                        <a class="nav-link" href="{{ route('recipes.upload-image') }}">Upload Resep</a>
+                    </li>
+                    <li class="nav-item pe-3">
+                        <a class="nav-link" href="{{ route('profiles.index') }}">Profil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mr-4" href="/recipes/search-recipe/">RESEP</a>
-                    </li>
-                    <li>
-                        <button class="btn">
-                            <a href="{{ route('recipes.upload-image') }}">Upload Resep</a>
+                        <button class="btn-auth">
+                            <a class="nav-link" href="#" onclick="logoutConfirmation()">Keluar</a>
                         </button>
                     </li>
-                    <li>
-                        <button class="btn">
-                            <a href="{{ route('profiles.index') }}">Profil</a>
-                        </button>
-                    </li>
-                    <li>
-                        <button class="btn">
-                            <a href="#" onclick="logoutConfirmation()">Keluar</a>
-                        </button>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="hamburger">
-                <ul>
-                    <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- Akhir Navbar -->
+    {{-- navbar end --}}
 
     <div class="header__wrapper">
         <header></header>
@@ -85,10 +72,6 @@
                 <p>{{ $profiles->info }}</p>
                 <br>
                 <p>{{ $profiles->bio }}</p>
-
-                <ul class="about">
-                    <li><span>3</span>Resep</li>
-                </ul>
 
                 <div class="content">
                     <p>{{ $profiles->info }}</p>
