@@ -31,7 +31,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    {{-- <li class="nav-item pe-3">
+                    <li class="nav-item pe-3">
                         <a class="nav-link disabled" href="#">Beranda</a>
                     </li>
                     <li class="nav-item pe-3">
@@ -39,7 +39,7 @@
                     </li>
                     <li class="nav-item pe-3">
                         <a class="nav-link disabled" href="#">Kontak</a>
-                    </li> --}}
+                    </li>
                     <li class="nav-item pe-3">
                         <button class="btn-auth">
                             <a class="nav-link active" href="{{ route('register') }}">Daftar</a>
