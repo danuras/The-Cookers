@@ -6,12 +6,12 @@
     --brown-sugar: #b96d40;
 }
 
-body {
-    font-family: sans-serif;
-    font-size: 16px;
+* {
+    font-family: "Poppins", sans-serif;
 }
 
-/*Navbar*/
-
-/*Navbar end*/
-
+/* main */
+main button {
+    border-radius: 5px;
+}
+/* main end */

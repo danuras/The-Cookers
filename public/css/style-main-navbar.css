@@ -5,3 +5,43 @@
     --sunset: #ffcf9c;
     --brown-sugar: #b96d40;
 }
+
+* {
+    font-family: "Poppins", sans-serif;
+}
+
+nav {
+    background-color: var(--sunset);
+}
+
+.btn-auth {
+    background-color: var(--rose-red);
+    border-radius: 50px;
+    border-width: 0;
+    margin-top: 2px;
+}
+
+.btn-auth a {
+    color: white !important;
+    font-weight: bold;
+}
+
+.btn-auth:focus {
+    box-shadow: #ca054d 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
+        rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #ca054d 0 -3px 0 inset;
+}
+
+.btn-auth:hover {
+    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px,
+        rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #ca054d 0 -3px 0 inset;
+    transform: translateY(-2px);
+}
+
+.btn-auth:active {
+    box-shadow: #ca054d 0 3px 7px inset;
+    transform: translateY(2px);
+}
+
+.nav-link:hover {
+    color: white !important;
+}
