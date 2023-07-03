@@ -55,41 +55,42 @@
     <section>
         <div class="container">
             <div class="row ">
-                {{-- jika tidak ada data --}}
-                <div class="col-md-12 pt-5 text-center">
-                    <h2 class="pt-5">Anda belum pernah mengunggah resep</h2>
-                    <a href="{{ route('recipes.upload-image') }}">Upload resep anda sekarang</a>
-                </div>
-                {{-- jika ada data --}}
-                <div class="col-md">
-                    <table class="table">
-                        <tbody>
-                            @foreach ($recipes as $recipe)
-                                <tr>
-                                    <td>{{ $recipe->name }}</td>
-                                    <td>
+                @if(sizeof($recipes)==0)
+                    <div class="col-md-12 pt-5 text-center">
+                        <h2 class="pt-5">Anda belum pernah mengunggah resep</h2>
+                        <a href="{{ route('recipes.upload-image') }}">Upload resep anda sekarang</a>
+                    </div>
+                @else
+                    <div class="col-md">
+                        <table class="table">
+                            <tbody>
+                                @foreach ($recipes as $recipe)
+                                    <tr>
+                                        <td>{{ $recipe->name }}</td>
+                                        <td>
 
-                                        <div class='row justify-content-center'>
-                                            <div class='col'>
-                                                <a href="/recipes/edit-recipe/edit-image/{{ $recipe->id }}"
-                                                    class="btn btn-primary">Edit</a>
+                                            <div class='row justify-content-center'>
+                                                <div class='col'>
+                                                    <a href="/recipes/edit-recipe/edit-image/{{ $recipe->id }}"
+                                                        class="btn btn-primary">Edit</a>
+                                                </div>
+                                                <div class='col'>
+                                                    <form action='{{ route('recipes.delete', $recipe->id) }}'
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type='submit' class="btn btn-danger">Hapus</button>
+                                                    </form>
+                                                </div>
                                             </div>
-                                            <div class='col'>
-                                                <form action='{{ route('recipes.delete', $recipe->id) }}'
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type='submit' class="btn btn-danger">Hapus</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
 
-                </div>
+                    </div>
+                @endif
             </div>
         </div>
     </section>
