@@ -11,9 +11,7 @@
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style-profil-edit.css') }}" />
-    {{-- bootstrap untuk alert validasi input --}}
-    {{-- tapi ditambahi bootstrap malah ngubah css --}}
-    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" > --}}
+    <link rel="stylesheet" href="sweetalert2.min.css">
 </head>
 
 <body class="bg">
@@ -25,8 +23,7 @@
                     <div class="p-4">
                         <div class="img-circle text-center mb-3">
                             @if ($profile->photo_profile)
-                                <img class="shadow" id="profile-pic"
-                                    src="{{ asset($profile->photo_profile) }}"
+                                <img class="shadow" id="profile-pic" src="{{ asset($profile->photo_profile) }}"
                                     alt="Profile" width="200" height="200">
                             @elseif (session('photo_profile_c'))
                                 <img class="shadow" id="profile-pic"
@@ -61,16 +58,16 @@
                             <i class="fa fa-key text-center mr-1" id=""></i>
                             Password
                         </a>
-                        <a class="nav-link" id="security-tab" data-toggle="pill" href="#security" role="tab"
+                        <a class="nav-link disabled" id="security-tab" data-toggle="pill" href="#security" role="tab"
                             aria-controls="security" aria-selected="false">
                             <i class="fa fa-user text-center mr-1" id=""></i>
-                            Keamanan
+                            Keamanan(disabled)
                         </a>
                     </div>
                     <div class="row">
                         <div class="col-md pt-5 d-flex justify-content-center">
                             <button id="btn-hapus-akun">
-                                <a href="">Hapus Akun</a>
+                                <a href="#" onclick="hapusAkunConfirmation()">Hapus Akun</a>
                             </button>
                         </div>
                     </div>
@@ -89,7 +86,8 @@
                             @method('PUT')
 
                             <div class="form-group">
-                                <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file" name='photo_profile' class="form-control" hidden />
+                                <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file"
+                                    name='photo_profile' class="form-control" hidden />
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -106,7 +104,7 @@
                                     <div class="form-group">
                                         <label>Username</label>
                                         <input type="text" class="form-control" value="{{ $profile->username }}"
-                                            name='username' />
+                                            name='username' disabled/>
                                         @error('username')
                                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                         @enderror
@@ -259,6 +257,9 @@
             </div>
         </div>
     </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="{{ asset('js/script-dashboard.js') }}"></script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
