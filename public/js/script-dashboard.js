@@ -48,8 +48,9 @@ buttons.forEach((button) => {
 
 // pop up hapus akun
 function hapusAkunConfirmation() {
+
     Swal.fire({
-        title: "Ketikkan 'saya-ingin-menghapus-$username'",
+        title: "Ketikkan 'saya-ingin-menghapus-"+username+"'",
         input: "text",
         inputAttributes: {
             autocapitalize: "off",
@@ -58,7 +59,28 @@ function hapusAkunConfirmation() {
         confirmButtonText: "Hapus",
         showLoaderOnConfirm: true,
         preConfirm: () => {
-            // hapus akun
+            $.ajax({
+                url: `/profiles/${user_id}`,
+                type: "DELETE",
+                cache: false,
+                data: {
+                    "_token": token
+                },
+                success:function(response){ 
+
+                    //show success message
+                    Swal.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: `${response.message}`,
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+
+                    //remove post on table
+                    $(`#index_${post_id}`).remove();
+                }
+            });
         },
         allowOutsideClick: () => !Swal.isLoading(),
     }).then(() => {

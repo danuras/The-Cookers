@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('video_url')->nullable();
             $table->unsignedInteger('cooking_time');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->index('user_id');
             $table->timestamps();
         });
