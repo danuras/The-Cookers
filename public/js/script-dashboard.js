@@ -45,3 +45,23 @@ buttons.forEach((button) => {
         button.removeAttribute("title");
     });
 });
+
+// pop up hapus akun
+function hapusAkunConfirmation() {
+    Swal.fire({
+        title: "Ketikkan 'saya-ingin-menghapus-$username'",
+        input: "text",
+        inputAttributes: {
+            autocapitalize: "off",
+        },
+        showCancelButton: true,
+        confirmButtonText: "Hapus",
+        showLoaderOnConfirm: true,
+        preConfirm: () => {
+            // hapus akun
+        },
+        allowOutsideClick: () => !Swal.isLoading(),
+    }).then(() => {
+        // lakukan sesuatu
+    });
+}
