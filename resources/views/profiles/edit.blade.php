@@ -284,8 +284,8 @@
             preConfirm: (text) => {
                 if(text == ('saya-ingin-menghapus-'+username)){
                     $.ajax({
-                        url: `/profiles/${user_id}`,
-                        type: "DELETE",
+                        url: `/profiles/${user_id}/destroy`,
+                        type: "GET",
                         cache: false,
                         data: {
                             "_token": $("meta[name='csrf-token']").attr("content"),
