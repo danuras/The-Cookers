@@ -48,7 +48,8 @@ Route::middleware('auth') /* ->prefix('{locale}') */->group(function () {
     Route::post('verify-email', [AuthController::class, 'verifyEmail'])->name('verify-email');
     Route::get('show-verification-code', [AuthController::class, 'showVerificationCode'])->name('show-verification-code');
     Route::get('email/verify', [VerificationController::class, 'show'])->name('verification.notice');
-    Route::resource('profiles', ProfileController::class)->only(['index', 'edit', 'update', 'destroy']);
+    Route::resource('profiles', ProfileController::class)->only(['index', 'edit', 'update']);
+    Route::get('profiles/{user}/destroy', [ProfileController::class, 'destroy'])->name('profiles.destroy');
     
     Route::prefix('recipes')->group(function () {
         Route::get('{recipe}/detail', [RecipeController::class, 'showDetail']);

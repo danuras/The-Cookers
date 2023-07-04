@@ -23,7 +23,7 @@ class DestroyTest extends TestCase
 
         // Mengirim permintaan POST ke rute destroy dengan kata sandi yang benar
         $response = $this->actingAs($user)
-            ->delete(route('profiles.destroy', $user->id), [
+            ->get(route('profiles.destroy', $user->id), [
                 'password' => 'password',
             ]);
 
