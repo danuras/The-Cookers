@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style-profil-edit.css') }}" />
     <link rel="stylesheet" href="sweetalert2.min.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body class="bg">
@@ -264,7 +265,49 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
+        var username = '{{$profile->username}}';
+        var user_id = '{{$profile->id}}';
+        // pop up hapus akun
+        function hapusAkunConfirmation() {
+
+        Swal.fire({
+            title: "Ketikkan 'saya-ingin-menghapus-"+username+"'",
+            input: "text",
+            inputAttributes: {
+                autocapitalize: "off",
+            },
+            showCancelButton: true,
+            confirmButtonText: "Hapus",
+            showLoaderOnConfirm: true,
+            preConfirm: (text) => {
+                if(text == ('saya-ingin-menghapus-'+username)){
+                    $.ajax({
+                        url: `/profiles/${user_id}`,
+                        type: "DELETE",
+                        cache: false,
+                        data: {
+                            "_token": $("meta[name='csrf-token']").attr("content"),
+                        },
+                        success:function(response){
+                            var baseUrl = window.location.origin;
+                            var routeUrl = baseUrl + "/";
+                            document.location.href = routeUrl;
+                        },
+                        error: function(error){
+                            console.log(error);
+                        }
+                    });
+                } else {
+                    Swal.showValidationMessage("Teks yang dimasukkan tidak sesuai");
+                }
+            },
+            allowOutsideClick: () => !Swal.isLoading(),
+        }).then(() => {
+            // lakukan sesuatu
+        });
+        }
         $(document).ready(function() {
             $("button").click(function() {
                 var name = $("#name").val();
