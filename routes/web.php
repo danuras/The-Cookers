@@ -42,7 +42,7 @@ Route::middleware('guest')->group(function () {
     Route::post('save-new-password', [AuthController::class, 'saveNewPassword'])->name('save-new-password');
 });
 
-Route::middleware('auth') /* ->prefix('{locale}') */->group(function () {
+Route::middleware(['auth', 'verify-email']) /* ->prefix('{locale}') */->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::post('send-verification-code', [AuthController::class, 'sendVerificationCode'])->name('send-verification-code'); 
     Route::post('verify-email', [AuthController::class, 'verifyEmail'])->name('verify-email');
@@ -55,7 +55,7 @@ Route::middleware('auth') /* ->prefix('{locale}') */->group(function () {
         Route::get('{recipe}/detail', [RecipeController::class, 'showDetail']);
         Route::get('user-recipe', [RecipeController::class, 'showUserRecipe'])->name('recipes.user-recipe');
         
-        Route::middleware('verify-email')->prefix('upload-recipe')->group(function () {
+        Route::prefix('upload-recipe')->group(function () {
             Route::get('upload-image', [RecipeController::class, 'showUploadImage'])->name('recipes.upload-image');
             Route::post('upload-image', [RecipeController::class, 'uploadImage'])->name('save.recipes.upload-image');
             Route::get('upload-recipe-atribute', [RecipeController::class, 'showUploadRecipeAtribute'])->name('recipes.upload-recipe-atribute');
@@ -70,7 +70,7 @@ Route::middleware('auth') /* ->prefix('{locale}') */->group(function () {
             Route::get('/{name}/{ingredient}/search-result-detail', [RecipeController::class, 'searchRecipeDetail'])->name('recipes.detail-result-recipe');
         });
 
-        Route::middleware('verify-email')->prefix('edit-recipe')->group(function () {
+        Route::prefix('edit-recipe')->group(function () {
             Route::get('edit-image/{recipe}', [RecipeController::class, 'showEditImage'])->name('recipes.edit-image');
             Route::post('edit-image', [RecipeController::class, 'editImage'])->name('save.recipes.edit-image');
             Route::get('edit-recipe-atribute', [RecipeController::class, 'showEditRecipeAtribute'])->name('recipes.edit-recipe-atribute');
