@@ -232,7 +232,7 @@ class RecipeController extends Controller
         $recipes = Recipe::select('id', 'image_url', 'name')
             ->where([
                 ['name', 'like', '%' . $name . '%'],
-            ])->orWhereExists(function ($query) use ($ingredient) {
+            ])->whereExists(function ($query) use ($ingredient) {
                 $query->select(DB::raw(1))
                     ->from('ingredients')
                     ->whereColumn('recipe_id', 'recipes.id')
