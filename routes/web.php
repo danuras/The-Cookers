@@ -41,12 +41,14 @@ Route::middleware('guest')->group(function () {
     Route::get('show-enter-new-password', [AuthController::class, 'showEnterNewPassword']);
     Route::post('save-new-password', [AuthController::class, 'saveNewPassword'])->name('save-new-password');
 });
-
-Route::middleware(['auth', 'verify-email']) /* ->prefix('{locale}') */->group(function () {
-    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+Route::middleware('auth')->group(function () {
     Route::post('send-verification-code', [AuthController::class, 'sendVerificationCode'])->name('send-verification-code'); 
     Route::post('verify-email', [AuthController::class, 'verifyEmail'])->name('verify-email');
     Route::get('show-verification-code', [AuthController::class, 'showVerificationCode'])->name('show-verification-code');
+});
+    
+Route::middleware(['auth', 'verify-email']) /* ->prefix('{locale}') */->group(function () {
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('email/verify', [VerificationController::class, 'show'])->name('verification.notice');
     Route::resource('profiles', ProfileController::class)->only(['index', 'edit', 'update']);
     Route::get('profiles/{user}/destroy', [ProfileController::class, 'destroy'])->name('profiles.destroy');
