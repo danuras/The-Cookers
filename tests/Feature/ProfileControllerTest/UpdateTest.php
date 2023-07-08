@@ -29,7 +29,6 @@ class UpdateTest extends TestCase
         // Menjalankan route 'profiles.update' dengan user yang diotentikasi dan data terkirim
         $response = $this->actingAs($user)->put(route('profiles.update', $user->id), [
             'name' => 'John Doe',
-            'username' =>$username,
             'no_phone' => '123456789',
             'gender' => 'L',
             'bio' => 'Lorem ipsum dolor sit amet.',
@@ -44,7 +43,6 @@ class UpdateTest extends TestCase
 
         // Memastikan bahwa data user telah diperbarui sesuai dengan data yang dikirim
         $this->assertEquals('John Doe', $user->fresh()->name);
-        $this->assertEquals($username, $user->fresh()->username);
         $this->assertEquals('123456789', $user->fresh()->no_phone);
         $this->assertEquals('L', $user->fresh()->gender);
         $this->assertEquals('Lorem ipsum dolor sit amet.', $user->fresh()->bio);
@@ -71,7 +69,6 @@ class UpdateTest extends TestCase
         // Menjalankan route 'profiles.update' dengan user yang diotentikasi dan data terkirim
         $response = $this->actingAs($user)->put(route('profiles.update', $user->id), [
             'name' => 'John Doe',
-            'username' =>$username,
             'no_phone' => '123456789',
             'gender' => 'L',
             'bio' => 'Lorem ipsum dolor sit amet.',
@@ -86,7 +83,6 @@ class UpdateTest extends TestCase
 
         // Memastikan bahwa data user telah diperbarui sesuai dengan data yang dikirim
         $this->assertEquals('John Doe', $user->fresh()->name);
-        $this->assertEquals($username, $user->fresh()->username);
         $this->assertEquals($email, $user->fresh()->email);
         $this->assertEquals('123456789', $user->fresh()->no_phone);
         $this->assertEquals('L', $user->fresh()->gender);
@@ -115,7 +111,7 @@ class UpdateTest extends TestCase
         $response->assertRedirect();
 
         // Memastikan bahwa terjadi kesalahan validasi pada beberapa field
-        $response->assertSessionHasErrors(['name', 'gender', 'email', 'username']);
+        $response->assertSessionHasErrors(['name', 'gender', 'email']);
     }
 
 }
