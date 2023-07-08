@@ -35,6 +35,16 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Resep
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ route('recipes.search-recipe') }}">Cari Resep</a></li>
+                            <li><a class="dropdown-item" href="{{ route('recipes.user-recipe') }}">Resep Saya</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item pe-3">
                         <a class="nav-link" href="{{ route('recipes.upload-image') }}">Upload Resep</a>
                     </li>
@@ -51,7 +61,7 @@
         </div>
     </nav>
     {{-- navbar end --}}
-
+    
     <div class="header__wrapper">
         <header></header>
         <div class="cols__container">
@@ -71,14 +81,14 @@
                 <br>
                 <p>{{ $profiles->info }}</p>
                 <br>
+                <p>Bio</p>
                 <p>{{ $profiles->bio }}</p>
-
-                <div class="content">
-                    <p>{{ $profiles->info }}</p>
-                </div>
             </div>
             <div class="right__col">
                 <div id="sub-nav">
+                    <button>
+                        <a href="{{ route('verify-code', $profiles->id) }}">Verifikasi Akun</a>
+                    </button>
                     <button>
                         <a href="{{ route('recipes.user-recipe', $profiles->id) }}">Resep Saya</a>
                     </button>

@@ -48,9 +48,8 @@ buttons.forEach((button) => {
 
 // pop up hapus akun
 function hapusAkunConfirmation() {
-
     Swal.fire({
-        title: "Ketikkan 'saya-ingin-menghapus-"+username+"'",
+        title: "Ketikkan 'saya-ingin-menghapus-" + username + "'",
         input: "text",
         inputAttributes: {
             autocapitalize: "off",
@@ -64,26 +63,45 @@ function hapusAkunConfirmation() {
                 type: "DELETE",
                 cache: false,
                 data: {
-                    "_token": token
+                    _token: token,
                 },
-                success:function(response){ 
-
+                success: function (response) {
                     //show success message
                     Swal.fire({
-                        type: 'success',
-                        icon: 'success',
+                        type: "success",
+                        icon: "success",
                         title: `${response.message}`,
                         showConfirmButton: false,
-                        timer: 3000
+                        timer: 3000,
                     });
 
                     //remove post on table
                     $(`#index_${post_id}`).remove();
-                }
+                },
             });
         },
         allowOutsideClick: () => !Swal.isLoading(),
     }).then(() => {
         // lakukan sesuatu
+    });
+}
+
+// pop up hapus resep
+function hapusResepConfirmation() {
+    Swal.fire({
+        title: "Hapus Resep?",
+        text: "Apakah Anda yakin menghapus + $resep?",
+        icon: "question",
+        showCancelButton: true,
+        cancelButtonColor: "#3085d6",
+        cancelButtonText: "Batal",
+        confirmButtonColor: "#d33",
+        confirmButtonText: "Hapus",
+        focusCancel: true,
+        background: "#ffcf9c",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // hapus resep
+        }
     });
 }
