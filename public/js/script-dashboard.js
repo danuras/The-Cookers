@@ -85,23 +85,3 @@ function hapusAkunConfirmation() {
         // lakukan sesuatu
     });
 }
-
-// pop up hapus resep
-function hapusResepConfirmation() {
-    Swal.fire({
-        title: "Hapus Resep?",
-        text: "Apakah Anda yakin menghapus + $resep?",
-        icon: "question",
-        showCancelButton: true,
-        cancelButtonColor: "#3085d6",
-        cancelButtonText: "Batal",
-        confirmButtonColor: "#d33",
-        confirmButtonText: "Hapus",
-        focusCancel: true,
-        background: "#ffcf9c",
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // hapus resep
-        }
-    });
-}

@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder
             'dami/spageti.jpg',
             'dami/tumis-tahu.jpg',
         ]);
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             $recipe = Recipe::factory()->create([
                 'image_url' => $array_image->random(),
                 'user_id' => $mc->id,

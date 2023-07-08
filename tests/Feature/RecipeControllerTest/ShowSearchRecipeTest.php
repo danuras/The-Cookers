@@ -21,7 +21,7 @@ class ShowSearchRecipeTest extends TestCase
             'password' => 'password', // Ganti dengan password pengguna yang valid
         ]);
         // Membuat data dummy untuk pengujian
-        Recipe::factory()->count(25)->create();
+        Recipe::factory()->count(24)->create();
 
         // Memanggil route
         $response = $this->get('/recipes/search-recipe/');
@@ -40,7 +40,7 @@ class ShowSearchRecipeTest extends TestCase
         $this->assertInstanceOf(\Illuminate\Pagination\LengthAwarePaginator::class, $recipes);
 
 
-        // Memastikan bahwa jumlah data 'recipes' yang ditampilkan adalah 25
-        $this->assertCount(25, $recipes->items());
+        // Memastikan bahwa jumlah data 'recipes' yang ditampilkan adalah 24
+        $this->assertCount(24, $recipes->items());
     }
 }

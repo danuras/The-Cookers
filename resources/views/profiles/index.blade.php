@@ -86,9 +86,11 @@
             </div>
             <div class="right__col">
                 <div id="sub-nav">
+                    @if(!$profiles->email_verified_at)
                     <button>
                         <a href="{{ route('verify-code', $profiles->id) }}">Verifikasi Akun</a>
                     </button>
+                    @endif
                     <button>
                         <a href="{{ route('recipes.user-recipe', $profiles->id) }}">Resep Saya</a>
                     </button>

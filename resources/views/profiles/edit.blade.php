@@ -159,7 +159,7 @@
                                 </div>
                             </div>
                             <button class="btn btn-light">
-                                <a href="">Ganti Password</a>
+                                <a href="{{ route('reset-password') }}">Ganti Password</a>
                             </button>
                             <hr>
                             <div>

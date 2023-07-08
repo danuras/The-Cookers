@@ -91,7 +91,8 @@
                                 </a>
                             </div>
                         </div>
-                    @endforeach
+                    @endforeach                
+                    {!! $recipes->links('vendor.pagination.bootstrap-4') !!}
                 </div>
             </div>
             {{-- section kanan - bagian cari dengan detail --}}
@@ -131,19 +132,13 @@
         });
         document.getElementById("form-search-detail").addEventListener("submit", function(e) {
             e.preventDefault(); // Mencegah submit form
-            var nameRecipe = document.getElementById("nama-resep").value;
-
-            if (nameRecipe == "") {
-                nameRecipe = " ";
-            }
 
             var ingredientRecipe = document.getElementById("bahan-resep").value;
             if (ingredientRecipe == "") {
                 ingredientRecipe = " ";
             }
             var formAction =
-                "{{ route('recipes.detail-result-recipe', ['name' => ':name', 'ingredient' => ':ingredient']) }}";
-            formAction = formAction.replace(':name', encodeURIComponent(nameRecipe));
+                "{{ route('recipes.detail-result-recipe', ['ingredient' => ':ingredient']) }}";
             formAction = formAction.replace(':ingredient', encodeURIComponent(ingredientRecipe));
             document.getElementById("form-search-detail").action = formAction;
             document.getElementById("form-search-detail").submit(); // Submit form setelah URL diubah
