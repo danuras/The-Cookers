@@ -30,6 +30,7 @@ class UpdateTest extends TestCase
         $response = $this->actingAs($user)->put(route('profiles.update', $user->id), [
             'name' => 'John Doe',
             'no_phone' => '123456789',
+            'username' =>$username,
             'gender' => 'L',
             'bio' => 'Lorem ipsum dolor sit amet.',
             'info' => 'Lorem ipsum',
@@ -44,6 +45,7 @@ class UpdateTest extends TestCase
         // Memastikan bahwa data user telah diperbarui sesuai dengan data yang dikirim
         $this->assertEquals('John Doe', $user->fresh()->name);
         $this->assertEquals('123456789', $user->fresh()->no_phone);
+        $this->assertEquals($username, $user->fresh()->username);
         $this->assertEquals('L', $user->fresh()->gender);
         $this->assertEquals('Lorem ipsum dolor sit amet.', $user->fresh()->bio);
         $this->assertEquals('Lorem ipsum', $user->fresh()->info);
@@ -71,6 +73,7 @@ class UpdateTest extends TestCase
             'name' => 'John Doe',
             'no_phone' => '123456789',
             'gender' => 'L',
+            'username' =>$username,
             'bio' => 'Lorem ipsum dolor sit amet.',
             'info' => 'Lorem ipsum',
             'photo_profile' => 'profile.png',
@@ -111,7 +114,7 @@ class UpdateTest extends TestCase
         $response->assertRedirect();
 
         // Memastikan bahwa terjadi kesalahan validasi pada beberapa field
-        $response->assertSessionHasErrors(['name', 'gender', 'email']);
+        $response->assertSessionHasErrors(['name', 'gender', 'email', 'username']);
     }
 
 }

@@ -71,7 +71,10 @@ class ProfileController extends Controller
                 'email',
                 Rule::unique('users')->ignore($user->email, 'email'),
             ],
-        
+            'username' => [
+                'required',
+                Rule::unique('users')->ignore($user->username, 'username'),
+            ],
         ]);
 
 
@@ -93,6 +96,7 @@ class ProfileController extends Controller
         $user->name = $request->name;
         $user->no_phone = $request->no_phone;
         $user->gender = $request->gender;
+        $user->username = $request->username;
         $user->bio = $request->bio;
         $user->info = $request->info;
         $user->email = $request->email;
