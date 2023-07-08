@@ -21,6 +21,7 @@
                         <div class="preview-container">
                             <img id="preview1" src="{{ asset('assets/upload-resep-img/upload.png') }}">
                 @endif
+main
 
         </div>
         <label for="nama_resep">Nama Resep:</label>
@@ -96,6 +97,7 @@
         </form>
     </div>
     </div>
+main
     <br>
 
     <!-- <script src="{{ asset('js/script-upload-resep.js') }}"></script> -->
