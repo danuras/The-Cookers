@@ -24,22 +24,6 @@
 
 </head>
 
-{{-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style-detailresep.css') }}" />
-
-    <title>{{ $recipe->name }}</title>
-</head> --}}
-
 <body>
     {{-- navbar --}}
     <nav class="navbar navbar-expand-lg navbar-light shadow">
@@ -53,6 +37,16 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Resep
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ route('recipes.search-recipe') }}">Cari Resep</a></li>
+                            <li><a class="dropdown-item" href="{{ route('recipes.user-recipe') }}">Resep Saya</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item pe-3">
                         <a class="nav-link" href="{{ route('recipes.upload-image') }}">Upload Resep</a>
                     </li>
@@ -86,29 +80,6 @@
         </div>
 
         <hr />
-        <div class="navbar-3">
-            <ul class="star">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-            </ul>
-
-            <p class="rating">{{ $avg_ratting }}/5</p>
-
-            <button class="btn-rate">Nilai</button>
-
-            <img class="bookmark" src="{{ asset('assets/bookmark.png') }}" alt="" />
-
-            <p class="fav">Favorit</p>
-            <ul class="share">
-                <i class="fa fa-share"></i>
-            </ul>
-
-            <p class="p-share">Bagikan</p>
-        </div>
-
-        <hr />
 
         <a href="{{ $recipe->video_url }}"><img class="youtube" src="{{ asset('assets/youtube.png') }}"
                 alt="" /></a>
@@ -124,6 +95,8 @@
             @endforeach
         </div>
 
+        <hr>
+
         <div class="cara">
             <h4>Cara Membuat</h4>
             <div class="square"></div>
@@ -131,12 +104,12 @@
 
         @for ($i = 0; $i < count($steps); $i++)
             <div class="step">
-                <h5 class="langkah1">Langkah {{ $i + 1 }}</h5>
+                <h5 class="">Langkah {{ $i + 1 }}</h5>
                 <ul class="check">
                     <i class="fa fa-check"></i>
                 </ul>
             </div>
-            <p class="ket">
+            <p class="">
                 {{ $steps[$i]->value }}
             </p>
             <center>
@@ -145,37 +118,7 @@
                         height="80">
                 @endforeach
             </center>
-
-            <hr />
         @endfor
-
-        <h6>{{ count($comments) }} Komentar</h6>
-        <div class="komentar">
-            <img class="profpict" src="{{ asset('assets/profpict.png') }}" alt="" />
-
-            <form>
-                <input type="text" id="kolom-komentar" class="kol-komentar" placeholder="Add comment..." />
-            </form>
-        </div>
-        @foreach ($comments as $comment)
-            <div class="komentar2">
-                @if ($comment->user->photo_profile)
-                    <img class="profpict2" src="{{ asset($comment->user->photo_profile) }}" alt="" />
-                @else
-                    <img class="profpict2" src="{{ asset('assets/default/profile.png') }}" alt="" />
-                @endif
-
-                <p class="kalimat">
-                    {{ $comment->value }}
-                </p>
-
-
-            </div>
-            @foreach (json_decode($comment->images) as $image)
-                <img id="gambar-preview" src="{{ asset($image) }}" alt="Preview Gambar" width="80"
-                    height="80">
-            @endforeach
-        @endforeach
 
         <br />
         <br />

@@ -54,16 +54,6 @@
                             <i class="fa fa-home text-center mr-1" id=""></i>
                             Akun
                         </a>
-                        <a class="nav-link" id="password-tab" data-toggle="pill" href="#password" role="tab"
-                            aria-controls="password" aria-selected="false">
-                            <i class="fa fa-key text-center mr-1" id=""></i>
-                            Password
-                        </a>
-                        <a class="nav-link disabled" id="security-tab" data-toggle="pill" href="#security" role="tab"
-                            aria-controls="security" aria-selected="false">
-                            <i class="fa fa-user text-center mr-1" id=""></i>
-                            Keamanan(disabled)
-                        </a>
                     </div>
                     <div class="row">
                         <div class="col-md pt-5 d-flex justify-content-center">
@@ -105,7 +95,7 @@
                                     <div class="form-group">
                                         <label>Username</label>
                                         <input type="text" class="form-control" value="{{ $profile->username }}"
-                                            name='username' disabled/>
+                                            name='username' />
                                         @error('username')
                                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                         @enderror
@@ -168,6 +158,10 @@
                                     </div>
                                 </div>
                             </div>
+                            <button class="btn btn-light">
+                                <a href="">Ganti Password</a>
+                            </button>
+                            <hr>
                             <div>
                                 <button class="btn btn-primary" id="account-update" type="submit">
                                     Simpan
@@ -267,46 +261,46 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
-        var username = '{{$profile->username}}';
-        var user_id = '{{$profile->id}}';
+        var username = '{{ $profile->username }}';
+        var user_id = '{{ $profile->id }}';
         // pop up hapus akun
         function hapusAkunConfirmation() {
 
-        Swal.fire({
-            title: "Ketikkan 'saya-ingin-menghapus-"+username+"'",
-            input: "text",
-            inputAttributes: {
-                autocapitalize: "off",
-            },
-            showCancelButton: true,
-            confirmButtonText: "Hapus",
-            showLoaderOnConfirm: true,
-            preConfirm: (text) => {
-                if(text == ('saya-ingin-menghapus-'+username)){
-                    $.ajax({
-                        url: `/profiles/${user_id}/destroy`,
-                        type: "GET",
-                        cache: false,
-                        data: {
-                            "_token": $("meta[name='csrf-token']").attr("content"),
-                        },
-                        success:function(response){
-                            var baseUrl = window.location.origin;
-                            var routeUrl = baseUrl + "/";
-                            document.location.href = routeUrl;
-                        },
-                        error: function(error){
-                            console.log(error);
-                        }
-                    });
-                } else {
-                    Swal.showValidationMessage("Teks yang dimasukkan tidak sesuai");
-                }
-            },
-            allowOutsideClick: () => !Swal.isLoading(),
-        }).then(() => {
-            // lakukan sesuatu
-        });
+            Swal.fire({
+                title: "Ketikkan 'saya-ingin-menghapus-" + username + "'",
+                input: "text",
+                inputAttributes: {
+                    autocapitalize: "off",
+                },
+                showCancelButton: true,
+                confirmButtonText: "Hapus",
+                showLoaderOnConfirm: true,
+                preConfirm: (text) => {
+                    if (text == ('saya-ingin-menghapus-' + username)) {
+                        $.ajax({
+                            url: `/profiles/${user_id}/destroy`,
+                            type: "GET",
+                            cache: false,
+                            data: {
+                                "_token": $("meta[name='csrf-token']").attr("content"),
+                            },
+                            success: function(response) {
+                                var baseUrl = window.location.origin;
+                                var routeUrl = baseUrl + "/";
+                                document.location.href = routeUrl;
+                            },
+                            error: function(error) {
+                                console.log(error);
+                            }
+                        });
+                    } else {
+                        Swal.showValidationMessage("Teks yang dimasukkan tidak sesuai");
+                    }
+                },
+                allowOutsideClick: () => !Swal.isLoading(),
+            }).then(() => {
+                // lakukan sesuatu
+            });
         }
         $(document).ready(function() {
             $("button").click(function() {

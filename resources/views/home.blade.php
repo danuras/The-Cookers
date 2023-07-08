@@ -35,6 +35,16 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Resep
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ route('recipes.search-recipe') }}">Cari Resep</a></li>
+                            <li><a class="dropdown-item" href="{{ route('recipes.user-recipe') }}">Resep Saya</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item pe-3">
                         <a class="nav-link" href="{{ route('recipes.upload-image') }}">Upload Resep</a>
                     </li>
@@ -57,51 +67,20 @@
         <div class="container">
             {{-- resep terbaru --}}
             <div class="row pt-3">
-                <div class="row">
-                    <div class="col-md">
-                        <h3 class="text-center">Resep Terbaru</h3>
-                    </div>
-                </div>
-                <div class="row">
-                    @foreach ($n_recipes as $recipe)
-                        <div class="col-md-3">
-                            <div class="card border">
-                                <img src="{{ asset($recipe->image_url) }}" class="card-img-top" alt="gambar resep"
-                                    style="width: 100%; height: 200px; object-fit: cover;" />
-                                <a href="/recipes/{{ $recipe->id }}/detail">
-                                    <div class="card-body text-center">
-                                        <button class="button"
-                                            data-fullname="{{ $recipe->name }}">{{ \Illuminate\Support\Str::limit($recipe->name, 30) }}</button>
-                                    </div>
-                                </a>
-                            </div>
+                @foreach ($n_recipes as $recipe)
+                    <div class="col-md-3">
+                        <div class="card border">
+                            <img src="{{ asset($recipe->image_url) }}" class="card-img-top" alt="gambar resep"
+                                style="width: 100%; height: 200px; object-fit: cover;" />
+                            <a href="/recipes/{{ $recipe->id }}/detail">
+                                <div class="card-body text-center">
+                                    <button class="button"
+                                        data-fullname="{{ $recipe->name }}">{{ \Illuminate\Support\Str::limit($recipe->name, 20) }}</button>
+                                </div>
+                            </a>
                         </div>
-                    @endforeach
-                </div>
-            </div>
-            {{-- resep terpopuler --}}
-            <div class="row pt-5 pb-3">
-                <div class="row">
-                    <div class="col-md">
-                        <h3 class="text-center">Resep Terpopuler</h3>
                     </div>
-                </div>
-                <div class="row">
-                    @foreach ($f_recipes as $recipe)
-                        <div class="col-md-3">
-                            <div class="card border">
-                                <img src="{{ asset($recipe->image_url) }}" class="card-img-top" alt="gambar resep"
-                                    style="width: 100%; height: 200px; object-fit: cover;" />
-                                <a href="/recipes/{{ $recipe->id }}/detail">
-                                    <div class="card-body text-center">
-                                        <button class="button"
-                                            data-fullname="{{ $recipe->name }}">{{ \Illuminate\Support\Str::limit($recipe->name, 30) }}</button>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
+                @endforeach
             </div>
         </div>
     </main>

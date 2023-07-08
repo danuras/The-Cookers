@@ -35,6 +35,16 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Resep
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ route('recipes.search-recipe') }}">Cari Resep</a></li>
+                            <li><a class="dropdown-item" href="{{ route('recipes.user-recipe') }}">Resep Saya</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item pe-3">
                         <a class="nav-link" href="{{ route('recipes.upload-image') }}">Upload Resep</a>
                     </li>
@@ -51,11 +61,12 @@
         </div>
     </nav>
     {{-- navbar end --}}
+
     {{-- list resep --}}
     <section>
         <div class="container">
             <div class="row ">
-                @if(sizeof($recipes)==0)
+                @if (sizeof($recipes) == 0)
                     <div class="col-md-12 pt-5 text-center">
                         <h2 class="pt-5">Anda belum pernah mengunggah resep</h2>
                         <a href="{{ route('recipes.upload-image') }}">Upload resep anda sekarang</a>
@@ -66,7 +77,8 @@
                             <tbody>
                                 @foreach ($recipes as $recipe)
                                     <tr>
-                                        <td>{{ $recipe->name }}</td>
+                                        <td><a href="/recipes/{{ $recipe->id }}/detail"
+                                                style="text-decoration: none; color: black">{{ $recipe->name }}</a></td>
                                         <td>
 
                                             <div class='row justify-content-center'>
@@ -75,12 +87,10 @@
                                                         class="btn btn-primary">Edit</a>
                                                 </div>
                                                 <div class='col'>
-                                                    <form action='{{ route('recipes.delete', $recipe->id) }}'
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type='submit' class="btn btn-danger">Hapus</button>
-                                                    </form>
+                                                    <button class="btn btn-danger" onclick="hapusResepConfirmation()">
+                                                        <a href="#"
+                                                            style="text-decoration: none; color: white">Hapus</a>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </td>
@@ -95,6 +105,7 @@
         </div>
     </section>
     {{-- list resep end --}}
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="{{ asset('js/script-dashboard.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
