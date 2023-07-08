@@ -29,7 +29,6 @@ Route::get('show-enter-new-password', [AuthController::class, 'showEnterNewPassw
 Route::post('save-new-password', [AuthController::class, 'saveNewPassword'])->name('save-new-password');
 
 
-
 //Route::post('change-locale', [LocaleController::class, 'changeLocale'])->name('change-locale');
 
 
