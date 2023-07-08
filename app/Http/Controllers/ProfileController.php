@@ -94,9 +94,9 @@ class ProfileController extends Controller
         }
 
         $user->name = $request->name;
-        $user->username = $request->username;
         $user->no_phone = $request->no_phone;
         $user->gender = $request->gender;
+        $user->username = $request->username;
         $user->bio = $request->bio;
         $user->info = $request->info;
         $user->email = $request->email;
