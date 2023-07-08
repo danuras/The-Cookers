@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Ingredient;
 use App\Models\Recipe;
 use App\Models\Step;
+use App\Rules\YoutubeValidLink;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Mavinoo\Batch\BatchFacade as Batch;
 
 class RecipeController extends Controller
@@ -90,6 +92,7 @@ class RecipeController extends Controller
             'cooking_time' => 'required|numeric|min:0',
             'steps' => 'required',
             'ingredients' => 'required',
+            'video_url' => ['required',new YoutubeValidLink],
         ]);
 
         if ($validator->fails()) {
@@ -248,7 +251,7 @@ class RecipeController extends Controller
      */
     public function showUserRecipe()
     {
-        
+
         Session::forget('image_url_r');
         Session::forget('r_name');
         Session::forget('r_description');
@@ -290,7 +293,7 @@ class RecipeController extends Controller
         if (!Gate::allows('admin-recipe', Recipe::find(Session::get('recipe_id_r')))) {
             abort(403);
         }
-        
+
         $image = '';
 
         Session::flashInput($request->input());
@@ -332,13 +335,13 @@ class RecipeController extends Controller
             Session::forget('r_ingredients');
             $steps = '';
             $los = $recipe->steps;
-            for($i = 0; $i < sizeof($los); $i++){
+            for ($i = 0; $i < sizeof($los); $i++) {
                 $steps = $steps . '
 ' . $los[$i]->value;
             }
             $ingredients = '';
             $loi = $recipe->ingredients;
-            for($i = 0; $i < sizeof($loi); $i++){                
+            for ($i = 0; $i < sizeof($loi); $i++) {
                 $ingredients = $ingredients . '
 ' . $loi[$i]->value;
             }
@@ -368,6 +371,7 @@ class RecipeController extends Controller
             'cooking_time' => 'required|numeric|min:0',
             'steps' => 'required',
             'ingredients' => 'required',
+            'video_url' => ['required',new YoutubeValidLink],
         ]);
 
         if ($validator->fails()) {

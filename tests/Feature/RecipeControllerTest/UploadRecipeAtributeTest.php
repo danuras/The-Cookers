@@ -34,6 +34,7 @@ class UploadRecipeAtributeTest extends TestCase
             'cooking_time' => 30,
             'steps' => 'gulung\ngulung\ngulung',
             'ingredients' => 'fiesta\nchicken\nnugget',
+            'video_url' => 'https://www.youtube.com/watch?v=pQrchxj2gC8'
         ]);
 
         // Memastikan status respons adalah 302 (redirect)
@@ -69,11 +70,43 @@ class UploadRecipeAtributeTest extends TestCase
             'description' => '',
             'portion' => -2,
             'cooking_time' => 'abc',
+            'video_url' => 'https://www.youtube.com/watch?v=pQrchxj2gC8'
         ]);
         // Memastikan respons kembali ke halaman sebelumnya (back)
         $response->assertRedirect();
 
         // Memastikan bahwa respons memiliki error validasi sesuai dengan input yang tidak valid
         $response->assertSessionHasErrors(['name', 'portion', 'cooking_time', 'description']);
+    }
+
+    public function test_upload_recipe_atribute_invalid_link_youtube()
+    {
+        // Membuat user baru 
+        $user = User::factory()->create();
+
+        // Menjalankan HTTP POST request ke route 'login' untuk mengotentikasi pengguna
+        $this->post(route('login'), [
+            'login' => $user->email,
+            'password' => 'password', // Ganti dengan password pengguna yang valid
+        ]);
+
+        Session::put('image_url_r', 'recipe_image.jpg');
+
+        // Mengirimkan permintaan POST dengan data yang valid
+        $response = $this->post('/recipes/upload-recipe/upload-recipe-atribute', [
+            'name' => 'Recipe Name',
+            'description' => 'Recipe description with more than 30 characters.',
+            'portion' => 2,
+            'cooking_time' => 30,
+            'steps' => 'gulung\ngulung\ngulung',
+            'ingredients' => 'fiesta\nchicken\nnugget',
+            'video_url' => '123'
+        ]);
+
+        // Memastikan respons kembali ke halaman sebelumnya (back)
+        $response->assertRedirect();
+
+        // Memastikan bahwa respons memiliki error validasi sesuai dengan input yang tidak valid
+        $response->assertSessionHasErrors(['video_url']);  
     }
 }
