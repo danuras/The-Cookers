@@ -21,6 +21,7 @@ class RegisterTest extends TestCase
             'name' => fake()->name(),
             'username' => fake()->unique()->userName(),
             'email' => $email,
+            'no_phone' => '0818212323',
             'email_verified_at' => now(),
             'password' => '@Sadnak123', // password
             'remember_token' => Str::random(10),
@@ -45,6 +46,7 @@ class RegisterTest extends TestCase
             'email_verified_at' => now(),
             'password' => '@Sadnak123', // password
             'remember_token' => Str::random(10),
+            'no_phone' => '0818212323',
             'photo_profile'=> 'profile.png',
             'password_confirmation' => '@Sadnak123',
             'info' => Str::random(20),
@@ -62,6 +64,7 @@ class RegisterTest extends TestCase
             'name' => fake()->name(),
             'username' => fake()->unique()->userName(),
             'email' => 'aaa',
+            'no_phone' => '0818212323',
             'email_verified_at' => now(),
             'password' => '@Sadnak123', // password
             'remember_token' => Str::random(10),
@@ -84,6 +87,7 @@ class RegisterTest extends TestCase
             'name' => fake()->name(),
             'username' => fake()->unique()->userName(),
             'email' => 'a@a',
+            'no_phone' => '0818212323',
             'email_verified_at' => now(),
             'password' => 'sadnak123', // password
             'remember_token' => Str::random(10),
@@ -105,6 +109,7 @@ class RegisterTest extends TestCase
             'name' => fake()->name(),
             'username' => fake()->unique()->userName(),
             'email' => 'a@a',
+            'no_phone' => '0818212323',
             'email_verified_at' => now(),
             'password' => '@Sadnak12', // password
             'remember_token' => Str::random(10),
