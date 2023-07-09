@@ -20,6 +20,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/style-main-navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style-home.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>
@@ -87,7 +88,7 @@
                                                         class="btn btn-primary">Edit</a>
                                                 </div>
                                                 <div class='col'>
-                                                    <button class="btn btn-danger" onclick="hapusResepConfirmation()">
+                                                    <button class="btn btn-danger" onclick="hapusResepConfirmation({{json_encode($recipe->name)}}, {{json_encode($recipe->id)}})">
                                                         <a href="#"
                                                             style="text-decoration: none; color: white">Hapus</a>
                                                     </button>
@@ -98,7 +99,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-
+                        {!! $recipes->links('vendor.pagination.bootstrap-4') !!}
                     </div>
                 @endif
             </div>
@@ -110,5 +111,47 @@
     <script src="{{ asset('js/script-dashboard.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+        // pop up hapus resep
+        function hapusResepConfirmation(name, id) {
+            Swal.fire({
+                title: "Hapus Resep?",
+                text: "Apakah Anda yakin menghapus "+name+"?",
+                icon: "question",
+                showCancelButton: true,
+                cancelButtonColor: "#3085d6",
+                cancelButtonText: "Batal",
+                confirmButtonColor: "#d33",
+                confirmButtonText: "Hapus",
+                focusCancel: true,
+                background: "#ffcf9c",
+                preConfirm: () => {
+                    console.log(id);
+                        $.ajax({
+                            url: `/recipes/${id}`,
+                            type: "POST",
+                            cache: false,
+                            data: {
+                                "_token": $("meta[name='csrf-token']").attr("content"),
+                            },
+                            success: function(response) {
+                                var baseUrl = window.location.origin;
+                                var routeUrl = baseUrl + "/recipes/user-recipe";
+                                document.location.href = routeUrl;
+                            },
+                            error: function(error) {
+                                console.log(error);
+                            }
+                        });
+                },
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // hapus resep
+                }
+            });
+        }
     </script>
 </body>

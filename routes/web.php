@@ -20,8 +20,18 @@ use App\Http\Controllers\IngredientController;
 |
 */
 Route::get('/', [DashboardController::class, 'index']);
+Route::get('reset-password', [AuthController::class, 'showEnterEmailView'])->name('reset-password');
+Route::post('reset-password', [AuthController::class, 'enterEmail']);
+Route::get('show-verification-code-reset-password', [AuthController::class, 'showVerificationCodeResetPassword']);
+Route::post('send-verification-code-reset-password', [AuthController::class, 'sendVerificationCodeResetPassword'])->name('send-verification-code-reset-password');
+Route::post('verify-code', [AuthController::class, 'verifyCode'])->name('verify-code');
+Route::get('show-enter-new-password', [AuthController::class, 'showEnterNewPassword']);
+Route::post('save-new-password', [AuthController::class, 'saveNewPassword'])->name('save-new-password');
 
-Route::post('change-locale', [LocaleController::class, 'changeLocale'])->name('change-locale');
+
+//Route::post('change-locale', [LocaleController::class, 'changeLocale'])->name('change-locale');
+
+
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [AuthController::class, 'showRegistrationView'])->name('register'); //clear
@@ -29,17 +39,6 @@ Route::middleware('guest')->group(function () {
 
     Route::get('login', [AuthController::class, 'showLoginView'])->name('login'); //clear
     Route::post('login', [AuthController::class, 'login']); //clear
-
-
-    Route::get('reset-password', [AuthController::class, 'showEnterEmailView'])->name('reset-password');
-    Route::post('reset-password', [AuthController::class, 'enterEmail']);
-
-    Route::get('show-verification-code-reset-password', [AuthController::class, 'showVerificationCodeResetPassword']);
-    Route::post('send-verification-code-reset-password', [AuthController::class, 'sendVerificationCodeResetPassword'])->name('send-verification-code-reset-password');
-    Route::post('verify-code', [AuthController::class, 'verifyCode'])->name('verify-code');
-
-    Route::get('show-enter-new-password', [AuthController::class, 'showEnterNewPassword']);
-    Route::post('save-new-password', [AuthController::class, 'saveNewPassword'])->name('save-new-password');
 });
 
     
@@ -68,7 +67,7 @@ Route::middleware('auth') /* ->prefix('{locale}') */->group(function () {
         Route::prefix('search-recipe')->group(function () {
             Route::get('/', [RecipeController::class, 'showSearchRecipe'])->name('recipes.search-recipe');
             Route::get('/{search}/search-result', [RecipeController::class, 'searchRecipeNotDetail'])->name('recipes.result-recipe');
-            Route::get('/{name}/{ingredient}/search-result-detail', [RecipeController::class, 'searchRecipeDetail'])->name('recipes.detail-result-recipe');
+            Route::get('/{ingredient}/search-result-detail', [RecipeController::class, 'searchRecipeDetail'])->name('recipes.detail-result-recipe');
         });
 
         Route::middleware('verify-email')->prefix('edit-recipe')->group(function () {
@@ -80,6 +79,6 @@ Route::middleware('auth') /* ->prefix('{locale}') */->group(function () {
             Route::get('finish-edit-recipe', [RecipeController::class, 'showFinishEditRecipe'])->name('recipes.finish-edit-recipe');
         });
 
-        Route::delete('{recipe}', [RecipeController::class, 'destroy'])->name('recipes.delete');
+        Route::post('{recipe}', [RecipeController::class, 'destroy'])->name('recipes.delete');
     });
 });

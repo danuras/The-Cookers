@@ -26,16 +26,10 @@ class DashboardController extends Controller
         Session::forget('r_steps');
         Session::forget('r_ingredients');
         if (auth()->check()) {
-            // Mengambil data resep dengan mengurutkannya berdasarkan jumlah favorit
-            // dan memuat jumlah favorit yang terkait dengan setiap resep
-            $data['f_recipes'] = Recipe::select('id', 'image_url', 'name')
-                ->withCount('favorites')
-                ->orderByDesc('favorites_count')
-                ->limit(4)->get();
             // Mengambil data resep dengan mengurutkannya berdasarkan tanggal dibuatnya
             $data['n_recipes'] = Recipe::select('id', 'image_url', 'name')
                 ->orderByDesc('created_at')
-                ->limit(4)->get();
+                ->paginate(24, ['*'], 'n_recipes');
             // Mengirim data resep ke tampilan "dashboard" dan mengembalikan tampilan tersebut
             return view('home', $data);
         } else {
