@@ -145,7 +145,8 @@
                 return null;
             }
         }
-        var videoLink = '{{ session('r_video_url') }}';
+        var videoLink = '{{ $recipe->video_url}}';
+
         var videoId = extractVideoId(videoLink);
 
         var previewContainer = document.getElementById("video-preview-container");
