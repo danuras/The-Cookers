@@ -79,7 +79,7 @@
                 {{-- bagian menampilkan hasil cari --}}
                 <div class="row pt-3">
                     @foreach ($recipes as $recipe)
-                        <div class="col-md-4 pb-3">
+                        <div class="col-md-4 p-3">
                             <div class="card border">
                                 <img src="{{ asset($recipe->image_url) }}" class="card-img-top" alt="gambar resep"
                                     style="width: 100%; height: 200px; object-fit: cover;" />

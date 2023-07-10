@@ -78,7 +78,8 @@
                                 @foreach ($recipes as $recipe)
                                     <tr>
                                         <td><a href="/recipes/{{ $recipe->id }}/detail"
-                                                style="text-decoration: none; color: black">{{ $recipe->name }}</a></td>
+                                                style="text-decoration: none; color: black">{{ $recipe->name }}</a>
+                                        </td>
                                         <td>
 
                                             <div class='row justify-content-center'>

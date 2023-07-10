@@ -68,7 +68,7 @@
             {{-- resep terbaru --}}
             <div class="row pt-3">
                 @foreach ($n_recipes as $recipe)
-                    <div class="col-md-3">
+                    <div class="col-md-3 p-3">
                         <div class="card border">
                             <img src="{{ asset($recipe->image_url) }}" class="card-img-top" alt="gambar resep"
                                 style="width: 100%; height: 200px; object-fit: cover;" />
