@@ -4,14 +4,16 @@
 <head>
     <title>Upload Atribut Resep</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style-upload-resep.css') }}">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
 <body>
     <div class="container">
         <h2>Unggah Resep</h2>
         <div class="form-container">
-            <form method="POST" enctype="multipart/form-data" action="{{ route('save.recipes.upload-recipe-atribute') }}">
+            <form method="POST" enctype="multipart/form-data"
+                action="{{ route('save.recipes.upload-recipe-atribute') }}">
                 @method('POST')
                 @csrf
                 @if (session('image_url_r'))
@@ -21,8 +23,6 @@
                         <div class="preview-container">
                             <img id="preview1" src="{{ asset('assets/upload-resep-img/upload.png') }}">
                 @endif
-main
-
         </div>
         <label for="nama_resep">Nama Resep:</label>
         <input type="text" id="nama_resep" name="name" value="{{ session('r_name') }}" required>
@@ -55,7 +55,7 @@ main
         <label for="video_youtube">Tautan Video YouTube:</label>
         <input type="text" id="video_youtube" name="video_url" value="{{ session('r_video_url') }}" required>
         @error('video_url')
-            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+            <div class="alert alert-danger pb-3">{{ $message }}</div>
         @enderror
 
         <label for="bahan">Bahan-bahan:</label>
@@ -99,11 +99,13 @@ main
         </form>
     </div>
     </div>
-main
     <br>
 
     <!-- <script src="{{ asset('js/script-upload-resep.js') }}"></script> -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
 
     <script>
         $(document).ready(function() {

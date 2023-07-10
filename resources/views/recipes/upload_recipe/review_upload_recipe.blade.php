@@ -36,12 +36,7 @@
         </div>
 
         <hr />
-
-        <!-- <img
-          class="youtube"
-          src="img/youtube.png"
-          alt=""
-      /> -->
+        
         <div class="youtube" id="video-preview-container"></div>
 
         <hr />
