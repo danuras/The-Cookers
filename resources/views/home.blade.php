@@ -75,7 +75,7 @@
                             <a href="/recipes/{{ $recipe->id }}/detail">
                                 <div class="card-body text-center">
                                     <button class="button"
-                                        data-fullname="{{ $recipe->name }}">{{ \Illuminate\Support\Str::limit($recipe->name, 20) }}</button>
+                                        data-fullname="{{ $recipe->name }}">{{ \Illuminate\Support\Str::limit($recipe->name, 18) }}</button>
                                 </div>
                             </a>
                         </div>
