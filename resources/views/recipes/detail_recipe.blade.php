@@ -80,9 +80,16 @@
         </div>
 
         <hr />
-
+        
         <div class="youtube" id="video-preview-container"></div>
 
+        <br class="pt-5">
+        <br class="pt-5">
+        <br class="pt-5">
+        <br class="pt-5">
+        <br class="pt-5">
+        <br class="pt-5">
+        <br class="pt-5">
         <hr />
 
         <div class="bahan">
@@ -145,7 +152,7 @@
                 return null;
             }
         }
-        var videoLink = '{{ $recipe->video_url}}';
+        var videoLink = '{{ $recipe->video_url }}';
 
         var videoId = extractVideoId(videoLink);
 
@@ -161,6 +168,8 @@
             iframe.allow =
                 "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
             iframe.allowfullscreen = true;
+            iframe.width = "500";
+            iframe.height = "250";
             previewContainer.appendChild(iframe);
 
         } else {
