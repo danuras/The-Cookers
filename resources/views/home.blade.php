@@ -68,14 +68,14 @@
             {{-- resep terbaru --}}
             <div class="row pt-3">
                 @foreach ($n_recipes as $recipe)
-                    <div class="col-md-3">
+                    <div class="col-md-3 p-3">
                         <div class="card border">
                             <img src="{{ asset($recipe->image_url) }}" class="card-img-top" alt="gambar resep"
                                 style="width: 100%; height: 200px; object-fit: cover;" />
                             <a href="/recipes/{{ $recipe->id }}/detail">
                                 <div class="card-body text-center">
                                     <button class="button"
-                                        data-fullname="{{ $recipe->name }}">{{ \Illuminate\Support\Str::limit($recipe->name, 20) }}</button>
+                                        data-fullname="{{ $recipe->name }}">{{ \Illuminate\Support\Str::limit($recipe->name, 18) }}</button>
                                 </div>
                             </a>
                         </div>
