@@ -25,7 +25,7 @@ class DestroyRecipeTest extends TestCase
         $recipe = Recipe::factory()->create(['user_id'=>$user->id]);
 
         // Mengirim permintaan penghapusan resep sebagai pengguna terotentikasi
-        $response = $this->delete('/recipes/'. $recipe->id);
+        $response = $this->post('/recipes/'. $recipe->id);
 
         // Memastikan bahwa permintaan berhasil dan mengarahkan kembali
         $response->assertStatus(302);
@@ -50,7 +50,7 @@ class DestroyRecipeTest extends TestCase
         $recipe = Recipe::factory()->create(['user_id'=>$user2->id]);
 
         // Mengirim permintaan penghapusan resep sebagai pengguna terotentikasi
-        $response = $this->delete('/recipes/'. $recipe->id);
+        $response = $this->post('/recipes/'. $recipe->id);
 
         // Memastikan bahwa user tidak terotorisasi
         $response->assertStatus(403);

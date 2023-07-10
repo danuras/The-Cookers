@@ -40,6 +40,7 @@ class EditRecipeAtributeTest extends TestCase
             'cooking_time' => 30,
             'steps' => 'gulung\ngulung\ngulung',
             'ingredients' => 'fiesta\nchicken\nnugget',
+            'video_url' => 'https://www.youtube.com/watch?v=pQrchxj2gC8'
         ]);
 
         // Memastikan status respons adalah 302 (redirect)
@@ -83,6 +84,7 @@ class EditRecipeAtributeTest extends TestCase
             'description' => '',
             'portion' => -2,
             'cooking_time' => 'abc',
+            'video_url' => 'https://www.youtube.com/watch?v=pQrchxj2gC8'
         ]);
         // Memastikan respons kembali ke halaman sebelumnya (back)
         $response->assertRedirect();
@@ -116,11 +118,50 @@ class EditRecipeAtributeTest extends TestCase
             'name' => 'Recipe Name',
             'description' => 'Recipe description with more than 30 characters.',
             'portion' => 2,
+            'video_url' => 'https://www.youtube.com/watch?v=pQrchxj2gC8',
             'cooking_time' => 30,
         ]);
 
         
         // Memeriksa bahwa response memiliki status 403 (Unauthorized)
         $response->assertStatus(403);
+    }
+    /**@test */
+    public function test_edit_recipe_atribute_invalid_youtube_url()
+    {
+        // Membuat user baru 
+        $user = User::factory()->create();
+
+        // Menjalankan HTTP POST request ke route 'login' untuk mengotentikasi pengguna
+        $this->post(route('login'), [
+            'login' => $user->email,
+            'password' => 'password', // Ganti dengan password pengguna yang valid
+        ]);
+        
+        // Membuat dummy recipe untuk diuji
+        $recipe = Recipe::factory()->create([
+            'user_id'=> $user->id,
+        ]);
+        Session::put('recipe_id_r', $recipe->id);
+
+        Session::put('image_url_r', 'recipe_image.jpg');
+
+        // Mengirimkan permintaan POST dengan data yang valid
+        $response = $this->post('/recipes/edit-recipe/edit-recipe-atribute', [
+            'name' => 'Recipe Name',
+            'description' => 'Recipe description with more than 30 characters.',
+            'portion' => 2,
+            'cooking_time' => 30,
+            'steps' => 'gulung\ngulung\ngulung',
+            'ingredients' => 'fiesta\nchicken\nnugget',
+            'video_url' => '123'
+        ]);
+
+
+        // Memastikan respons kembali ke halaman sebelumnya (back)
+        $response->assertRedirect();
+
+        // Memastikan bahwa respons memiliki error validasi sesuai dengan input yang tidak valid
+        $response->assertSessionHasErrors(['video_url']);  
     }
 }

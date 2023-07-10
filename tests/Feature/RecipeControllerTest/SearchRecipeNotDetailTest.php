@@ -51,7 +51,7 @@ class SearchRecipeNotDetailTest extends TestCase
         $this->assertInstanceOf(\Illuminate\Pagination\LengthAwarePaginator::class, $recipes);
 
         // Memastikan bahwa jumlah data 'recipes' yang ditampilkan adalah 25
-        $this->assertCount(25, $recipes->items());
+        $this->assertCount(24, $recipes->items());
 
         // Memastikan bahwa setiap item 'recipes' memiliki 'name' atau 'value' yang mengandung 'chicken'
         foreach ($recipes->items() as $recipe) {

@@ -81,6 +81,7 @@
                         </div>
                     </div>
                 @endforeach
+                {!! $n_recipes->links('vendor.pagination.bootstrap-4') !!}
             </div>
         </div>
     </main>

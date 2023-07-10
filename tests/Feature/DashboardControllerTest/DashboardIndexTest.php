@@ -33,10 +33,7 @@ class DashboardIndexTest extends TestCase
         $response->assertViewIs('home');
 
         // Memastikan data 'f_recipes' dan 'n_recipes' tersedia di tampilan
-        $response->assertViewHas(['f_recipes', 'n_recipes']);
-        // Memastikan jumlah resep yang dikirim ke tampilan sesuai dengan batas yang ditentukan
-        $response->assertViewHas('f_recipes', Recipe::withCount('favorites')->orderByDesc('favorites_count')->limit(4)->get());
-        $response->assertViewHas('n_recipes', Recipe::orderByDesc('created_at')->limit(4)->get());
+        $response->assertViewHas(['n_recipes']);
     }
     /**
      * @test

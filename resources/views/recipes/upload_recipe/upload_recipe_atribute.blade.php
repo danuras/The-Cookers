@@ -21,6 +21,7 @@
                         <div class="preview-container">
                             <img id="preview1" src="{{ asset('assets/upload-resep-img/upload.png') }}">
                 @endif
+main
 
         </div>
         <label for="nama_resep">Nama Resep:</label>
@@ -53,7 +54,9 @@
 
         <label for="video_youtube">Tautan Video YouTube:</label>
         <input type="text" id="video_youtube" name="video_url" value="{{ session('r_video_url') }}" required>
-
+        @error('video_url')
+            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+        @enderror
 
         <label for="bahan">Bahan-bahan:</label>
         <label for="bahan">(Dipisahkan dengan enter)</label>
@@ -96,6 +99,7 @@
         </form>
     </div>
     </div>
+main
     <br>
 
     <!-- <script src="{{ asset('js/script-upload-resep.js') }}"></script> -->

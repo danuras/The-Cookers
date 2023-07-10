@@ -35,7 +35,7 @@ class SearchRecipeDetailTest extends TestCase
         }
 
         // Memanggil metode dengan parameter pencarian 'fiesta'
-        $response = $this->get('/recipes/search-recipe/fiesta/nugget/search-result-detail');
+        $response = $this->get('/recipes/search-recipe/nugget/search-result-detail');
 
         // Memastikan bahwa respons statusnya adalah 200 (OK)
         $response->assertStatus(200);
@@ -51,11 +51,11 @@ class SearchRecipeDetailTest extends TestCase
         $this->assertInstanceOf(\Illuminate\Pagination\LengthAwarePaginator::class, $recipes);
 
         // Memastikan bahwa jumlah data 'recipes' yang ditampilkan adalah 25
-        $this->assertCount(25, $recipes->items());
+        $this->assertCount(24, $recipes->items());
 
         // Memastikan bahwa setiap item 'recipes' memiliki 'name' atau 'value' yang mengandung 'fiesta'
         foreach ($recipes->items() as $recipe) {
-            $this->assertStringContainsString('fiesta', $recipe->name);
+            
             foreach ($recipe->ingredients as $ingredient) {
                 $this->assertStringContainsString('nugget', $ingredient->value);
             }

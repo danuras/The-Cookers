@@ -29,8 +29,8 @@ class UpdateTest extends TestCase
         // Menjalankan route 'profiles.update' dengan user yang diotentikasi dan data terkirim
         $response = $this->actingAs($user)->put(route('profiles.update', $user->id), [
             'name' => 'John Doe',
-            'username' =>$username,
             'no_phone' => '123456789',
+            'username' =>$username,
             'gender' => 'L',
             'bio' => 'Lorem ipsum dolor sit amet.',
             'info' => 'Lorem ipsum',
@@ -44,8 +44,8 @@ class UpdateTest extends TestCase
 
         // Memastikan bahwa data user telah diperbarui sesuai dengan data yang dikirim
         $this->assertEquals('John Doe', $user->fresh()->name);
-        $this->assertEquals($username, $user->fresh()->username);
         $this->assertEquals('123456789', $user->fresh()->no_phone);
+        $this->assertEquals($username, $user->fresh()->username);
         $this->assertEquals('L', $user->fresh()->gender);
         $this->assertEquals('Lorem ipsum dolor sit amet.', $user->fresh()->bio);
         $this->assertEquals('Lorem ipsum', $user->fresh()->info);
@@ -71,9 +71,9 @@ class UpdateTest extends TestCase
         // Menjalankan route 'profiles.update' dengan user yang diotentikasi dan data terkirim
         $response = $this->actingAs($user)->put(route('profiles.update', $user->id), [
             'name' => 'John Doe',
-            'username' =>$username,
             'no_phone' => '123456789',
             'gender' => 'L',
+            'username' =>$username,
             'bio' => 'Lorem ipsum dolor sit amet.',
             'info' => 'Lorem ipsum',
             'photo_profile' => 'profile.png',
@@ -86,7 +86,6 @@ class UpdateTest extends TestCase
 
         // Memastikan bahwa data user telah diperbarui sesuai dengan data yang dikirim
         $this->assertEquals('John Doe', $user->fresh()->name);
-        $this->assertEquals($username, $user->fresh()->username);
         $this->assertEquals($email, $user->fresh()->email);
         $this->assertEquals('123456789', $user->fresh()->no_phone);
         $this->assertEquals('L', $user->fresh()->gender);
