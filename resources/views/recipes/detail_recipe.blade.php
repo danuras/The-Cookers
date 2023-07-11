@@ -20,7 +20,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/style-main-navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style-home.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style-detailresep.css') }}" />
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/style-detailresep.css') }}" /> --}}
 
 </head>
 
@@ -64,83 +64,82 @@
     </nav>
     {{-- navbar end --}}
 
-    <!-- Menu -->
-    <div class="container">
-        <ul class="menu">
-            <img src="{{ asset($recipe->image_url) }}" alt="" />
-        </ul>
-
-        <h5 class="judul">{{ $recipe->name }}</h5>
-        <hr />
-
-        <div class="navbar-2">
-            <p class="waktu">Waktu memasak {{ $recipe->cooking_time }} menit</p>
-            <img class="fork" src="{{ asset('assets/fork.png') }}" alt="" />
-            <p class="porsi">{{ $recipe->portion }} porsi</p>
-        </div>
-
-        <hr />
-        
-        <div class="youtube" id="video-preview-container"></div>
-
-        <br class="pt-5">
-        <br class="pt-5">
-        <br class="pt-5">
-        <br class="pt-5">
-        <br class="pt-5">
-        <br class="pt-5">
-        <br class="pt-5">
-        <hr />
-
-        <div class="bahan">
-            <h4>Bahan - Bahan</h4>
-            <div class="square"></div>
-            @foreach ($ingredients as $ingredient)
-                <li>{{ $ingredient->value }}</li>
-            @endforeach
-        </div>
-
-        <hr>
-
-        <div class="cara">
-            <h4>Cara Membuat</h4>
-            <div class="square"></div>
-        </div>
-
-        @for ($i = 0; $i < count($steps); $i++)
-            <div class="step">
-                <h5 class="">Langkah {{ $i + 1 }}</h5>
-                <ul class="check">
-                    <i class="fa fa-check"></i>
-                </ul>
+    {{-- main --}}
+    <main>
+        <div class="container">
+            {{-- gambar resep --}}
+            <div class="row pt-3">
+                <div class="col-md d-flex justify-content-center">
+                    <img src="{{ asset($recipe->image_url) }}" alt="gambar resep" draggable="false"
+                        style="width: 50%; height: 300px; object-fit: cover;" />
+                </div>
             </div>
-            <p class="">
-                {{ $steps[$i]->value }}
-            </p>
-            <center>
-                @foreach (json_decode($steps[$i]->images ?? '[]') as $image)
-                    <img id="gambar-preview" src="{{ asset($image) }}" alt="Preview Gambar" width="80"
-                        height="80">
-                @endforeach
-            </center>
-        @endfor
+            {{-- nama resep --}}
+            <div class="row pt-3">
+                <div class="col-md text-center">
+                    <h4>{{ $recipe->name }}</h4>
+                </div>
+            </div>
+            <hr>
+            {{-- waktu dan porsi resep --}}
+            <div class="row d-flex justify-content-between pt-3">
+                <div class="col-md-3">
+                    <p>Waktu memasak {{ $recipe->cooking_time }} menit</p>
+                </div>
+                <div class="col-md-2">
+                    <p><img src="{{ asset('assets/fork.png') }}" alt="" style="width: 20px; height: 20px;" />
+                        {{ $recipe->portion }} porsi
+                    </p>
+                </div>
+            </div>
+            <hr>
+            {{-- video resep --}}
+            <div class="row pt-3">
+                <div class="col-md d-flex justify-content-center">
+                    <div class="youtube" id="video-preview-container"></div>
+                </div>
+            </div>
+            <hr>
+            {{-- bahan-bahan --}}
+            <div class="row pt-3">
+                <div class="row pb-3">
+                    <div class="col-md">
+                        <h5 class="fw-bold">Bahan-bahan</h5>
+                    </div>
+                </div>
+                @for ($i = 0; $i < count($ingredients); $i++)
+                    <div class="row">
+                        <div class="col-md">
+                            <p>{{ $i + 1 }}. {{ $ingredients[$i]->value }}</p>
+                        </div>
+                    </div>
+                @endfor
+            </div>
+            <hr>
+            {{-- langkah-langkah --}}
+            <div class="row pt-3">
+                <div class="row pb-3">
+                    <div class="col-md">
+                        <h5 class="fw-bold">Langkah-langkah</h5>
+                    </div>
+                </div>
+                @for ($i = 0; $i < count($steps); $i++)
+                    <div class="row">
+                        <div class="col-md">
+                            <p>{{ $i + 1 }}. {{ $steps[$i]->value }}</p>
+                        </div>
+                    </div>
+                @endfor
+            </div>
+        </div>
+    </main>
+    {{-- main end --}}
 
-        <br />
-        <br />
-    </div>
-    <!-- Akhir Menu -->
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="{{ asset('js/script-dashboard.js') }}"></script>
     <script>
         function extractVideoId(url) {
             var regExp =
@@ -168,8 +167,8 @@
             iframe.allow =
                 "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
             iframe.allowfullscreen = true;
-            iframe.width = "500";
-            iframe.height = "250";
+            iframe.width = "960";
+            iframe.height = "540";
             previewContainer.appendChild(iframe);
 
         } else {
@@ -177,6 +176,3 @@
         }
     </script>
 </body>
-</body>
-
-</html>
