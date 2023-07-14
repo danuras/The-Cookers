@@ -62,6 +62,7 @@ public function showRegistrationView()
 <pre><code class="language-php">&lt;a class="menu-list" href="{{route('register')}}">@lang('dashboard.signup')&lt;/a&gt;   </code></pre></li>
     <li>route register itu dapat diakses dengan memasukan url <code style="white-space: pre;">127.0.0.1/register</code>pada web browser</li>
 </ol>
-        <h2>Link (sementara): https://thecoookers.000webhostapp.com/</h2>
-
-   
+<h2>Dokumen Project</h2>
+<h3>Link: https://thecoookers.000webhostapp.com/</h3>
+<h3>Folder Tim: https://drive.google.com/drive/folders/1BLrxO4OVoVadQSZD8egpZumK1BpIINx1?usp=sharing</h3>
+<h3>Presentasi: https://www.canva.com/design/DAFoYXR-kJ4/JJZYdsRD0Z95MHRommOUvA/edit?utm_content=DAFoYXR-kJ4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton</h3>
